@@ -3,9 +3,9 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Hexo
-subtitle: 1
-description: 1
+title: 杂记
+subtitle: 记录网上生活
+description: 有了这个，就不用到处去找重复的了
 author: ycg31
 language: zh-Hans
 timezone: Asia/Shanghai
@@ -40,8 +40,9 @@ future: true
 highlight:
   enable: true
   line_number: true
-  auto_detect: false
+  auto_detect: ture
   tab_replace:
+
   
 # Home page setting
 # path: Root path for your blogs index page. (default = '')
@@ -74,9 +75,19 @@ pagination_dir: page
 ## Themes: https://hexo.io/themes/
 theme: next
 
+
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type:  git
   repo:  git@github.com:ycg31/ycg31.github.io.git
   branch: master
+
+ #Algolia搜索配置
+ 
+algolia:
+  applicationID: QXGKA799I9
+  apiKey: 5b6298d4cd6f9df0eb20f97672f39916
+  adminApiKey: 24333ecd14ff174212cb5dcb04ab1eb0
+  indexName: index
+  chunkSize: 5000

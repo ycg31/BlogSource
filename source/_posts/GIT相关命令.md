@@ -2,16 +2,16 @@
 title: GIT相关命令
 tag: git
 ---
-#查看所有分支
+# 查看所有分支
 ~~~bash
 git branch -a  
 ~~~
-#查看本地分支
+# 查看本地分支
 ~~~bash
 git branch   
 ~~~
 
-# 查看远程分支
+#  查看远程分支
 
 ```bash
  git remote 
@@ -29,7 +29,7 @@ git remote add pb git://github.com/paulboone/ticgit.git
 
 
 
-#创建分支
+# 创建分支
 
 ```bash
 git branch  test   #  text为分支名称

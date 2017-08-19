@@ -2,7 +2,7 @@
 title: git pull 和 clone的区别及用法
 tag: git
 ---
-#一、git pull
+# 一、git pull
 git pull命令的作用是，取回远程主机某个分支的更新，再与本地的指定分支合并。
 
 完整格式：$ git pull <远程主机名> <远程分支名>:<本地分支名>
@@ -36,7 +36,7 @@ $ git pull origin
 上面命令表示，本地的当前分支自动与对应的origin主机”追踪分支”(remote-tracking branch)进行合并。
 如果当前分支只有一个追踪分支，连远程主机名都可以省略。
 
-#二、get clone
+# 二、get clone
 远程操作的第一步，通常是从远程主机克隆一个版本库，这时就要用到git clone命令。
 ##（1）$ git clone <版本库的网址>
 比如，克隆jQuery的版本库。
@@ -46,7 +46,7 @@ $ git clone https://github.com/jquery/jquery.git
 
 
 该命令会在本地主机生成一个目录，与远程主机的版本库同名。如果要指定不同的目录名，可以将目录名作为git clone命令的第二个参数。
-##（2）$ git clone <版本库的网址> <本地目录名>
+## （2）$ git clone <版本库的网址> <本地目录名>
 git clone支持多种协议，除了HTTP(s)以外，还支持SSH、Git、本地文件协议等，下面是一些例子。
 ```bash
 $ git clone http[s]://example.com/path/to/repo.git/
@@ -59,7 +59,7 @@ $ git clone rsync://example.com/path/to/repo.git/
 ```
 
 
-##（3）SSH协议还有另一种写法。
+## （3）SSH协议还有另一种写法。
 ```bash
 $ git clone [user@]example.com:path/to/repo.git/
 ```

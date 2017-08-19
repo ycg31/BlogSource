@@ -120,7 +120,7 @@ Host github.com
 - git config --global user.email username@example.com
 ```
 
-###Build配置
+### Build配置
 
 之前的所有操作都只是为了让Travis CI拥有push权限，下面我们开始进入到真正的Build配置当中。 之前我们用到了一个名为`.travis.yml`的文件，跟build有关的所有设置都在这个文件里面，下面的操作都在这个文件当中进行。
 

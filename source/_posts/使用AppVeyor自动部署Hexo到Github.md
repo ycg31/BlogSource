@@ -2,7 +2,7 @@
 title: 使用AppVeyor自动部署Hexo到Github
 tag: hexo,appveyor,git
 ---
-#一、转载别人的教程
+# 一、转载别人的教程
 想必很多人会把Hexo生成出来的静态网站放到GitHub Pages来进行托管。一般发布Hexo博客的流程是，首先在本地搭建Hexo的环境，编写新文章，然后利用`hexo deploy`来发布到Git。那么对于本地的Hexo的原始文件怎么管理呢？如果换电脑了怎么办？如果没有对原始文件进行备份，突然有一天你的本地环境挂了导致源文件丢失，那不就呵呵了。也许你会想到用Dropbox或者其他方案来对源文件进行备份，但是每次更新完博客，需要备份好源文件，然后执行`hexo deploy`进行发布，是不是很麻烦？换了电脑之后又要重新搭建本地环境，是不是很蛋疼？
 
 那么接下来我们就来说说如何优雅愉快地对我们的Hexo进行版本管理和发布。
@@ -18,7 +18,7 @@ tag: hexo,appveyor,git
 
 ​     使用AppVeyor来建立CI非常方便，主要是以下步骤：
 
-1. ## 注册并登陆AppVeyor
+## 1. 注册并登陆AppVeyor
 
    访问[AppVeyor登陆页面](https://ci.appveyor.com/login)，使用你的GitHub账号登陆即可。                                        
 
@@ -26,9 +26,9 @@ tag: hexo,appveyor,git
 
    [![login](https://formulahendry.github.io/assets/img/hexo-ci/appveyor-login.png)](https://formulahendry.github.io/assets/img/hexo-ci/appveyor-login.png)
 
-   ## 
+   
 
-2. ## 添加Project
+## 2.  添加Project
 
    在[AppVeyor Projects页面](https://ci.appveyor.com/projects/new)，添加相应的GitHub Source Repo。                                     
 
@@ -38,7 +38,7 @@ tag: hexo,appveyor,git
 
    ## 
 
-3. ## 添加appveyor.yml到Source Repo
+## 3.  添加appveyor.yml到Source Repo
 
    接下来，你需要把appveyor.yml添加到Source Repo的根目录下。具体的appveyor.yml如下:
 
@@ -55,8 +55,6 @@ tag: hexo,appveyor,git
    - npm install hexo-cli -g
    build_script:
    - hexo generate
-   ```
-
 
    artifacts:
    - path: public
@@ -82,9 +80,9 @@ tag: hexo,appveyor,git
 
    [![encrypt](https://formulahendry.github.io/assets/img/hexo-ci/appveyor-encrypt.png)](https://formulahendry.github.io/assets/img/hexo-ci/appveyor-encrypt.png)
 
-   ## 
+  
 
-4. ## 设置Appveyor
+## 4. 设置Appveyor
 
    添加好appveyor.yml之后，再到Appveyor portal设置以下四个变量。STATIC_SITE_REPO就是Content Repo的地址，TARGET_BRANCH就是你Content Repo的branch，一般默认就是master，GIT_USER_EMAIL和GIT_USER_NAME就是你GitHub账号的信息。                                       
 
@@ -100,6 +98,7 @@ tag: hexo,appveyor,git
 2. –> AppVeyor CI
 3. –> Update GitHub Pages Content Repo
 4. –> Generate your Hexo blog site
-   ```
-#折腾过程中遇到的问题
-部署成功后，所有创建的html文件全部是空的，几经周折才发现，原来是缺少主题文件，所有生成的html文件全是空的，t提示错误WARN No layout，再到GitHub上一看，主题文件夹变成了灰色。具体如何解决灰色文件夹可以参考我转载的另一篇文章。
+
+    
+# 折腾过程中遇到的问题
+部署成功后，所有创建的html文件全部是空的，几经周折才发现，原来是缺少主题文件，所有生成的html文件全是空的，提示错误WARN No layout，再到GitHub上一看，主题文件夹变成了灰色。具体如何解决灰色文件夹可以参考我转载的另一篇文章。

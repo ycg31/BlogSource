@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next mist use-motion" lang="zh-Hans">
+<html class="theme-next pisces use-motion" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -94,13 +94,16 @@
 
 
 
+<meta name="description" content="有了这个，就不用到处去找重复的了">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
+<meta property="og:title" content="杂记">
 <meta property="og:url" content="http://yoursite.com/archives/2017/08/index.html">
-<meta property="og:site_name" content="Hexo">
+<meta property="og:site_name" content="杂记">
+<meta property="og:description" content="有了这个，就不用到处去找重复的了">
 <meta property="og:locale" content="zh-Hans">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
+<meta name="twitter:title" content="杂记">
+<meta name="twitter:description" content="有了这个，就不用到处去找重复的了">
 
 
 
@@ -108,7 +111,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Mist',
+    scheme: 'Pisces',
     sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
     tabs: true,
@@ -118,9 +121,9 @@
       author: '博主'
     },
     algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
+      applicationID: 'QXGKA799I9',
+      apiKey: '5b6298d4cd6f9df0eb20f97672f39916',
+      indexName: 'index',
       hits: {"per_page":10},
       labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
     }
@@ -135,7 +138,7 @@
 
 
 
-  <title>归档 | Hexo</title>
+  <title>归档 | 杂记</title>
   
 
 
@@ -165,12 +168,12 @@
     <div class="custom-logo-site-title">
       <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Hexo</span>
+        <span class="site-title">杂记</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
       
-        <p class="site-subtitle">1</p>
+        <p class="site-subtitle">记录网上生活</p>
       
   </div>
 
@@ -200,6 +203,26 @@
         </li>
       
         
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
             
@@ -221,9 +244,47 @@
       
 
       
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
     </ul>
   
 
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
   
 </nav>
 
@@ -251,7 +312,7 @@
         
           
         
-        嗯..! 目前共计 4 篇日志。 继续努力。
+        嗯..! 目前共计 11 篇日志。 继续努力。
       </span>
 
       
@@ -275,9 +336,9 @@
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2017/08/19/V2ray使用TLS/" itemprop="url">
+            <a class="post-title-link" href="/2017/08/20/mi/" itemprop="url">
               
-                <span itemprop="name">V2ray使用TLS</span>
+                <span itemprop="name">（转）Hexo添加文章时自动打开编辑器</span>
               
             </a>
         
@@ -285,9 +346,9 @@
 
       <div class="post-meta">
         <time class="post-time" itemprop="dateCreated"
-              datetime="2017-08-19T01:50:43+08:00"
-              content="2017-08-19" >
-          08-19
+              datetime="2017-08-20T03:20:09+08:00"
+              content="2017-08-20" >
+          08-20
         </time>
       </div>
 
@@ -312,9 +373,9 @@
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2017/08/19/Linux TCP加速工具 —— LotServer(锐速母公司) 一键安装脚本/" itemprop="url">
+            <a class="post-title-link" href="/2017/08/20/使用Travis自动部署hexo/" itemprop="url">
               
-                <span itemprop="name">Linux TCP加速工具 —— LotServer(锐速母公司) 一键安装脚本</span>
+                <span itemprop="name">使用Travis自动部署hexo</span>
               
             </a>
         
@@ -322,9 +383,9 @@
 
       <div class="post-meta">
         <time class="post-time" itemprop="dateCreated"
-              datetime="2017-08-19T01:38:38+08:00"
-              content="2017-08-19" >
-          08-19
+              datetime="2017-08-20T02:21:57+08:00"
+              content="2017-08-20" >
+          08-20
         </time>
       </div>
 
@@ -349,7 +410,229 @@
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2017/08/19/v2ray/" itemprop="url">
+            <a class="post-title-link" href="/2017/08/20/远程GitHub中的灰色图标的解决办法/" itemprop="url">
+              
+                <span itemprop="name">远程GitHub中的灰色图标的解决办法</span>
+              
+            </a>
+        
+      </h2>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2017-08-20T01:53:59+08:00"
+              content="2017-08-20" >
+          08-20
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+
+      
+
+        
+        
+        
+
+        
+        
+
+        
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h2 class="post-title">
+        
+            <a class="post-title-link" href="/2017/08/20/使用AppVeyor自动部署Hexo到Github/" itemprop="url">
+              
+                <span itemprop="name">使用AppVeyor自动部署Hexo到Github</span>
+              
+            </a>
+        
+      </h2>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2017-08-20T01:51:34+08:00"
+              content="2017-08-20" >
+          08-20
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+
+      
+
+        
+        
+        
+
+        
+        
+
+        
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h2 class="post-title">
+        
+            <a class="post-title-link" href="/2017/08/20/Git远程操作详解/" itemprop="url">
+              
+                <span itemprop="name">Git远程操作详解</span>
+              
+            </a>
+        
+      </h2>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2017-08-20T01:37:57+08:00"
+              content="2017-08-20" >
+          08-20
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+
+      
+
+        
+        
+        
+
+        
+        
+
+        
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h2 class="post-title">
+        
+            <a class="post-title-link" href="/2017/08/20/git pull和clone的区别及用法/" itemprop="url">
+              
+                <span itemprop="name">git pull 和 clone的区别及用法</span>
+              
+            </a>
+        
+      </h2>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2017-08-20T01:36:16+08:00"
+              content="2017-08-20" >
+          08-20
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+
+      
+
+        
+        
+        
+
+        
+        
+
+        
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h2 class="post-title">
+        
+            <a class="post-title-link" href="/2017/08/20/使用Travis-CI自动部署Hexo/" itemprop="url">
+              
+                <span itemprop="name">使用Travis CI自动部署Hexo</span>
+              
+            </a>
+        
+      </h2>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2017-08-20T01:29:43+08:00"
+              content="2017-08-20" >
+          08-20
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+
+      
+
+        
+        
+        
+
+        
+        
+
+        
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h2 class="post-title">
+        
+            <a class="post-title-link" href="/2017/08/20/GIT相关命令/" itemprop="url">
+              
+                <span itemprop="name">GIT相关命令</span>
+              
+            </a>
+        
+      </h2>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2017-08-20T01:22:00+08:00"
+              content="2017-08-20" >
+          08-20
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+
+      
+
+        
+        
+        
+
+        
+        
+
+        
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h2 class="post-title">
+        
+            <a class="post-title-link" href="/2017/08/20/v2ray/" itemprop="url">
               
                 <span itemprop="name">CentOS6上安装V2ray</span>
               
@@ -359,9 +642,9 @@
 
       <div class="post-meta">
         <time class="post-time" itemprop="dateCreated"
-              datetime="2017-08-19T01:24:18+08:00"
-              content="2017-08-19" >
-          08-19
+              datetime="2017-08-20T00:23:03+08:00"
+              content="2017-08-20" >
+          08-20
         </time>
       </div>
 
@@ -386,9 +669,9 @@
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2017/08/19/hello-world/" itemprop="url">
+            <a class="post-title-link" href="/2017/08/20/V2ray使用TLS/" itemprop="url">
               
-                <span itemprop="name">Hello World</span>
+                <span itemprop="name">V2ray使用TLS</span>
               
             </a>
         
@@ -396,9 +679,9 @@
 
       <div class="post-meta">
         <time class="post-time" itemprop="dateCreated"
-              datetime="2017-08-19T00:31:46+08:00"
-              content="2017-08-19" >
-          08-19
+              datetime="2017-08-20T00:23:03+08:00"
+              content="2017-08-20" >
+          08-20
         </time>
       </div>
 
@@ -416,6 +699,10 @@
   
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/archives/2017/08/page/2/">2</a><a class="extend next" rel="next" href="/archives/2017/08/page/2/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
 
 
 
@@ -452,7 +739,7 @@
                alt="ycg31" />
           <p class="site-author-name" itemprop="name">ycg31</p>
            
-              <p class="site-description motion-element" itemprop="description">1</p>
+              <p class="site-description motion-element" itemprop="description">有了这个，就不用到处去找重复的了</p>
           
         </div>
         <nav class="site-state motion-element">
@@ -460,14 +747,32 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-count">11</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
           
 
           
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
 
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
           
 
         </nav>
@@ -475,6 +780,41 @@
         
 
         <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/ycg31" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                    
+                      GitHub
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/ycg31" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                    
+                      Twitter
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/ycg31" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                    
+                      微博
+                    
+                </a>
+              </span>
+            
           
         </div>
 
@@ -525,7 +865,7 @@
   <div class="theme-info">
     主题 &mdash;
     <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-      NexT.Mist
+      NexT.Pisces
     </a>
   </div>
 
@@ -611,6 +951,13 @@
   
   
 
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
   
   
     <script type="text/javascript" id="motion.page.archive">
@@ -658,6 +1005,19 @@
   
 
 
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.2"></script>
 
 
 
