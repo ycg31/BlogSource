@@ -20,8 +20,12 @@ on_success:
 - ps: Add-Content "$env:USERPROFILE\.git-credentials" "https://$($env:access_token):x-oauth-basic@github.com`n"
 - git config --global user.email "%GIT_USER_EMAIL%"
 - git config --global user.name "%GIT_USER_NAME%"
-- cd %APPVEYOR_BUILD_FOLDER%\public
-- git add .
-- git commit -m "Update docs"
-- git push --force --quiet https://github.com/ycg31/ycg31.github.io.git master:master
+- git clone --depth 5 -q --branch=%TARGET_BRANCH% %STATIC_SITE_REPO% %TEMP%\static-site
+- cd %TEMP%\static-site
+- del * /f /q
+- for /d %%p IN (*) do rmdir "%%p" /s /q
+- SETLOCAL EnableDelayedExpansion & robocopy "%APPVEYOR_BUILD_FOLDER%\public" "%TEMP%\static-site" /e & IF !ERRORLEVEL! EQU 1 (exit 0) ELSE (IF !ERRORLEVEL! EQU 3 (exit 0) ELSE (exit 1))
+- git add -A
+- git commit -m "Update Static Site" 
+- git push origin %TARGET_BRANCH%
 - appveyor AddMessage "Static Site Updated"
