@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="Linux TCP加速工具 —— LotServer(锐速母公司) 一键安装脚本锐速(ServerSpeeder)可以说是LotServer的马甲，是针对民用的，而LotServer则是针对企业用户的，锐速现在基本上已经关了，而这个LotServer还在持续运营。 Only for Linux. 从根本原因上解决锐速断流问题，断流的根本原因是没有完整破解验证机制。  支持自动检测公网网卡，多个网卡">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux TCP加速工具 —— LotServer(锐速母公司) 一键安装脚本">
+<meta property="og:url" content="http://yoursite.com/2017/08/19/Linux TCP加速工具 —— LotServer(锐速母公司) 一键安装脚本/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Linux TCP加速工具 —— LotServer(锐速母公司) 一键安装脚本锐速(ServerSpeeder)可以说是LotServer的马甲，是针对民用的，而LotServer则是针对企业用户的，锐速现在基本上已经关了，而这个LotServer还在持续运营。 Only for Linux. 从根本原因上解决锐速断流问题，断流的根本原因是没有完整破解验证机制。  支持自动检测公网网卡，多个网卡">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-08-18T17:44:04.354Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linux TCP加速工具 —— LotServer(锐速母公司) 一键安装脚本">
+<meta name="twitter:description" content="Linux TCP加速工具 —— LotServer(锐速母公司) 一键安装脚本锐速(ServerSpeeder)可以说是LotServer的马甲，是针对民用的，而LotServer则是针对企业用户的，锐速现在基本上已经关了，而这个LotServer还在持续运营。 Only for Linux. 从根本原因上解决锐速断流问题，断流的根本原因是没有完整破解验证机制。  支持自动检测公网网卡，多个网卡">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/08/19/Linux TCP加速工具 —— LotServer(锐速母公司) 一键安装脚本/"/>
+
+
+
+
+
+  <title>Linux TCP加速工具 —— LotServer(锐速母公司) 一键安装脚本 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">1</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/19/Linux TCP加速工具 —— LotServer(锐速母公司) 一键安装脚本/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ycg31">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Linux TCP加速工具 —— LotServer(锐速母公司) 一键安装脚本</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-19T01:38:38+08:00">
+                2017-08-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Linux-TCP加速工具-——-LotServer-锐速母公司-一键安装脚本"><a href="#Linux-TCP加速工具-——-LotServer-锐速母公司-一键安装脚本" class="headerlink" title="Linux TCP加速工具 —— LotServer(锐速母公司) 一键安装脚本"></a>Linux TCP加速工具 —— LotServer(锐速母公司) 一键安装脚本</h1><p>锐速(ServerSpeeder)可以说是LotServer的马甲，是针对民用的，而LotServer则是针对企业用户的，锐速现在基本上已经关了，而这个LotServer还在持续运营。</p>
+<p><strong>Only for Linux.</strong></p>
+<p><strong>从根本原因上解决锐速断流问题，断流的根本原因是没有完整破解验证机制。</strong></p>
+<ol>
+<li>支持自动检测公网网卡，多个网卡也能区分。</li>
+<li>支持自动适配内核 (需锐速支持)。</li>
+<li>添加询问是否开启accppp功能 (实测并开启后没有效果)。</li>
+<li>默认设置为G口宽带 (听说设置大点可以提高速度)。</li>
+<li>支持一键完全卸载 (此脚本安装的无残留)。</li>
+<li><strong>所需文件均来自 GiuHub，不放心可自行查阅 (完全公开)。</strong></li>
+<li>不支持自动更换内核，请自行更换(网上教程非常多)。</li>
+<li><strong>不支持OpenVZ，不需要尝试，会告诉你找不到网卡。</strong></li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">注意：OVZ虚拟化的VPS并不支持锐速加速器的安装，KVM和XEN应该基本都可以。</div></pre></td></tr></table></figure>
+<p><strong>作者博客：<a href="https://moeclub.org/2017/03/08/14/" target="_blank" rel="external">https://moeclub.org/2017/03/08/14/</a></strong></p>
+<p>安装文件 <strong>appex.zip</strong> 为 LotServer 的，(感谢 LotServer 提供安装文件)。</p>
+<p>使用前请日常<code>apt-get update / yum update</code>，欢迎反馈bug(各种安装错误)。</p>
+<p><strong>使用前建议先查看linux支持内核列表，对照一下系统和内核是否可以安装 LotServer！</strong></p>
+<p>服务器使用<code>uname -r</code>命令来查询内核版本，例如返回的是<code>3.2.0-4-amd64</code>，<code>3.2.0-4-amd64</code>就是你的内核版本。</p>
+<blockquote>
+<p>强烈推荐大家使用 <strong>Debian7 x64系统 | 3.2.0-4-amd64内核</strong> ，这个系统和内核无论是锐速、Lotserver还是BBR，除了配置太低的我都没安装失败过！</p>
+</blockquote>
+<h3 id="安装LotServer"><a href="#安装LotServer" class="headerlink" title="安装LotServer"></a>安装LotServer</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">wget --no-check-certificate -qO /tmp/appex.sh <span class="string">"https://raw.githubusercontent.com/0oVicero0/serverSpeeder_Install/master/appex.sh"</span> &amp;&amp; bash /tmp/appex.sh <span class="string">'install'</span></div></pre></td></tr></table></figure>
+<p>安装一开始的时候，会提示：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Press Enter to Continue...</div><div class="line"><span class="comment"># 这个是提示你按回车键继续</span></div></pre></td></tr></table></figure>
+<p>如果安装过程中没问题的话，最后会提示：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">Accelerate VPN (PPTP,L2TP,etc.)? [n]:</div><div class="line"><span class="comment"># 是否加速VPN</span></div><div class="line"> </div><div class="line">Auto load ServerSpeeder on linux start-up? [y]:</div><div class="line"><span class="comment"># 是否开机启动</span></div><div class="line"> </div><div class="line">Run ServerSpeeder now? [y]:</div><div class="line"><span class="comment"># 是否现在启动锐速</span></div><div class="line"> </div><div class="line"><span class="comment"># 全部默认回车即可。</span></div></pre></td></tr></table></figure>
+<p>最后出现这样的提示就说明安装并启动成功：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">[Running Status]</div><div class="line">ServerSpeeder is running!</div><div class="line">version              3.11.20.4</div><div class="line"> </div><div class="line">[License Information]</div><div class="line">License              6001ADDF578B6C0E (valid on current device)</div><div class="line">MaxSession           unlimited</div><div class="line">MaxTcpAccSession     unlimited</div><div class="line">MaxBandwidth(kbps)   1024000</div><div class="line">ExpireDate           2035-12-31</div><div class="line">....</div><div class="line"><span class="comment"># 以下省略....</span></div></pre></td></tr></table></figure>
+<h3 id="卸载LotServer"><a href="#卸载LotServer" class="headerlink" title="卸载LotServer"></a>卸载LotServer</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">wget --no-check-certificate -qO /tmp/appex.sh <span class="string">"https://raw.githubusercontent.com/0oVicero0/serverSpeeder_Install/master/appex.sh"</span> &amp;&amp; bash /tmp/appex.sh <span class="string">'uninstall'</span></div></pre></td></tr></table></figure>
+<h3 id="使用说明"><a href="#使用说明" class="headerlink" title="使用说明"></a>使用说明</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">/appex/bin/serverSpeeder.sh start</div><div class="line"><span class="comment"># 启动 LotServer</span></div><div class="line"> </div><div class="line">/appex/bin/serverSpeeder.sh stop</div><div class="line"><span class="comment"># 停止 LotServer</span></div><div class="line"> </div><div class="line">/appex/bin/serverSpeeder.sh restart</div><div class="line"><span class="comment"># 重启 LotServer</span></div><div class="line"> </div><div class="line">/appex/bin/serverSpeeder.sh status</div><div class="line"><span class="comment"># 状态查询</span></div><div class="line"> </div><div class="line">/appex/bin/serverSpeeder.sh renewLic</div><div class="line"><span class="comment"># 更新许可</span></div></pre></td></tr></table></figure>
+<p><a href="https://github.com/0oVicero0/serverSpeeser_Install" target="_blank" rel="external">代码托管地址</a></p>
+<p><a href="https://github.com/0oVicero0/serverSpeeder_Install/blob/master/lotServer.pdf" target="_blank" rel="external">LotServer 完整使用介绍 PDF手册</a></p>
+<p><strong>安装完了，想要自己修改配置最大化加速效果，那么请看：锐速(ServerSpeeder/LotServer)配置参数简单说明，合理修改配置 提高加速效果</strong></p>
+<p>这个LotServer与锐速(ServerSpeeder)的加速区别并不大，不过91yun的破解版因为破解不完整导致会出现断流等情况，而这个 LotServer 则没有这种问题。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/08/19/v2ray/" rel="next" title="CentOS6上安装V2ray">
+                <i class="fa fa-chevron-left"></i> CentOS6上安装V2ray
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/08/19/V2ray使用TLS/" rel="prev" title="V2ray使用TLS">
+                V2ray使用TLS <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="ycg31" />
+          <p class="site-author-name" itemprop="name">ycg31</p>
+           
+              <p class="site-description motion-element" itemprop="description">1</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Linux-TCP加速工具-——-LotServer-锐速母公司-一键安装脚本"><span class="nav-number">1.</span> <span class="nav-text">Linux TCP加速工具 —— LotServer(锐速母公司) 一键安装脚本</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装LotServer"><span class="nav-number">1.0.1.</span> <span class="nav-text">安装LotServer</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#卸载LotServer"><span class="nav-number">1.0.2.</span> <span class="nav-text">卸载LotServer</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用说明"><span class="nav-number">1.0.3.</span> <span class="nav-text">使用说明</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ycg31</span>
+
+  
+</div>
+
+
+  <div class="powered-by">
+    由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+  </div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">
+    主题 &mdash;
+    <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+      NexT.Mist
+    </a>
+  </div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

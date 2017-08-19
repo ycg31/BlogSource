@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="1. TLS从 v1.19 起引入了 TLS，TLS 中文译名是传输层安全，如果你没听说过，请 Google 了解一下。以下给出些我认为介绍较好的文章链接： SSL/TLS协议运行机制的概述 传输层安全协议 Shadowsocks 的作者 clowwindy 却认为翻墙不该用 SSL。那么到底该不该用？对此我不作评论，各位自行思考。这里我只教大家如何开启 TLS。 1.1. 注册一个域名如果已经">
+<meta property="og:type" content="article">
+<meta property="og:title" content="V2ray使用TLS">
+<meta property="og:url" content="http://yoursite.com/2017/08/19/V2ray使用TLS/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="1. TLS从 v1.19 起引入了 TLS，TLS 中文译名是传输层安全，如果你没听说过，请 Google 了解一下。以下给出些我认为介绍较好的文章链接： SSL/TLS协议运行机制的概述 传输层安全协议 Shadowsocks 的作者 clowwindy 却认为翻墙不该用 SSL。那么到底该不该用？对此我不作评论，各位自行思考。这里我只教大家如何开启 TLS。 1.1. 注册一个域名如果已经">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1503032917499&di=67363c688d949aa5c6a3ed50992c0fee&imgtype=0&src=http%3A%2F%2Fwww.igooda.cn%2Fuploads%2Fallimg%2F141125%2F112R61115-0.JPG">
+<meta property="og:image" content="https://toutyrater.github.io/resource/images/tls_test1.png">
+<meta property="og:image" content="https://toutyrater.github.io/resource/images/tls_test2.png">
+<meta property="og:image" content="https://toutyrater.github.io/resource/images/tls_test3.png">
+<meta property="og:updated_time" content="2017-08-18T17:54:30.075Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="V2ray使用TLS">
+<meta name="twitter:description" content="1. TLS从 v1.19 起引入了 TLS，TLS 中文译名是传输层安全，如果你没听说过，请 Google 了解一下。以下给出些我认为介绍较好的文章链接： SSL/TLS协议运行机制的概述 传输层安全协议 Shadowsocks 的作者 clowwindy 却认为翻墙不该用 SSL。那么到底该不该用？对此我不作评论，各位自行思考。这里我只教大家如何开启 TLS。 1.1. 注册一个域名如果已经">
+<meta name="twitter:image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1503032917499&di=67363c688d949aa5c6a3ed50992c0fee&imgtype=0&src=http%3A%2F%2Fwww.igooda.cn%2Fuploads%2Fallimg%2F141125%2F112R61115-0.JPG">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/08/19/V2ray使用TLS/"/>
+
+
+
+
+
+  <title>V2ray使用TLS | Hexo</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">1</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/19/V2ray使用TLS/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ycg31">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">V2ray使用TLS</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-19T01:50:43+08:00">
+                2017-08-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><a href="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1503032917499&amp;di=67363c688d949aa5c6a3ed50992c0fee&amp;imgtype=0&amp;src=http%3A%2F%2Fwww.igooda.cn%2Fuploads%2Fallimg%2F141125%2F112R61115-0.JPG" target="_blank" rel="external"><img src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1503032917499&amp;di=67363c688d949aa5c6a3ed50992c0fee&amp;imgtype=0&amp;src=http%3A%2F%2Fwww.igooda.cn%2Fuploads%2Fallimg%2F141125%2F112R61115-0.JPG" alt="img"></a></p>
+<h1 id="1-TLS"><a href="#1-TLS" class="headerlink" title="1. TLS"></a>1. TLS</h1><p>从 v1.19 起引入了 TLS，TLS 中文译名是传输层安全，如果你没听说过，请 Google 了解一下。以下给出些我认为介绍较好的文章链接：</p>
+<p><a href="http://www.ruanyifeng.com/blog/2014/02/ssl_tls.html" target="_blank" rel="external">SSL/TLS协议运行机制的概述</a></p>
+<p><a href="https://zh.wikipedia.org/wiki/%E5%82%B3%E8%BC%B8%E5%B1%A4%E5%AE%89%E5%85%A8%E5%8D%94%E8%AD%B0" target="_blank" rel="external">传输层安全协议</a></p>
+<p>Shadowsocks 的作者 clowwindy 却认为<a href="https://gist.github.com/clowwindy/5947691" target="_blank" rel="external">翻墙不该用 SSL</a>。那么到底该不该用？对此我不作评论，各位自行思考。这里我只教大家如何开启 TLS。</p>
+<h2 id="1-1-注册一个域名"><a href="#1-1-注册一个域名" class="headerlink" title="1.1. 注册一个域名"></a>1.1. 注册一个域名</h2><p>如果已经注册有域名了可以跳过。 域名有免费的有付费的，总体来说付费的会优于免费的，具体差别请 Google。如果你不舍得为一个域名每年花点钱，用个免费域名也可以。为了方便，这里我将以免费域名为例。</p>
+<p>关于如何注册一个免费域名，我发现有一位网友写得很详细，就不多说了。请参考：</p>
+<p><a href="https://doub.io/dbwz-3/" target="_blank" rel="external">教你申请.tk/.ml/.cf/.gq/.ga等免费域名</a></p>
+<p>至于注册其它付费的域名请 Google 吧，差不多都是大同小异的。</p>
+<p>注册好域名之后务必记得设置 DNS 解析到你的 VPS !</p>
+<p>据了解，在 freenom 注册的域名在对应的 IP 上要有一个网站，否则注册之后域名会被回收。如果您只是想用免费域名在 V2Ray 用一下 TLS，又不愿意（懒得、不会）建站，建议您看看您的亲朋好友谁有手上有域名的，向他们要一个二级域名就行了</p>
+<p>以下假设注册的域名为 mydomain.me，请将之替换成自己的域名。</p>
+<h2 id="1-2-证书生成"><a href="#1-2-证书生成" class="headerlink" title="1.2. 证书生成"></a>1.2. 证书生成</h2><p>使用 TLS 需要证书，证书也有免费付费的，同样的这里使用免费证书，证书认证机构为 <a href="https://letsencrypt.org/" target="_blank" rel="external">Let’s Encrypt</a>。 证书的生成有许多方法，这里使用的是比较简单的方法：使用 <a href="https://github.com/Neilpang/acme.sh" target="_blank" rel="external">acme.sh</a> 脚本生成，本部分说明部分内容参考于<a href="https://github.com/Neilpang/acme.sh/blob/master/README.md" target="_blank" rel="external">acme.sh README</a>。</p>
+<p>证书有两种，一种是 ECC 证书（内置公钥是 ECDSA 公钥），一种是 RSA 证书（内置 RSA 公钥）。简单来说，同等长度 ECC 比 RSA 更安全,也就是说在具有同样安全性的情况下，ECC 的密钥长度比 RSA 短得多（加密解密会更快）。但问题是 ECC 的兼容性会差一些，Android 4.x 以下和 Windows XP 不支持。只要您的设备不是非常老的老古董，强烈建议使用 ECC 证书。</p>
+<p>以下将给出这两类证书的生成方法，请大家根据自身的情况自行选择其中一种证书类型。</p>
+<p>证书生成只需在服务器上操作。</p>
+<h3 id="1-2-1-安装-acme-sh"><a href="#1-2-1-安装-acme-sh" class="headerlink" title="1.2.1. 安装 acme.sh"></a>1.2.1. 安装 acme.sh</h3><p>执行以下命令，acme.sh 会安装到 ~/.acme.sh 目录下。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">$ curl  https://get.acme.sh | sh</div><div class="line">% Total    % Received % Xferd  Average Speed   Time    Time     Time  Current</div><div class="line">                               Dload  Upload   Total   Spent    Left  Speed</div><div class="line">100   671  100   671    0     0    680      0 --:--:-- --:--:-- --:--:--   679</div><div class="line">% Total    % Received % Xferd  Average Speed   Time    Time     Time  Current</div><div class="line">                               Dload  Upload   Total   Spent    Left  Speed</div><div class="line">100  112k  100  112k    0     0   690k      0 --:--:-- --:--:-- --:--:--  693k</div><div class="line">[Fri 30 Dec 01:03:32 GMT 2016] Installing from online archive.</div><div class="line">[Fri 30 Dec 01:03:32 GMT 2016] Downloading https://github.com/Neilpang/acme.sh/archive/master.tar.gz</div><div class="line">[Fri 30 Dec 01:03:33 GMT 2016] Extracting master.tar.gz</div><div class="line">[Fri 30 Dec 01:03:33 GMT 2016] Installing to /home/user/.acme.sh</div><div class="line">[Fri 30 Dec 01:03:33 GMT 2016] Installed to /home/user/.acme.sh/acme.sh</div><div class="line">[Fri 30 Dec 01:03:33 GMT 2016] Installing <span class="built_in">alias</span> to <span class="string">'/home/user/.profile'</span></div><div class="line">[Fri 30 Dec 01:03:33 GMT 2016] OK, Close and reopen your terminal to start using acme.sh</div><div class="line">[Fri 30 Dec 01:03:33 GMT 2016] Installing cron job</div><div class="line">no crontab <span class="keyword">for</span> user</div><div class="line">no crontab <span class="keyword">for</span> user</div><div class="line">[Fri 30 Dec 01:03:33 GMT 2016] Good, bash is found, so change the shebang to use bash as preferred.</div><div class="line">[Fri 30 Dec 01:03:33 GMT 2016] OK</div><div class="line">[Fri 30 Dec 01:03:33 GMT 2016] Install success!</div></pre></td></tr></table></figure>
+<p>安装成功后执行 <code>source ~/.bashrc</code> 以确保脚本所设置的命令别名生效。</p>
+<p>如果安装报错，那么可能是因为系统缺少 acme.sh 所需要的依赖项，acme.sh 的依赖项主要是 netcat(nc)，我们通过以下命令来安装这些依赖项，然后重新安装一遍 acme.sh:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo apt-get -y install netcat</div></pre></td></tr></table></figure>
+<h3 id="1-2-2-使用-acme-sh-生成证书"><a href="#1-2-2-使用-acme-sh-生成证书" class="headerlink" title="1.2.2. 使用 acme.sh 生成证书"></a>1.2.2. 使用 acme.sh 生成证书</h3><h4 id="证书生成"><a href="#证书生成" class="headerlink" title="证书生成"></a>证书生成</h4><p>执行以下命令生成证书：</p>
+<p>以下的命令会临时监听 80 端口，请确保执行该命令前 80 端口没有使用</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">$ sudo ~/.acme.sh/acme.sh --issue -d mydomain.me --standalone -k ec-256</div><div class="line">[Fri Dec 30 08:59:12 HKT 2016] Standalone mode.</div><div class="line">[Fri Dec 30 08:59:12 HKT 2016] Single domain=<span class="string">'mydomain.me'</span></div><div class="line">[Fri Dec 30 08:59:12 HKT 2016] Getting domain auth token <span class="keyword">for</span> each domain</div><div class="line">[Fri Dec 30 08:59:12 HKT 2016] Getting webroot <span class="keyword">for</span> domain=<span class="string">'mydomain.me'</span></div><div class="line">[Fri Dec 30 08:59:12 HKT 2016] _w=<span class="string">'no'</span></div><div class="line">[Fri Dec 30 08:59:12 HKT 2016] Getting new-authz <span class="keyword">for</span> domain=<span class="string">'mydomain.me'</span></div><div class="line">[Fri Dec 30 08:59:14 HKT 2016] The new-authz request is ok.</div><div class="line">[Fri Dec 30 08:59:14 HKT 2016] mydomain.me is already verified, skip.</div><div class="line">[Fri Dec 30 08:59:14 HKT 2016] mydomain.me is already verified, skip http-01.</div><div class="line">[Fri Dec 30 08:59:14 HKT 2016] mydomain.me is already verified, skip http-01.</div><div class="line">[Fri Dec 30 08:59:14 HKT 2016] Verify finished, start to sign.</div><div class="line">[Fri Dec 30 08:59:16 HKT 2016] Cert success.</div><div class="line">-----BEGIN CERTIFICATE-----</div><div class="line">MIIEMTCCAxmgAwIBAgISA1+gJF5zwUDjNX/6Xzz5fo3lMA0GCSqGSIb3DQEBCwUA</div><div class="line">MEoxCzAJBgNVBAYTAlVTMRYwFAYDVQQKEw1MZXQncyBFbmNyeXB0MSMwIQYDVQQD</div><div class="line">ExpMZXQncyBFbmNyeXB0IEF1dGhvcml0eSBYMzAeFw0xNjEyMjkyMzU5MDBaFw0x</div><div class="line">NzAzMjkyMzU5MDBaMBcxFTATBgNVBAMTDHdlYWtzYW5kLmNvbTBZMBMGByqGSM49</div><div class="line">****************************************************************</div><div class="line">4p40tm0aMB837XQ9jeAXvXulhVH/7/wWZ8/vkUUvuHSCYHagENiq/3DYj4a85Iw9</div><div class="line">+6u1r7atYHJ2VwqSamiyTGDQuhc5wdXIQxY/YQQqkAmn5tLsTZnnOavc4plANT40</div><div class="line">zweiG8vcIvMVnnkM0TSz8G1yzv1nOkruN3ozQkLMu6YS7lk/ENBN7DBtYVSmJeU2</div><div class="line">VAXE+zgRaP7JFOqK6DrOwhyE2LSgae83Wq/XgXxjfIo1Zmn2UmlE0sbdNKBasnf9</div><div class="line">gPUI45eltrjcv8FCSTOUcT7PWCa3</div><div class="line">-----END CERTIFICATE-----</div><div class="line">[Fri Dec 30 08:59:16 HKT 2016] Your cert is <span class="keyword">in</span>  /root/.acme.sh/mydomain.me_ecc/mydomain.me.cer</div><div class="line">[Fri Dec 30 08:59:16 HKT 2016] Your cert key is <span class="keyword">in</span>  /root/.acme.sh/mydomain.me_ecc/mydomain.me.key</div><div class="line">[Fri Dec 30 08:59:16 HKT 2016] The intermediate CA cert is <span class="keyword">in</span>  /root/.acme.sh/mydomain.me_ecc/ca.cer</div><div class="line">[Fri Dec 30 08:59:16 HKT 2016] And the full chain certs is there:  /root/.acme.sh/mydomain.me_ecc/fullchain.cer</div></pre></td></tr></table></figure>
+<p><code>-k</code> 表示密钥长度，后面的值可以是 <code>ec-256</code> 、<code>ec-284</code>、<code>2048</code>、<code>3072</code>、<code>4096</code>、<code>8192</code>，带有 <code>ec</code> 表示生成的是 ECC 证书，没有则是 RSA 证书。在安全性上 256 位的 ECC 证书等同于 3072 位的 RSA 证书。</p>
+<h4 id="证书更新"><a href="#证书更新" class="headerlink" title="证书更新"></a>证书更新</h4><p>由于 Let’s Encrypt 的证书有效期只有 3 个月，因此需要 90 天至少要更新一次证书，acme.sh 脚本会每 60 天自动更新证书。也可以手动更新。</p>
+<p>手动更新 ECC 证书，执行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo ~/.acme.sh/acme.sh --renew -d mydomain.com --force --ecc</div></pre></td></tr></table></figure>
+<p>如果是 RSA 证书则执行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo ~/.acme.sh/acme.sh --renew -d mydomain.com --force</div></pre></td></tr></table></figure>
+<h3 id="1-2-3-安装证书和密钥"><a href="#1-2-3-安装证书和密钥" class="headerlink" title="1.2.3. 安装证书和密钥"></a>1.2.3. 安装证书和密钥</h3><h4 id="ECC-证书"><a href="#ECC-证书" class="headerlink" title="ECC 证书"></a>ECC 证书</h4><p>将证书和密钥安装到 /etc/v2ray 中：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo ~/.acme.sh/acme.sh --installcert -d mydomain.me --fullchainpath /etc/v2ray/v2ray.crt --keypath /etc/v2ray/v2ray.key --ecc</div></pre></td></tr></table></figure>
+<h4 id="RSA-证书"><a href="#RSA-证书" class="headerlink" title="RSA 证书"></a>RSA 证书</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo ~/.acme.sh/acme.sh --installcert -d mydomain.me --fullchainpath /etc/v2ray/v2ray.crt --keypath /etc/v2ray/v2ray.key</div></pre></td></tr></table></figure>
+<p>注意：无论什么情况，密钥(即上面的v2ray.key)都不能泄漏，如果你不幸泄漏了密钥，可以使用 acme.sh 将原证书吊销，再生成新的证书，吊销方法请自行参考 acme.sh 的手册</p>
+<h2 id="1-3-配置-V2Ray"><a href="#1-3-配置-V2Ray" class="headerlink" title="1.3. 配置 V2Ray"></a>1.3. 配置 V2Ray</h2><h3 id="1-3-1-服务器"><a href="#1-3-1-服务器" class="headerlink" title="1.3.1. 服务器"></a>1.3.1. 服务器</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="string">"inbound"</span>: &#123;</div><div class="line">    <span class="string">"port"</span>: 443, // 建议使用 443 端口</div><div class="line">    <span class="string">"protocol"</span>: <span class="string">"vmess"</span>,    </div><div class="line">    <span class="string">"settings"</span>: &#123;</div><div class="line">      <span class="string">"clients"</span>: [</div><div class="line">        &#123;</div><div class="line">          <span class="string">"id"</span>: <span class="string">"23ad6b10-8d1a-40f7-8ad0-e3e35cd38297"</span>,  </div><div class="line">          <span class="string">"alterId"</span>: 64</div><div class="line">        &#125;</div><div class="line">      ]</div><div class="line">    &#125;,</div><div class="line">    <span class="string">"streamSettings"</span>: &#123;</div><div class="line">      <span class="string">"network"</span>: <span class="string">"tcp"</span>,</div><div class="line">      <span class="string">"security"</span>: <span class="string">"tls"</span>, // security 要设置为 tls 才会启用 TLS</div><div class="line">      <span class="string">"tlsSettings"</span>: &#123;</div><div class="line">        <span class="string">"certificates"</span>: [</div><div class="line">          &#123;</div><div class="line">            <span class="string">"certificateFile"</span>: <span class="string">"/etc/v2ray/v2ray.crt"</span>, //证书文件</div><div class="line">            <span class="string">"keyFile"</span>: <span class="string">"/etc/v2ray/v2ray.key"</span> //密钥文件</div><div class="line">          &#125;</div><div class="line">        ]</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;,</div><div class="line">  <span class="string">"outbound"</span>: &#123;</div><div class="line">    <span class="string">"protocol"</span>: <span class="string">"freedom"</span>,</div><div class="line">    <span class="string">"settings"</span>: &#123;&#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="1-3-2-客户端"><a href="#1-3-2-客户端" class="headerlink" title="1.3.2. 客户端"></a>1.3.2. 客户端</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="string">"inbound"</span>: &#123;</div><div class="line">    <span class="string">"port"</span>: 1080,</div><div class="line">    <span class="string">"protocol"</span>: <span class="string">"socks"</span>,</div><div class="line">    <span class="string">"settings"</span>: &#123;</div><div class="line">      <span class="string">"auth"</span>: <span class="string">"noauth"</span></div><div class="line">    &#125;</div><div class="line">  &#125;,</div><div class="line">  <span class="string">"outbound"</span>: &#123;</div><div class="line">    <span class="string">"protocol"</span>: <span class="string">"vmess"</span>,</div><div class="line">    <span class="string">"settings"</span>: &#123;</div><div class="line">      <span class="string">"vnext"</span>: [</div><div class="line">        &#123;</div><div class="line">          <span class="string">"address"</span>: <span class="string">"mydomain.me"</span>,</div><div class="line">          <span class="string">"port"</span>: 443,</div><div class="line">          <span class="string">"users"</span>: [</div><div class="line">            &#123;</div><div class="line">              <span class="string">"id"</span>: <span class="string">"23ad6b10-8d1a-40f7-8ad0-e3e35cd38297"</span>,</div><div class="line">              <span class="string">"alterId"</span>: 64</div><div class="line">            &#125;</div><div class="line">          ]</div><div class="line">        &#125;</div><div class="line">      ]</div><div class="line">    &#125;,</div><div class="line">    <span class="string">"streamSettings"</span>: &#123;</div><div class="line">      <span class="string">"network"</span>: <span class="string">"tcp"</span>,</div><div class="line">      <span class="string">"security"</span>: <span class="string">"tls"</span> // 客户端的 security 也要设置为 tls</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="1-4-验证"><a href="#1-4-验证" class="headerlink" title="1.4. 验证"></a>1.4. 验证</h2><p>一般来说，按照以上步骤操作完成，V2Ray 客户端能够正常联网说明 TLS 已经成功启用。但要是有个可靠的方法来验证是否正常开启 TLS 无疑更令人放心。 验证的方法有很多，我仅介绍一种小白化一点的，便是 <a href="https://www.ssllabs.com/ssltest/index.html" target="_blank" rel="external">Qualys SSL Labs’s SSL Server Test</a>。</p>
+<p>注意：使用 Qualys SSL Labs’s SSL Server Test 要求使用 443 端口，意味着你服务器配置的 inbound.port 应当是 443</p>
+<p>打开 <a href="https://www.ssllabs.com/ssltest/index.html" target="_blank" rel="external">Qualys SSL Labs’s SSL Server Test</a>，在 Hostname 中输入你的域名，点提交，过一会结果就出来了。<img src="https://toutyrater.github.io/resource/images/tls_test1.png" alt="img"></p>
+<p><img src="https://toutyrater.github.io/resource/images/tls_test2.png" alt="img">这是对于你的 TLS/SSL 的一个总体评分，我这里评分为 A，看来还不错。有这样的界面算是成功了。</p>
+<p><img src="https://toutyrater.github.io/resource/images/tls_test3.png" alt="img">这是关于证书的信息。从图中可以看出，我的这个证书有效期是从 2016 年 12 月 27 号到 2017 年的 3 月 27 号，密钥是 256 位的 ECC，证书签发机构是 Let’s Encrypt，重要的是最后一行，<code>Trusted</code> 为 <code>Yes</code>,表明我这个证书可信。</p>
+<h2 id="1-5-温馨提醒"><a href="#1-5-温馨提醒" class="headerlink" title="1.5. 温馨提醒"></a>1.5. 温馨提醒</h2><p>不要想当然地把在 SS 和 SSR 的观念带过来，更不要被别人轻飘飘的一句话误导，V2Ray 的 TLS 不是伪装！不是混淆！这是真正的 TLS！因此才需要域名需要证书。后文提到的 WS(WebSocks) 也不是伪装。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/08/19/Linux TCP加速工具 —— LotServer(锐速母公司) 一键安装脚本/" rel="next" title="Linux TCP加速工具 —— LotServer(锐速母公司) 一键安装脚本">
+                <i class="fa fa-chevron-left"></i> Linux TCP加速工具 —— LotServer(锐速母公司) 一键安装脚本
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="ycg31" />
+          <p class="site-author-name" itemprop="name">ycg31</p>
+           
+              <p class="site-description motion-element" itemprop="description">1</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-TLS"><span class="nav-number">1.</span> <span class="nav-text">1. TLS</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-注册一个域名"><span class="nav-number">1.1.</span> <span class="nav-text">1.1. 注册一个域名</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-证书生成"><span class="nav-number">1.2.</span> <span class="nav-text">1.2. 证书生成</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-1-安装-acme-sh"><span class="nav-number">1.2.1.</span> <span class="nav-text">1.2.1. 安装 acme.sh</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-2-使用-acme-sh-生成证书"><span class="nav-number">1.2.2.</span> <span class="nav-text">1.2.2. 使用 acme.sh 生成证书</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#证书生成"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">证书生成</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#证书更新"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">证书更新</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-3-安装证书和密钥"><span class="nav-number">1.2.3.</span> <span class="nav-text">1.2.3. 安装证书和密钥</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#ECC-证书"><span class="nav-number">1.2.3.1.</span> <span class="nav-text">ECC 证书</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#RSA-证书"><span class="nav-number">1.2.3.2.</span> <span class="nav-text">RSA 证书</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-配置-V2Ray"><span class="nav-number">1.3.</span> <span class="nav-text">1.3. 配置 V2Ray</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-1-服务器"><span class="nav-number">1.3.1.</span> <span class="nav-text">1.3.1. 服务器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-2-客户端"><span class="nav-number">1.3.2.</span> <span class="nav-text">1.3.2. 客户端</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-4-验证"><span class="nav-number">1.4.</span> <span class="nav-text">1.4. 验证</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-5-温馨提醒"><span class="nav-number">1.5.</span> <span class="nav-text">1.5. 温馨提醒</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ycg31</span>
+
+  
+</div>
+
+
+  <div class="powered-by">
+    由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+  </div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">
+    主题 &mdash;
+    <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+      NexT.Mist
+    </a>
+  </div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
