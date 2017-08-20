@@ -2,6 +2,7 @@
 title: （转）Hexo添加文章时自动打开编辑器
 date: 2017-08-20 03:20:09
 tags: hexo
+categories: 网站相关
 ---
 
 [![阅读全文](http://7xkj6q.com1.z0.glb.clouddn.com/blog/image/jpg/hexo_logo.jpg)](https://notes.wanghao.work/2015-06-29-Hexo%E6%B7%BB%E5%8A%A0%E6%96%87%E7%AB%A0%E6%97%B6%E8%87%AA%E5%8A%A8%E6%89%93%E5%BC%80%E7%BC%96%E8%BE%91%E5%99%A8.html)

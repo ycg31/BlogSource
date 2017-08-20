@@ -1,5 +1,8 @@
 ---
 title: V2ray使用TLS
+tag:  v2ray
+categories: 代理技术
+date: 2017-08-19 14:20:09
 ---
 
 [![img](https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1503032917499&di=67363c688d949aa5c6a3ed50992c0fee&imgtype=0&src=http%3A%2F%2Fwww.igooda.cn%2Fuploads%2Fallimg%2F141125%2F112R61115-0.JPG)](https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1503032917499&di=67363c688d949aa5c6a3ed50992c0fee&imgtype=0&src=http%3A%2F%2Fwww.igooda.cn%2Fuploads%2Fallimg%2F141125%2F112R61115-0.JPG)

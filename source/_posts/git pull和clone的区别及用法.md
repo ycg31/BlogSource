@@ -1,6 +1,8 @@
 ---
 title: git pull 和 clone的区别及用法
 tag: git
+categories: 网络技术
+date: 2017-08-20 05:22:09
 ---
 # 一、git pull
 git pull命令的作用是，取回远程主机某个分支的更新，再与本地的指定分支合并。

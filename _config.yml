@@ -80,7 +80,7 @@ theme: next
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type:  git
-  repo:  git@github.com:ycg31/ycg31.github.io.git
+  repo:  https://git.coding.net/ycg31/blog.git
   branch: master
 
  #Algolia搜索配置

@@ -3,7 +3,8 @@ title: 使用Travis自动部署hexo
 tag: 
  - Travis
  - hexo
-categories: 转载
+categories: 网络技术
+date: 2017-08-20 03:22:09
 ---
 转载自http://blog.csdn.net/xuezhisdc/article/details/53130423
 ## 新建Personal Access Token

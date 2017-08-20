@@ -1,6 +1,11 @@
 ---
 title: 使用Travis CI自动部署Hexo
-tig: Travis , git 
+tag:
+  - Travis
+  - git 
+  - hexo
+categories: 网络技术
+date: 2017-08-20 03:41:09
 ---
 前两天了解到了一个有趣的概念叫持续集成：
 

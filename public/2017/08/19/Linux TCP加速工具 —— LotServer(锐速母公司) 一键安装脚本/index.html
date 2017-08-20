@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next mist use-motion" lang="zh-Hans">
+<html class="theme-next pisces use-motion" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -39,7 +39,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
@@ -73,21 +73,21 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="Hexo, NexT" />
+<link href="/blog/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
+  <meta name="keywords" content="Linux,速锐," />
 
 
 
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/blog/favicon.ico?v=5.1.2" />
 
 
 
@@ -95,13 +95,14 @@
 
 
 <meta name="description" content="Linux TCP加速工具 —— LotServer(锐速母公司) 一键安装脚本锐速(ServerSpeeder)可以说是LotServer的马甲，是针对民用的，而LotServer则是针对企业用户的，锐速现在基本上已经关了，而这个LotServer还在持续运营。 Only for Linux. 从根本原因上解决锐速断流问题，断流的根本原因是没有完整破解验证机制。  支持自动检测公网网卡，多个网卡">
+<meta name="keywords" content="Linux,速锐">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Linux TCP加速工具 —— LotServer(锐速母公司) 一键安装脚本">
 <meta property="og:url" content="http://yoursite.com/2017/08/19/Linux TCP加速工具 —— LotServer(锐速母公司) 一键安装脚本/index.html">
-<meta property="og:site_name" content="Hexo">
+<meta property="og:site_name" content="杂记">
 <meta property="og:description" content="Linux TCP加速工具 —— LotServer(锐速母公司) 一键安装脚本锐速(ServerSpeeder)可以说是LotServer的马甲，是针对民用的，而LotServer则是针对企业用户的，锐速现在基本上已经关了，而这个LotServer还在持续运营。 Only for Linux. 从根本原因上解决锐速断流问题，断流的根本原因是没有完整破解验证机制。  支持自动检测公网网卡，多个网卡">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-08-18T17:44:04.354Z">
+<meta property="og:updated_time" content="2017-08-20T05:50:16.851Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux TCP加速工具 —— LotServer(锐速母公司) 一键安装脚本">
 <meta name="twitter:description" content="Linux TCP加速工具 —— LotServer(锐速母公司) 一键安装脚本锐速(ServerSpeeder)可以说是LotServer的马甲，是针对民用的，而LotServer则是针对企业用户的，锐速现在基本上已经关了，而这个LotServer还在持续运营。 Only for Linux. 从根本原因上解决锐速断流问题，断流的根本原因是没有完整破解验证机制。  支持自动检测公网网卡，多个网卡">
@@ -111,8 +112,8 @@
 <script type="text/javascript" id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
-    root: '/',
-    scheme: 'Mist',
+    root: '/blog/',
+    scheme: 'Pisces',
     sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
     tabs: true,
@@ -122,9 +123,9 @@
       author: '博主'
     },
     algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
+      applicationID: 'QXGKA799I9',
+      apiKey: '5b6298d4cd6f9df0eb20f97672f39916',
+      indexName: 'index',
       hits: {"per_page":10},
       labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
     }
@@ -139,7 +140,7 @@
 
 
 
-  <title>Linux TCP加速工具 —— LotServer(锐速母公司) 一键安装脚本 | Hexo</title>
+  <title>Linux TCP加速工具 —— LotServer(锐速母公司) 一键安装脚本 | 杂记</title>
   
 
 
@@ -167,14 +168,14 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/blog/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Hexo</span>
+        <span class="site-title">杂记</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
       
-        <p class="site-subtitle">1</p>
+        <p class="site-subtitle">记录网上生活</p>
       
   </div>
 
@@ -195,7 +196,7 @@
       
         
         <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
+          <a href="/blog/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
@@ -204,8 +205,28 @@
         </li>
       
         
+        <li class="menu-item menu-item-categories">
+          <a href="/blog/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/blog/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
+          <a href="/blog/archives/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
@@ -215,7 +236,7 @@
       
         
         <li class="menu-item menu-item-tags">
-          <a href="/tags/" rel="section">
+          <a href="/blog/tags/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
@@ -225,9 +246,47 @@
       
 
       
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
     </ul>
   
 
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
   
 </nav>
 
@@ -256,16 +315,16 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/19/Linux TCP加速工具 —— LotServer(锐速母公司) 一键安装脚本/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/blog/2017/08/19/Linux TCP加速工具 —— LotServer(锐速母公司) 一键安装脚本/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="ycg31">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/blog/images/avatar.gif">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
+      <meta itemprop="name" content="杂记">
     </span>
 
     
@@ -285,7 +344,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-19T01:38:38+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-19T13:20:09+08:00">
                 2017-08-19
               </time>
             
@@ -295,6 +354,28 @@
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/代理技术/" itemprop="url" rel="index">
+                    <span itemprop="name">代理技术</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -345,15 +426,15 @@
 <blockquote>
 <p>强烈推荐大家使用 <strong>Debian7 x64系统 | 3.2.0-4-amd64内核</strong> ，这个系统和内核无论是锐速、Lotserver还是BBR，除了配置太低的我都没安装失败过！</p>
 </blockquote>
-<h3 id="安装LotServer"><a href="#安装LotServer" class="headerlink" title="安装LotServer"></a>安装LotServer</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">wget --no-check-certificate -qO /tmp/appex.sh <span class="string">"https://raw.githubusercontent.com/0oVicero0/serverSpeeder_Install/master/appex.sh"</span> &amp;&amp; bash /tmp/appex.sh <span class="string">'install'</span></div></pre></td></tr></table></figure>
+<h2 id="安装LotServer"><a href="#安装LotServer" class="headerlink" title="安装LotServer"></a>安装LotServer</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">wget --no-check-certificate -qO /tmp/appex.sh <span class="string">"https://raw.githubusercontent.com/0oVicero0/serverSpeeder_Install/master/appex.sh"</span> &amp;&amp; bash /tmp/appex.sh <span class="string">'install'</span></div></pre></td></tr></table></figure>
 <p>安装一开始的时候，会提示：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Press Enter to Continue...</div><div class="line"><span class="comment"># 这个是提示你按回车键继续</span></div></pre></td></tr></table></figure>
 <p>如果安装过程中没问题的话，最后会提示：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">Accelerate VPN (PPTP,L2TP,etc.)? [n]:</div><div class="line"><span class="comment"># 是否加速VPN</span></div><div class="line"> </div><div class="line">Auto load ServerSpeeder on linux start-up? [y]:</div><div class="line"><span class="comment"># 是否开机启动</span></div><div class="line"> </div><div class="line">Run ServerSpeeder now? [y]:</div><div class="line"><span class="comment"># 是否现在启动锐速</span></div><div class="line"> </div><div class="line"><span class="comment"># 全部默认回车即可。</span></div></pre></td></tr></table></figure>
 <p>最后出现这样的提示就说明安装并启动成功：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">[Running Status]</div><div class="line">ServerSpeeder is running!</div><div class="line">version              3.11.20.4</div><div class="line"> </div><div class="line">[License Information]</div><div class="line">License              6001ADDF578B6C0E (valid on current device)</div><div class="line">MaxSession           unlimited</div><div class="line">MaxTcpAccSession     unlimited</div><div class="line">MaxBandwidth(kbps)   1024000</div><div class="line">ExpireDate           2035-12-31</div><div class="line">....</div><div class="line"><span class="comment"># 以下省略....</span></div></pre></td></tr></table></figure>
-<h3 id="卸载LotServer"><a href="#卸载LotServer" class="headerlink" title="卸载LotServer"></a>卸载LotServer</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">wget --no-check-certificate -qO /tmp/appex.sh <span class="string">"https://raw.githubusercontent.com/0oVicero0/serverSpeeder_Install/master/appex.sh"</span> &amp;&amp; bash /tmp/appex.sh <span class="string">'uninstall'</span></div></pre></td></tr></table></figure>
-<h3 id="使用说明"><a href="#使用说明" class="headerlink" title="使用说明"></a>使用说明</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">/appex/bin/serverSpeeder.sh start</div><div class="line"><span class="comment"># 启动 LotServer</span></div><div class="line"> </div><div class="line">/appex/bin/serverSpeeder.sh stop</div><div class="line"><span class="comment"># 停止 LotServer</span></div><div class="line"> </div><div class="line">/appex/bin/serverSpeeder.sh restart</div><div class="line"><span class="comment"># 重启 LotServer</span></div><div class="line"> </div><div class="line">/appex/bin/serverSpeeder.sh status</div><div class="line"><span class="comment"># 状态查询</span></div><div class="line"> </div><div class="line">/appex/bin/serverSpeeder.sh renewLic</div><div class="line"><span class="comment"># 更新许可</span></div></pre></td></tr></table></figure>
+<h2 id="卸载LotServer"><a href="#卸载LotServer" class="headerlink" title="卸载LotServer"></a>卸载LotServer</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">wget --no-check-certificate -qO /tmp/appex.sh <span class="string">"https://raw.githubusercontent.com/0oVicero0/serverSpeeder_Install/master/appex.sh"</span> &amp;&amp; bash /tmp/appex.sh <span class="string">'uninstall'</span></div></pre></td></tr></table></figure>
+<h2 id="使用说明"><a href="#使用说明" class="headerlink" title="使用说明"></a>使用说明</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">/appex/bin/serverSpeeder.sh start</div><div class="line"><span class="comment"># 启动 LotServer</span></div><div class="line"> </div><div class="line">/appex/bin/serverSpeeder.sh stop</div><div class="line"><span class="comment"># 停止 LotServer</span></div><div class="line"> </div><div class="line">/appex/bin/serverSpeeder.sh restart</div><div class="line"><span class="comment"># 重启 LotServer</span></div><div class="line"> </div><div class="line">/appex/bin/serverSpeeder.sh status</div><div class="line"><span class="comment"># 状态查询</span></div><div class="line"> </div><div class="line">/appex/bin/serverSpeeder.sh renewLic</div><div class="line"><span class="comment"># 更新许可</span></div></pre></td></tr></table></figure>
 <p><a href="https://github.com/0oVicero0/serverSpeeser_Install" target="_blank" rel="external">代码托管地址</a></p>
 <p><a href="https://github.com/0oVicero0/serverSpeeder_Install/blob/master/lotServer.pdf" target="_blank" rel="external">LotServer 完整使用介绍 PDF手册</a></p>
 <p><strong>安装完了，想要自己修改配置最大化加速效果，那么请看：锐速(ServerSpeeder/LotServer)配置参数简单说明，合理修改配置 提高加速效果</strong></p>
@@ -373,6 +454,14 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/blog/tags/Linux/" rel="tag"># Linux</a>
+          
+            <a href="/blog/tags/速锐/" rel="tag"># 速锐</a>
+          
+        </div>
+      
 
       
       
@@ -382,17 +471,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/08/19/v2ray/" rel="next" title="CentOS6上安装V2ray">
-                <i class="fa fa-chevron-left"></i> CentOS6上安装V2ray
-              </a>
-            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/08/19/V2ray使用TLS/" rel="prev" title="V2ray使用TLS">
+              <a href="/blog/2017/08/19/V2ray使用TLS/" rel="prev" title="V2ray使用TLS">
                 V2ray使用TLS <i class="fa fa-chevron-right"></i>
               </a>
             
@@ -423,6 +508,8 @@
 
           
   <div class="comments" id="comments">
+    
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zMDI5MC82ODQ1"></div>
     
   </div>
 
@@ -459,26 +546,44 @@
       <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
-               src="/images/avatar.gif"
+               src="/blog/images/avatar.gif"
                alt="ycg31" />
           <p class="site-author-name" itemprop="name">ycg31</p>
            
-              <p class="site-description motion-element" itemprop="description">1</p>
+              <p class="site-description motion-element" itemprop="description">有了这个，就不用到处去找重复的了</p>
           
         </div>
         <nav class="site-state motion-element">
 
           
             <div class="site-state-item site-state-posts">
-              <a href="/archives/">
-                <span class="site-state-item-count">4</span>
+              <a href="/blog/archives/">
+                <span class="site-state-item-count">11</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
           
 
           
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/blog/categories/index.html">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
 
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/blog/tags/index.html">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
           
 
         </nav>
@@ -486,6 +591,41 @@
         
 
         <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/ycg31" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                    
+                      GitHub
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/ycg31" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                    
+                      Twitter
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/ycg31" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                    
+                      微博
+                    
+                </a>
+              </span>
+            
           
         </div>
 
@@ -510,7 +650,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Linux-TCP加速工具-——-LotServer-锐速母公司-一键安装脚本"><span class="nav-number">1.</span> <span class="nav-text">Linux TCP加速工具 —— LotServer(锐速母公司) 一键安装脚本</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装LotServer"><span class="nav-number">1.0.1.</span> <span class="nav-text">安装LotServer</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#卸载LotServer"><span class="nav-number">1.0.2.</span> <span class="nav-text">卸载LotServer</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用说明"><span class="nav-number">1.0.3.</span> <span class="nav-text">使用说明</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Linux-TCP加速工具-——-LotServer-锐速母公司-一键安装脚本"><span class="nav-number">1.</span> <span class="nav-text">Linux TCP加速工具 —— LotServer(锐速母公司) 一键安装脚本</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装LotServer"><span class="nav-number">1.1.</span> <span class="nav-text">安装LotServer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#卸载LotServer"><span class="nav-number">1.2.</span> <span class="nav-text">卸载LotServer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用说明"><span class="nav-number">1.3.</span> <span class="nav-text">使用说明</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -552,7 +692,7 @@
   <div class="theme-info">
     主题 &mdash;
     <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-      NexT.Mist
+      NexT.Pisces
     </a>
   </div>
 
@@ -608,46 +748,53 @@
 
 
   
-  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
 
   
-  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
 
   
-  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
-  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
 
   
-  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
 
   
-  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
-
-
-
-  
-  
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
-
+  <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
 
 
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/blog/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.2"></script>
 
 
 
@@ -672,6 +819,17 @@
 
 
   
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
 
 
 
@@ -683,6 +841,19 @@
   
 
 
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/blog/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/blog/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/blog/js/src/algolia-search.js?v=5.1.2"></script>
 
 
 

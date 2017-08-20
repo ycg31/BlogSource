@@ -1,6 +1,8 @@
 ---
 title: GIT相关命令
 tag: git
+categories: 网络技术
+date: 2017-08-20 03:24:09
 ---
 # 查看所有分支
 ~~~bash

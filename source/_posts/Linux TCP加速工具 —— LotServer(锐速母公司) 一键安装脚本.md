@@ -1,5 +1,10 @@
 ---
 title: Linux TCP加速工具 —— LotServer(锐速母公司) 一键安装脚本
+tag:  
+ - Linux
+ - 速锐
+categories: 代理技术
+date: 2017-08-19 13:20:09
 ---
 
 # Linux TCP加速工具 —— LotServer(锐速母公司) 一键安装脚本

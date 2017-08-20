@@ -1,6 +1,8 @@
 ---
 title: 远程GitHub中的灰色图标的解决办法
 tag: git
+categories: 网络技术
+date: 2017-08-20 05:22:09
 ---
 ## 问题描述
 
