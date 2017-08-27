@@ -1,0 +1,49 @@
+.search-form-wrap
+    .search-form
+        position: relative
+        .search-form-input
+            width: 100%
+            padding: 0 30px 0 15px
+            line-height: logo-height
+            height: logo-height !important
+            border-radius: 
+            &::-webkit-search-results-decoration
+            &::-webkit-search-cancel-button
+                -webkit-appearance: none
+        .search-form-submit
+            top: 50%
+            right: 15px
+            border: none
+            cursor: pointer
+            margin-top: -7px
+            background: none
+            position: absolute
+            font: 13px font-icon
+            font-family: 'FontAwesome'
+            &:before
+                content: '\f002'
+            &:hover, &:focus
+                color: #777
+.search-form-input,
+.search-form-input.ins-search-input,
+.search-form-input.st-ui-search-input,
+.search-form-input.st-default-search-input
+    -webkit-appearance: textarea
+    appearance: textarea
+    padding: 0
+    width: 200px
+    box-shadow: none
+    color: color-default
+    transition: 0.2s ease
+    box-sizing: border-box
+    height: auto !important
+    line-height: line-height
+    outline: none !important
+    background: none !important
+    font: font-size font-sans
+    border: 1px solid color-border !important
+    &:focus
+        border-color: color-link !important
+    &::-webkit-search-results-decoration
+    &::-webkit-search-cancel-button
+        -webkit-appearance: none

@@ -1,0 +1,48 @@
+author: ycg31 # 作者
+description: ycg31's blog
+keyword: hexo, vuejs
+favicon: 
+
+excerpt_link: Read more
+
+menu:
+ Home: /
+ Tags: /tags/
+ Archives: /archives/
+ Projects: /project/
+ About: /about/
+
+# highlight
+highlight:
+  tomorrow
+
+# gitment
+#gitment_owner: ycg31
+#gitment_repo: ycg31.github.io
+#gitment_oauth_id: a1185b50383aaab598c2
+#gitment_oauth_secret: e7f82d4a4d1b5c2b2083a0371a1855965fedde25
+
+# uyan
+# if you want to use uyan as your blog comment, plz remove/comment out gitment config
+
+baidu_id: 
+
+about: 
+  banner: http://file.muyutech.com/about.jpg
+  avatar: https://avatars1.githubusercontent.com/u/21292117?v=4&u=ff3abd377ddf293b5d57ad2ac5d744890ad607de&s=400
+  description: The end is always near.
+
+# Links
+weibo_username: your_weibo_account
+twitter_username: ycg31
+github_username: ycg31
+zhihu_username: your_zhihu_account
+
+# Search
+search:
+    insight: true # you need to install `hexo-generator-json-content` before using Insight Search
+    swiftype: # enter swiftype install key here
+    baidu: false # you need to disable other search engines to use Baidu search, options: true, false
+
+insight:
+  posts："页面"
