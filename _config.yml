@@ -12,7 +12,7 @@ timezone: Asia/Shanghai
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://yoursite.com
+url: https://ycg31.oschina.io/
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
@@ -73,14 +73,17 @@ pagination_dir: page
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: next
-
+#theme: next
+theme: vexo
+#theme: indigo
+#heme: icarus
+#theme: phase
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type:  git
-  repo:  https://git.coding.net/ycg31/blog.git
+  repo:  https://git.oschina.net/ycg31/ycg31.git
   branch: master
 
  #Algolia搜索配置
@@ -91,3 +94,7 @@ algolia:
   adminApiKey: 24333ecd14ff174212cb5dcb04ab1eb0
   indexName: index
   chunkSize: 5000
+search:
+  path: search.xml
+  field: post
+

@@ -1,5 +1,9 @@
 ---
 title: {{ title }}
 date: {{ date }}
-tags:
+tag: 
+ - hexo
+ - appveyor
+ - git
+categories: 网络技术
 ---

@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="有了这个，就不用到处去找重复的了">
+  <meta name="keyword" content="hexo, vuejs">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      如何免费打造打造一个安全稳定低延迟超高速的科学上网环境 | 杂记
+    
+  </title>
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/plugins/gitment.css">
+<link rel="stylesheet" href="/css/plugins/search.css">
+  <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdn.bootcss.com/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+  <script src="/js/qrious.js"></script>
+<script src="/js/gitment.js"></script>
+<script src="/js/search.js"></script>
+</head>
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>杂记</span>
+    </a>
+    <ul class="right-list">
+        <li class="list-item">   
+          <span class="algolia-autocomplete algolia-autocomplete-right" style="position: relative; display: inline-block; direction: ltr;">
+            <input type="text" id="local-search-input" class="search-query st-default-search-input aa-input" autocomplete="off" spellcheck="false" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-owns="algolia-autocomplete-listbox-0" dir="auto" style="position: relative; vertical-align: top;">
+          </span>
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link">Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div id="menu-mask" class="menu-mask">
+      <ul class="menu-list">
+        <li class="menu-item">   
+          <span class="algolia-autocomplete algolia-autocomplete-right" style="position: relative; display: inline-block; direction: ltr;">
+            <input type="text" id="mobile-search-input" class="search-query st-default-search-input aa-input" autocomplete="off" spellcheck="false" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-owns="algolia-autocomplete-listbox-0" dir="auto" style="position: relative; vertical-align: top;">
+          </span>
+        </li>
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+<div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="输入关键词" />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '博文',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '未定义',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+<div id="result-wrap" class="ins-search">
+    <div id="local-search-result"></div>
+</div>
+
+<script type="text/javascript">      
+     var search_path = "search.xml";
+     if (search_path.length == 0) {
+      search_path = "search.xml";
+     }
+     var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+     searchFunc(path, 'mobile-search-input', 'local-search-result');
+</script>
+</header>
+
+    <div id="article-banner">
+  <h2>如何免费打造打造一个安全稳定低延迟超高速的科学上网环境</h2>
+  <p class="post-date">2017-08-20</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body">
+  <article class="post-article">
+    <section class="markdown-content"><h1 id="如何免费打造打造一个安全稳定低延迟超高速的科学上网环境"><a href="#如何免费打造打造一个安全稳定低延迟超高速的科学上网环境" class="headerlink" title="如何免费打造打造一个安全稳定低延迟超高速的科学上网环境"></a>如何免费打造打造一个安全稳定低延迟超高速的科学上网环境</h1><p>这篇文章将会介绍如何获取由 Google 提供的一年 $300 美金的试用金，然后使用 HyperApp 搭建一个低延迟超高速的科学上网环境。网络延迟基本在50ms左右，并且可以流畅观看 Youtube 4K 视频。本文不需要读者有较深的技术背景，全部过程都可视化、自动化完成。</p>
+<p>下文用 GCP 代表 Google Cloud Platform，指 Google 的整个云平台。GCE 是指 Google Cloud Engine，是 GCP 产品线里的一个主机产品。</p>
+<h4 id="本文前提条件"><a href="#本文前提条件" class="headerlink" title="本文前提条件"></a>本文前提条件</h4><ol>
+<li>有一个 Google 账号，没有的话可以注册一个。</li>
+<li>注册 GCP 免费试用需要用信用卡进行身份验证（只做验证，不会收费），所以你必须有一个 Visa/MasterCard 的信用卡才行。</li>
+</ol>
+<h4 id="本文目录"><a href="#本文目录" class="headerlink" title="本文目录"></a>本文目录</h4><ol>
+<li>GCP 注册以及创建服务器<ul>
+<li>注册 GCP</li>
+<li>新建主机</li>
+</ul>
+</li>
+<li>HyperApp<ul>
+<li>添加服务器到 HyperApp</li>
+<li>配置公钥</li>
+<li>开启 BBR 加速，跑满带宽</li>
+<li>部署科学上网应用</li>
+</ul>
+</li>
+<li>客户端设置</li>
+<li>常见问题</li>
+</ol>
+<hr>
+<h2 id="GCP-注册以及创建服务器"><a href="#GCP-注册以及创建服务器" class="headerlink" title="GCP 注册以及创建服务器"></a>GCP 注册以及创建服务器</h2><p>要访问 Google 首先需要你能科学上网，但是这篇文章又是介绍如何科学上网的，好像有点🐔生蛋蛋生🐔的矛盾… 其实你可以去App Store搜索 V屁恩，找一个免费的下载后，通过签到等方式暂时领取一天或者几个小时的免费低速试用来完成下面的教程。</p>
+<h3 id="注册-GCP-免费试用"><a href="#注册-GCP-免费试用" class="headerlink" title="注册 GCP 免费试用"></a>注册 GCP 免费试用</h3><p><a href="https://github.com/waylybaye/HyperApp-Guide/blob/master/zh/proxy/images/gce/1-free-tier.png" target="_blank" rel="external"><img src="https://github.com/waylybaye/HyperApp-Guide/raw/master/zh/proxy/images/gce/1-free-tier.png" alt="img"></a> <a href="https://github.com/waylybaye/HyperApp-Guide/blob/master/zh/proxy/images/gce/1-intro.png" target="_blank" rel="external"><img src="https://github.com/waylybaye/HyperApp-Guide/raw/master/zh/proxy/images/gce/1-intro.png" alt="img"></a></p>
+<ol>
+<li>登录Google账号后使用这个链接来注册 <a href="https://cloud.google.com/free/" target="_blank" rel="external">https://cloud.google.com/free/</a> ，在打开的页面中点击“Try it Free”。</li>
+<li>接受条款，并点击”同意并继续“</li>
+<li>在页面中填入你的信息：<ul>
+<li>账号类型：个人</li>
+<li>名称和地址：填写你的地址、电话等</li>
+<li>付款方式：添加一个信用卡。这个信用卡将会用来验证身份，防止GCP被滥用。</li>
+<li>点击 ”开始免费使用“ 完成注册</li>
+</ul>
+</li>
+</ol>
+<p>在后面的页面中，如果你能看到页面顶部有一个“礼物 🎁 ” 的小图标，说明已经获取了试用金。</p>
+<h3 id="新建主机"><a href="#新建主机" class="headerlink" title="新建主机"></a>新建主机</h3><p><a href="https://github.com/waylybaye/HyperApp-Guide/blob/master/zh/proxy/images/gce/2-vms-nav.png" target="_blank" rel="external"><img src="https://github.com/waylybaye/HyperApp-Guide/raw/master/zh/proxy/images/gce/2-vms-nav.png" alt="img"></a> <a href="https://github.com/waylybaye/HyperApp-Guide/blob/master/zh/proxy/images/gce/2-vms.png" target="_blank" rel="external"><img src="https://github.com/waylybaye/HyperApp-Guide/raw/master/zh/proxy/images/gce/2-vms.png" alt="img"></a></p>
+<ol>
+<li>按照上图所示，在左侧菜单中导航到 <a href="https://console.cloud.google.com/compute/instances" target="_blank" rel="external">计算引擎 → VM 实例</a></li>
+<li>点击加号按钮，创建一个 VM 实例。</li>
+</ol>
+<p><a href="https://github.com/waylybaye/HyperApp-Guide/blob/master/zh/proxy/images/gce/2-create-vm.png" target="_blank" rel="external"><img src="https://github.com/waylybaye/HyperApp-Guide/raw/master/zh/proxy/images/gce/2-create-vm.png" alt="img"></a> <a href="https://github.com/waylybaye/HyperApp-Guide/blob/master/zh/proxy/images/gce/2-create-vm-firewall.png" target="_blank" rel="external"><img src="https://github.com/waylybaye/HyperApp-Guide/raw/master/zh/proxy/images/gce/2-create-vm-firewall.png" alt="img"></a></p>
+<ul>
+<li>名称：随意填入一个易记得名字</li>
+<li>地区：建议选择 <code>asia-east1-*</code> 三个中的任意一个，这个机房是在台湾，国内的延迟只有 50~70ms，简直快到飞起。</li>
+<li>机器类型：选择 “小型” (1.7G 内存) 就可以了。默认选中的 3.75G 的内存其实用不完。（只用SS的话建议选最低配置的，这样每月大约可以留出来80G流量）</li>
+<li>启动磁盘：默认的Debian 8就可以，推荐 Ubuntu 16.04 或者 CentOs 7，但是为了防止将来磁盘不够用，你可以点击右下角的更改，大小里使用 20G 或者 30G。</li>
+<li>防火墙：选中 “允许HTTP流量” 和 “允许HTTPS流量”</li>
+</ul>
+<p><strong>注意：GCE 的 CentOS 有各种小问题，如果你执意要用 CentOS 遇到问题请自行 Google</strong></p>
+<p>点击”创建“，稍等几分钟就会创建完毕，现在打开 HyperApp 开始配置这台服务器吧。</p>
+<hr>
+<h2 id="HyperApp"><a href="#HyperApp" class="headerlink" title="HyperApp"></a>HyperApp</h2><p>HyperApp 是一个部署自动化以及服务器监控管理的App，致力于让普通用户也可以使用云服务。HyperApp 可以监控服务器/路由器的运行状态，还可以可视化的一键部署各种应用。 本段介绍如何使用 HyperApp 管理刚刚创建的服务器，开启 BBR 加速，安装科学上网应用。</p>
+<p><a href="https://itunes.apple.com/app/apple-store/id1179750280?pt=118260435&amp;ct=v2ex&amp;mt=8" target="_blank" rel="external"><img src="https://camo.githubusercontent.com/cc21e107d47efc13b7532db99c07ce121c220c9d/68747470733a2f2f6c696e6b6d616b65722e6974756e65732e6170706c652e636f6d2f6173736574732f7368617265642f6261646765732f7a682d6368732f61707073746f72652d6c72672e737667" alt="下载 HyperApp"></a></p>
+<h3 id="添加服务器到-HyperApp"><a href="#添加服务器到-HyperApp" class="headerlink" title="添加服务器到 HyperApp"></a>添加服务器到 HyperApp</h3><p><a href="https://github.com/waylybaye/HyperApp-Guide/blob/master/zh/proxy/images/gce/3-servers.png" target="_blank" rel="external"><img src="https://github.com/waylybaye/HyperApp-Guide/raw/master/zh/proxy/images/gce/3-servers.png" alt="img"></a> <a href="https://github.com/waylybaye/HyperApp-Guide/blob/master/zh/proxy/images/gce/3-auto-config-start.png" target="_blank" rel="external"><img src="https://github.com/waylybaye/HyperApp-Guide/raw/master/zh/proxy/images/gce/3-auto-config-start.png" alt="img"></a></p>
+<ol>
+<li>在 “服务器” 页面点击右下角的加号，然后选择第二个”自动配置“</li>
+<li>点击“开始”，应用会自动生成一对密钥，请耐心等到几秒~十几秒。</li>
+<li>等到出现“一切就绪”时，点击“复制“将代码复制到剪贴板里，如果你用电脑操作的话可以点击”发送“将代码通过任意一种方式发送到电脑上。</li>
+</ol>
+<p><a href="https://github.com/waylybaye/HyperApp-Guide/blob/master/zh/proxy/images/gce/3-auto-config-done.png" target="_blank" rel="external"><img src="https://github.com/waylybaye/HyperApp-Guide/raw/master/zh/proxy/images/gce/3-auto-config-done.png" alt="img"></a> <a href="https://github.com/waylybaye/HyperApp-Guide/blob/master/zh/proxy/images/gce/3-vm-ssh.jpg" target="_blank" rel="external"><img src="https://github.com/waylybaye/HyperApp-Guide/raw/master/zh/proxy/images/gce/3-vm-ssh.jpg" alt="img"></a></p>
+<p>在 GCE <a href="https://console.cloud.google.com/compute/instances" target="_blank" rel="external">计算引擎 → VM 实例</a> 页面，选择刚刚创建的实例的 <code>SSH ▽ 在浏览器窗口中打开</code> 打开一个基于 Web 的 SSH 终端。</p>
+<p>在浏览器的SSH中粘贴并运行刚刚复制的代码。等到二维码出现时，使用 HyperApp 扫描该二维码便会自动添加该服务器。添加后 HyperApp 会检测刚刚添加的服务器的基本运行状况。</p>
+<h3 id="永久添加公钥"><a href="#永久添加公钥" class="headerlink" title="永久添加公钥"></a>永久添加公钥</h3><p>注意：你可以暂时跳过本小段，进行后续的操作，如果 HyperApp 出现了<strong>密钥认证错误</strong>的提示，可以回到这段进行操作。</p>
+<p>刚刚的自动配置的功能在几乎所有主机上都可以用，但是 GCE 是个例外，它会清空用户自行添加的公钥，所以几分钟后可能就会出现密钥认证失败的错误。你可以通过以下步骤永久性的设置密钥。</p>
+<ol>
+<li>打开 <code>HyperApp</code> → <code>更多</code> → <code>SSH Keys</code> → <code>点击唯一的一个 Key</code> → <code>复制公钥</code>。</li>
+<li>打开 <a href="https://console.cloud.google.com/compute/metadata/sshKeys" target="_blank" rel="external">GCP → 计算引擎 → 元数据 → SSH 密钥</a> 点击修改后，复制并添加刚刚的公钥。</li>
+<li>添加后页面会出现一行新记录，主要有两列：用户名 和 密钥。然后确保 HyperApp → 服务器 → 点击服务器下面的齿轮按钮 用户名为这儿显示的用户名，保存后就可以了。（如果你按照上面的步骤操作，HyperApp 自动修改用户名所以这两个用户名应该默认是一致的）</li>
+<li>添加以后同一账号下所有新建的主机都可以不用再次操作了。</li>
+</ol>
+<hr>
+<h3 id="开启-BBR-加速，跑满带宽"><a href="#开启-BBR-加速，跑满带宽" class="headerlink" title="开启 BBR 加速，跑满带宽"></a>开启 BBR 加速，跑满带宽</h3><p>这一步并不影响科学上网，但是会极大的提高上网质量。BBR是 Google 开发的TCP拥塞控制技术，并且已经合并到较新的Linux内核中。它的主要作用是可以让你跑满服务器的带宽。</p>
+<p>比如说没有开启的情况下你观看 Youtube 720P的视频都可能会卡，但是开启了BBR后 1080P 的视频完全无卡顿，就连 4K 视频也可以流畅观看（有些网络特别卡的除外）。</p>
+<p>要开启 BBR 需要升级 Linux 内核，不过不用急，在 HyperApp 中开启非常简单：</p>
+<p><a href="https://github.com/waylybaye/HyperApp-Guide/blob/master/zh/proxy/images/gce/4-bbr.png" target="_blank" rel="external"><img src="https://github.com/waylybaye/HyperApp-Guide/raw/master/zh/proxy/images/gce/4-bbr.png" alt="img"></a></p>
+<ol>
+<li>在服务器卡片中点击右上角的 Terminal 图标，进入 SSH 终端。</li>
+<li>选择最下面的一行工具栏的第一个图标，然后点击 “teddyun/BBR” 一键脚本的链接，点击后会让你确认是否下载并执行外部脚本。</li>
+<li>点击确认后会自动下载并执行，执行过程中需要点击键盘上回车键确认继续。如果想中断执行，那么点击 <code>ctrl</code> 后按 <code>c</code>终止执行。</li>
+<li>稍等几分钟，等待系统内核升级到最新版后会自动重启（重启时终端会显示Done 和 Shell Closed）然后关闭窗口即可。</li>
+<li>如果你想确认 BBR 有没有安装成功，那么再次进入 SSH 终端，输入 lsmod | grep bbr 如果能看到一行记录就是成功了。</li>
+</ol>
+<p>注意：一定要先升级BBR再安装应用，反过来会出错，如果你不小心操作错了顺序，请参考 <a href="https://github.com/waylybaye/HyperApp-Guide/blob/master/zh/faq.md" target="_blank" rel="external">排错指引</a>。</p>
+<hr>
+<h3 id="部署科学上网应用"><a href="#部署科学上网应用" class="headerlink" title="部署科学上网应用"></a>部署科学上网应用</h3><p><a href="https://github.com/waylybaye/HyperApp-Guide/blob/master/zh/proxy/images/gce/4-create-app.png" target="_blank" rel="external"><img src="https://github.com/waylybaye/HyperApp-Guide/raw/master/zh/proxy/images/gce/4-create-app.png" alt="img"></a> <a href="https://github.com/waylybaye/HyperApp-Guide/blob/master/zh/proxy/images/gce/4-config-app.png" target="_blank" rel="external"><img src="https://github.com/waylybaye/HyperApp-Guide/raw/master/zh/proxy/images/gce/4-config-app.png" alt="img"></a></p>
+<p>在 <code>HyperApp</code> → <code>商店</code> 页面 <code>网络</code> 分组下选择任意一个应用，这里我们选择占用资源最少的 <code>****-libev</code>，（下文用SS代替）点击该应用。在弹出的对话框中选择刚刚添加的服务器，点击<code>创建应用</code></p>
+<p>在此页面中输入简单的一些配置：</p>
+<ul>
+<li>Port: 端口，可以填入 80 或者 443（因为用其它端口需要设置防火墙）</li>
+<li>Password：随便填入一个密码</li>
+<li>Encrypt：选择一种加密方式，推荐针对移动访问优化的 <code>chacha20</code></li>
+<li>OBFS: 使用 OBFS 可以将 SS 流量伪装成正常的网页访问从而达到欺骗效果，可以防止被墙或者运营商干扰。</li>
+</ul>
+<p>如果你使用其它端口，请参考文末的 <a href="https://github.com/waylybaye/HyperApp-Guide/blob/master/zh/proxy/get-started.md#%E8%AE%BE%E7%BD%AE-gce-%E9%98%B2%E7%81%AB%E5%A2%99" target="_blank" rel="external">设置GCE防火墙</a> 如何开启防火墙。</p>
+<p>如果安装的过程中出现错误，可以截图后进群寻求帮助，但最快的方式依然是：建一个新的vm重来一遍！真的，很神奇的！</p>
+<hr>
+<h2 id="客户端设置"><a href="#客户端设置" class="headerlink" title="客户端设置"></a>客户端设置</h2><h3 id="iOS"><a href="#iOS" class="headerlink" title="iOS"></a>iOS</h3><p>iOS 上有很多 SS 的客户端可供选择，收费的有 小火箭、土豆丝、Surge等。免费的可以使用 Wingy。</p>
+<p>配置很简单，只需要点击应用卡片里的服务器栏，然后选择顶部的QR，截图后用其它客户端扫码即可。</p>
+<p>如果你想手动配置，请按指示填写参数即可，下面和配置和上面 【部署科学上网应用】段落里第2步的配置一一对应：</p>
+<ul>
+<li>服务器：填入你的服务器外部 IP（GCP后台 VM列表页面有一列外部IP，就是那个）。</li>
+<li>端口：上面配置界面里面的端口（80，或者443）</li>
+<li>密码：上面配置界面里面的密码</li>
+<li>加密方式：上面配置界面里面的加密方式</li>
+</ul>
+<h3 id="Mac-Windows"><a href="#Mac-Windows" class="headerlink" title="Mac/Windows"></a>Mac/Windows</h3><p>Mac 和 Windows 上都有免费的 SS 客户端可以使用，配置方法也是只要输入你的IP、端口、密码和加密方式即可。</p>
+<hr>
+<h2 id="常见问题："><a href="#常见问题：" class="headerlink" title="常见问题："></a>常见问题：</h2><h3 id="如何建多个账号？"><a href="#如何建多个账号？" class="headerlink" title="如何建多个账号？"></a>如何建多个账号？</h3><p>你可以创建多个应用给不同的人使用，一个应用只占 1~2M 内存（但注意每个应用的端口必须不同）</p>
+<h3 id="信用卡被扣一美元？"><a href="#信用卡被扣一美元？" class="headerlink" title="信用卡被扣一美元？"></a>信用卡被扣一美元？</h3><p>这是验证信用卡信息是否正确的，快则几分钟慢则几小时就会退款。</p>
+<h3 id="结算账号被关闭怎么办？"><a href="#结算账号被关闭怎么办？" class="headerlink" title="结算账号被关闭怎么办？"></a>结算账号被关闭怎么办？</h3><p>你可能没仔细填信用卡信息，查看你的邮箱应该会有一封谷歌的通知邮件，按照提示传下资料，几个小时左右就会被解封了。</p>
+<hr>
+<h3 id="其它玩法"><a href="#其它玩法" class="headerlink" title="其它玩法"></a>其它玩法</h3><p>现在你有了一台 1.75G 内存的服务器了，只用来做SS好像有点浪费（SS只占用几M内存），其实使用 HyperApp 还有很多其它玩法，商店里面有很多其它应用，都可以自动安装配置。</p>
+<p>比如你可以自己搭建一个博客、网站、论坛，个人网盘，聊天服务，并且可以自动配置HTTPS。如果你玩游戏可以创建一个 Minecraft 服务器。或者部署一个接收微信消息转发到Telegram的机器人。更多信息可以参阅👇 的 HyperApp 文档和教程。</p>
+<h3 id="HyperApp-支持"><a href="#HyperApp-支持" class="headerlink" title="HyperApp 支持"></a>HyperApp 支持</h3><p><a href="https://github.com/waylybaye/HyperApp-Guide" target="_blank" rel="external">官方文档和教程</a><br><a href="https://t.me/hyperapp" target="_blank" rel="external">Telegram 群</a> <a href="https://twitter.com/HyperAppCloud" target="_blank" rel="external">Twitter @HyperApp</a></p>
+<p>如果你遇到了各种各样的技术问题，比如无法安装、无法连接等，可以在群里召唤机器人或者开发者进行解答。或者在App里面点击 发送反馈邮件 获取帮助，这两种是最快的获取帮助的方式。</p>
+<h3 id="设置-GCE-防火墙"><a href="#设置-GCE-防火墙" class="headerlink" title="设置 GCE 防火墙"></a>设置 GCE 防火墙</h3><ol>
+<li><p>在GCP后台点击 <a href="https://console.cloud.google.com/networking/firewalls/list" target="_blank" rel="external">网络 → 防火墙规则</a></p>
+</li>
+<li><p>点击</p>
+</li>
+</ol>
+   <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">创建防火墙规则</div></pre></td></tr></table></figure>
+<ul>
+<li>名称：随便输入一个名称</li>
+<li>目标：选择 <code>网络中的所有示例</code></li>
+<li>来源过滤：<code>0.0.0.0/0</code></li>
+<li>协议和端口：<code>指定的协议和端口</code> 下面输入 <code>tcp;udp:端口号</code></li>
+</ul>
+<h3 id="自建和购买商业服务对比有什么优势？"><a href="#自建和购买商业服务对比有什么优势？" class="headerlink" title="自建和购买商业服务对比有什么优势？"></a>自建和购买商业服务对比有什么优势？</h3><ol>
+<li>最主要的优势是隐私和安全，如果你看下上面SS的日志，你就知道服务商可以知道你的所有浏览历史的，如果你访问了不支持HTTPS的网站，那么请求内容也可能被监控（比如密码信息）。</li>
+<li>另外是质量和成本，很多商家是使用和上面同样的机器但是卖给几百个人，你应该能明白了。成本方面没有免费试用的话1个人用可能会有点贵，但如果和朋友家人一起用就超值了，比如使用$2.5/月的 Vultr，每月500G 流量够很多人用<strong>的。</strong></li>
+</ol>
+</section>
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#GCP" >
+    <span class="tag-code">GCP</span>
+  </a>
+
+      </div>
+    
+    <div class="money-like">
+      <div class="reward-btn">
+        赏
+        <span class="money-code">
+          <span class="wechat-code">
+            <div class="code-image"></div>
+            <b>使用微信打赏</b>
+          </span>
+        </span>
+      </div>
+      <p class="notice">若你觉得我的文章对你有帮助，欢迎点击上方按钮对我打赏</p>
+    </div>
+    <div class="qrcode">
+      <canvas id="share-qrcode"></canvas>
+      <p class="notice">扫描二维码，分享此文章</p>
+    </div>
+    
+      <!-- UY BEGIN -->
+      <div id="uyan_frame"></div>
+      <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2142069"></script>
+      <!-- UY END -->
+    
+  </article>
+</main>
+
+<script>
+  (function () {
+    var url = 'https://ycg31.oschina.io/2017/08/20/如何免费打造打造一个安全稳定低延迟超高速的科学上网环境/';
+    var banner = ''
+    if (banner) {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+     // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', 'http://file.muyutech.com/error-img.png') 
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      var imageW = $(this).width()
+      var imageH = $(this).height()
+      
+      var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+      zoom = zoom < 1 ? 1 : zoom
+      zoom = zoom > 2 ? 2 : zoom
+      var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+      $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+      $('.image-view-wrap').addClass('wrap-active')
+      $('.image-view-wrap img').css({
+        'width': `${imageW}`,
+        'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+      })
+      $('html').css('overflow', 'hidden')
+
+      $('.image-view-wrap').on('click', function() {
+        $(this).remove()
+        $('html').attr('style', '')
+      })
+    })
+
+    // qrcode
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+
+    // gitment
+    var gitmentConfig = "";
+    if (gitmentConfig != "undefined") {
+      var gitment = new Gitment({
+        id: "如何免费打造打造一个安全稳定低延迟超高速的科学上网环境",
+        owner: "",
+        repo: "",
+        oauth: {
+          client_id: "",
+          client_secret: ""
+        },
+        theme: {
+          render(state, instance) {
+            const container = document.createElement('div')
+            container.lang = "en-US"
+            container.className = 'gitment-container gitment-root-container'
+            container.appendChild(instance.renderHeader(state, instance))
+            container.appendChild(instance.renderEditor(state, instance))
+            container.appendChild(instance.renderComments(state, instance))
+            container.appendChild(instance.renderFooter(state, instance))
+            return container;
+          }
+        }
+      })
+      gitment.render(document.getElementById('comments'))
+    }
+  })();
+</script>
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2017 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+    Theme by <a href="https://github.com/yanm1ng">yanm1ng</a> | Mod by <a href="https://github.com/ycg31">ycg31</a>
+  </p>
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine == 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+<script src="/js/script.js"></script>
+  </body>
+</html>
