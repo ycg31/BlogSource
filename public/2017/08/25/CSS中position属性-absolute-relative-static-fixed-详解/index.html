@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="有了这个，就不用到处去找重复的了">
+  <meta name="keyword" content="hexo, vuejs">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      CSS中position属性( absolute | relative | static | fixed )详解 | 杂记
+    
+  </title>
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/plugins/gitment.css">
+<link rel="stylesheet" href="/css/plugins/search.css">
+  <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdn.bootcss.com/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+  <script src="/js/qrious.js"></script>
+<script src="/js/gitment.js"></script>
+<script src="/js/search.js"></script>
+</head>
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>杂记</span>
+    </a>
+    <ul class="right-list">
+        <li class="list-item">   
+          <span class="algolia-autocomplete algolia-autocomplete-right" style="position: relative; display: inline-block; direction: ltr;">
+            <input type="text" id="local-search-input" class="search-query st-default-search-input aa-input" autocomplete="off" spellcheck="false" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-owns="algolia-autocomplete-listbox-0" dir="auto" style="position: relative; vertical-align: top;">
+          </span>
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link">Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div id="menu-mask" class="menu-mask">
+      <ul class="menu-list">
+        <li class="menu-item">   
+          <span class="algolia-autocomplete algolia-autocomplete-right" style="position: relative; display: inline-block; direction: ltr;">
+            <input type="text" id="mobile-search-input" class="search-query st-default-search-input aa-input" autocomplete="off" spellcheck="false" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-owns="algolia-autocomplete-listbox-0" dir="auto" style="position: relative; vertical-align: top;">
+          </span>
+        </li>
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+<div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="输入关键词" />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '博文',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '未定义',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+<div id="result-wrap" class="ins-search">
+    <div id="local-search-result"></div>
+</div>
+
+<script type="text/javascript">      
+     var search_path = "search.xml";
+     if (search_path.length == 0) {
+      search_path = "search.xml";
+     }
+     var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+     searchFunc(path, 'mobile-search-input', 'local-search-result');
+</script>
+</header>
+
+    <div id="article-banner">
+  <h2>CSS中position属性( absolute | relative | static | fixed )详解</h2>
+  <p class="post-date">2017-08-25</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+
+<main class="app-body">
+  <article class="post-article">
+    <section class="markdown-content" id="post-content"><p><strong>我们先来看看CSS3 Api中对position属性的相关定义：</strong></p>
+<ul>
+<li>static：无特殊定位，对象遵循正常文档流。top，right，bottom，left等属性不会被应用。</li>
+<li>relative：对象遵循正常文档流，但将依据top，right，bottom，left等属性在正常文档流中偏移位置。而其层叠通过z-index属性定义。</li>
+<li>absolute：对象脱离正常文档流，使用top，right，bottom，left等属性进行绝对定位。而其层叠通过z-index属性定义。</li>
+<li>fixed：对象脱离正常文档流，使用top，right，bottom，left等属性以窗口为参考点进行定位，当出现滚动条时，对象不会随着滚动。而其层叠通过z-index属性定义。</li>
+</ul>
+<p>怎么样，是不是还是很迷糊~~ 没关系，下面就从几个基础概念一一给大家详述：</p>
+<p><strong>什么是文档流？</strong></p>
+<p>​      将窗体自上而下分成一行行, 并在每行中按从左至右的顺序排放元素,即为文档流。</p>
+<p>​      只有三种情况会使得元素脱离文档流，分别是：浮动、绝对定位和相对定位。</p>
+<p><strong>静态定位(static) ：</strong></p>
+<p>​      static，无特殊定位，它是html元素默认的定位方式，即我们不设定元素的position属性时默认的position值就是static，它遵循正常的文档流对象，对象占用文档空间，该定位方式下，top、right、bottom、left、z-index等属性是无效的。</p>
+<p><strong>相对定位(relative) ：</strong></p>
+<p>​      relative定位，又称为相对定位，从字面上来解析，我们就可以看出该属性的主要特性：相对。但是它相对的又是相对于什么地方而言的呢？这个是个重点，也是最让我迷糊的一个地方，现在让我们来做个测试，我想大家都会明白的：</p>
+<p>(1) 初始未定位</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/******初始*********/</span></div><div class="line">&lt;style type="text/css"&gt;</div><div class="line">    <span class="selector-id">#first</span> &#123; <span class="attribute">width</span>: <span class="number">200px</span>; <span class="attribute">height</span>: <span class="number">100px</span>; <span class="attribute">border</span>: <span class="number">1px</span> solid red; &#125;</div><div class="line">    <span class="selector-id">#second</span>&#123; <span class="attribute">width</span>: <span class="number">200px</span>; <span class="attribute">height</span>: <span class="number">100px</span>; <span class="attribute">border</span>: <span class="number">1px</span> solid blue;&#125;</div><div class="line">&lt;/style&gt;</div><div class="line">&lt;<span class="selector-tag">body</span>&gt;</div><div class="line">   &lt;div id="first"&gt; first&lt;/div&gt;</div><div class="line">   &lt;div id="second"&gt;second&lt;/div&gt;</div><div class="line">&lt;/body&gt;</div></pre></td></tr></table></figure>
+<p> 初始原图：</p>
+<p><img src="http://img.my.csdn.net/uploads/201303/30/1364654152_2841.png" alt="img"></p>
+<p>(2) 我们修改first元素的position属性：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;style type="text/css"&gt;</div><div class="line">    <span class="selector-id">#first</span>&#123; <span class="attribute">width</span>: <span class="number">200px</span>; <span class="attribute">height</span>: <span class="number">100px</span>; <span class="attribute">border</span>: <span class="number">1px</span> solid red; <span class="attribute">position</span>: relative; <span class="attribute">top</span>: <span class="number">20px</span>; <span class="attribute">left</span>: <span class="number">20px</span>;&#125; <span class="comment">/*add position*/</span></div><div class="line">    <span class="selector-id">#second</span>&#123;<span class="attribute">width</span>: <span class="number">200px</span>; <span class="attribute">height</span>: <span class="number">100px</span>; <span class="attribute">border</span>: <span class="number">1px</span> solid blue;&#125;</div><div class="line">&lt;/style&gt;</div></pre></td></tr></table></figure>
+<p>  相对偏移20px后：</p>
+<p><img src="http://img.my.csdn.net/uploads/201303/30/1364654357_9392.png" alt="img"> – &gt;&gt; 虚线是初始的位置空间</p>
+<p>​      现在看明白了吧，<em>相对定位相对的是它原本在文档流中的位置而进行的偏移</em>，而我们也知道relative定位也是遵循正常的文档流，它没有脱离文档流，但是它的top/left/right/bottom属性是生效的，可以说它是static到absoult的一个中间过渡属性，最重要的是它还占有文档空间，而且<em>占据的文档空间不会随 top / right / left / bottom 等属性的偏移而发生变动，也就是说它后面的元素是依据虚线位置( top / left / right / bottom 等属性生效之前)进行的定位</em>，这点一定要理解。</p>
+<p>​     那好，我们知道了top / right / left / bottom 属性是不会对relative定位的元素所占据的文档空间产生偏移，那么margin / padding会让该文档空间产生偏移吗？答案是肯定的，我们一起来做个试验吧：</p>
+<p>(3)   添加margin属性：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;style type="text/css"&gt;</div><div class="line">    <span class="selector-id">#first</span>&#123;<span class="attribute">width</span>: <span class="number">200px</span>;<span class="attribute">height</span>: <span class="number">100px</span>;<span class="attribute">border</span>: <span class="number">1px</span> solid red;<span class="attribute">position</span>: relative;<span class="attribute">top</span>: <span class="number">20px</span>;<span class="attribute">left</span>: <span class="number">20px</span>;<span class="attribute">margin</span>: <span class="number">20px</span>;&#125; <span class="comment">/* add margin*/</span></div><div class="line">    <span class="selector-id">#second</span>&#123;<span class="attribute">width</span>: <span class="number">200px</span>;<span class="attribute">height</span>:<span class="number">100px</span>;<span class="attribute">border</span>: <span class="number">1px</span> solid blue;&#125;</div><div class="line">&lt;/style&gt;</div></pre></td></tr></table></figure>
+<p>  设置margin：20px后：</p>
+<p> <img src="http://img.my.csdn.net/uploads/201303/31/1364693568_3037.png" alt="img"></p>
+<p>​     对比一下，是不是就很清晰了，我们先将first元素外边距设为20px，那么second元素就得向下偏移40px，所以margin是占据文档空间！同理，大家可以自己动手测下padding的效果吧！</p>
+<p><strong>绝对定位(absoulte) ：</strong></p>
+<p>​       absoulte定位，也称为绝对定位，虽然它的名字号曰“绝对”，但是它的功能却更接近于”相对”一词，为什么这么讲呢？原来，使用absoult定位的元素脱离文档流后，就只能根据祖先类元素(父类以上)进行定位，而这个祖先类还必须是以postion非static方式定位的， 举个例子，a元素使用absoulte定位，它会从父类开始找起，寻找以position非static方式定位的祖先类元素(注意，一定要是直系祖先才算哦~），直到<html>标签为止，这里还需要注意的是，<em>relative和static方式在最外层时是以<body>标签为定位原点的，而absoulte方式在无父级是position非static定位时是以<html>作为原点定位。</html></body></em><html>和<body>元素相差9px左右。我们来看下效果：</body></html></html></p>
+<p>(4) 添加absoulte属性：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">"text/css"</span>&gt;</span><span class="undefined"></span></div><div class="line"><span class="css">    <span class="selector-tag">html</span>&#123;<span class="attribute">border</span>:<span class="number">1px</span> dashed green;&#125;</span></div><div class="line"><span class="css">    <span class="selector-tag">body</span>&#123;<span class="attribute">border</span>:<span class="number">1px</span> dashed  purple;&#125;</span></div><div class="line"><span class="css">    <span class="selector-id">#first</span>&#123; <span class="attribute">width</span>: <span class="number">200px</span>;<span class="attribute">height</span>: <span class="number">100px</span>;<span class="attribute">border</span>: <span class="number">1px</span> solid red;<span class="attribute">position</span>: relative;&#125;</span></div><div class="line"><span class="css">    <span class="selector-id">#second</span>&#123; <span class="attribute">width</span>: <span class="number">200px</span>;<span class="attribute">height</span>: <span class="number">100px</span>;<span class="attribute">border</span>: <span class="number">1px</span> solid blue;<span class="attribute">position</span>: absolute;<span class="attribute">top </span>:<span class="number">0</span>;<span class="attribute">left </span>: <span class="number">0</span>;&#125;</span></div><div class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"first"</span>&gt;</span>relative<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"second"</span>&gt;</span>absoult<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>效果图：</p>
+<p><img src="http://img.my.csdn.net/uploads/201303/30/1364658943_4685.png" alt="img"></p>
+<p>​        哈哈，看了上面的代码后，细心的朋友肯定要问了，为什么absoulte定位要加 top:0; left:0; 属性，这不是多此一举呢？</p>
+<p>​       其实加上这两个属性是完全必要的，因为我们如果<em>使用absoulte或fixed定位的话，必须指定 left、right、 top、 bottom 属性中的至少一个，否则left/right/top/bottom属性会使用它们的默认值 auto ，这将导致对象遵从正常的HTML布局规则，在前一个对象之后立即被呈递*<em>，*</em>简单讲就是都变成relative，</em>会占用文档空间，这点非常重要，很多人使用absolute定位后发现没有脱离文档流就是这个原因，这里要特别注意~~~</p>
+<p>少了left/right/top/bottom属性不行，那如果我们多设了呢？例如，我们同时设置了top和bottom的属性值，那元素又该往哪偏移好呢？记住下面的规则：</p>
+<ul>
+<li>如果top和bottom一同存在的话，那么只有top生效。</li>
+<li>如果left和right一同存在的话，那么只有left生效。</li>
+</ul>
+<p>既然absoulte是根据祖先类中的position非static元素进行定位的，那么祖先类中的margin/padding会不会对position产生影响呢？看个例子先：</p>
+<p>(5) 在absoulte定位中添加margin / padding属性：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">#first&#123;width: 200px;height: 100px;border: 1px solid red;position: relative;margin:40px;padding:40px;&#125;</div><div class="line">#second&#123;width: 200px;height:100px;border: 1px solid blue;position: absolute;top:20px;left:20px;&#125;</div><div class="line">   </div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"first"</span>&gt;</span>first</div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"second"</span>&gt;</span>second<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>效果图：</p>
+<p><img src="http://img.my.csdn.net/uploads/201303/31/1364695825_2435.png" alt="img"><img src="http://img.my.csdn.net/uploads/201303/31/1364695784_6576.png" alt="img"></p>
+<p>​             看懂了，<em>祖先类的margin会让子类的absoulte跟着偏移，而padding却不会让子类的absoulte发生偏移</em>。总结一下，就是absoulte是根据祖先类的border进行的定位。</p>
+<p><strong>Note : </strong>绝对(absolute)定位对象在可视区域之外会导致滚动条出现。而放置相对(relative)定位对象在可视区域之外，滚动条不会出现。</p>
+<p><strong>固定定位(fixed)：</strong></p>
+<p>​       fixed定位，又称为固定定位，它和absoult定位一样，都脱离了文档流，并且能够根据top、right、left、bottom属性进行定位，但不同的是fixed是根据窗口为原点进行偏移定位的，也就是说它不会根据滚动条的滚动而进行偏移。</p>
+<p><strong>z-index属性：</strong></p>
+<p>​       z-index，又称为对象的层叠顺序，它用一个整数来定义堆叠的层次，整数值越大，则被层叠在越上面，当然这是指同级元素间的堆叠，如果两个对象的此属性具有同样的值，那么将依据它们在HTML文档中流的顺序层叠，写在后面的将会覆盖前面的。需要注意的是，父子关系是无法用z-index来设定上下关系的，一定是子级在上父级在下。</p>
+<p>Note：使用static 定位或无position定位的元素z-index属性是无效的。</p>
+</section>
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#css" >
+    <span class="tag-code">css</span>
+  </a>
+
+      </div>
+    
+    
+<nav id="article-nav">
+    
+        <a href="/2017/08/25/CSS padding margin border属性详解/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">NEWER</strong>
+            <div class="article-nav-title">
+                
+                    CSS padding margin border属性详解
+                
+            </div>
+        </a>
+    
+    
+        <a href="/2017/08/20/Git忽略规则和-gitignore规则不生效的解决办法/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">OLDER</strong>
+            <div class="article-nav-title">Git忽略规则和.gitignore规则不生效的解决办法</div>
+        </a>
+    
+</nav>
+
+
+    <div class="money-like">
+      <div class="reward-btn">
+        赏
+        <span class="money-code">
+          <span class="wechat-code">
+            <div class="code-image"></div>
+            <b>使用微信打赏</b>
+          </span>
+        </span>
+      </div>
+      <p class="notice">若你觉得我的文章对你有帮助，欢迎点击上方按钮对我打赏</p>
+    </div>
+    <div class="qrcode">
+      <canvas id="share-qrcode"></canvas>
+ 
+      <p class="notice">扫描二维码，分享此文章</p>
+    </div>
+    
+      <!-- UY BEGIN -->
+      <div id="uyan_frame"></div>
+      <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2142069"></script>
+      <!-- UY END -->
+    
+  </article>
+</main>
+
+<script>
+  (function () {
+    var url = 'https://ycg31.oschina.io/2017/08/25/CSS中position属性-absolute-relative-static-fixed-详解/';
+    var banner = ''
+    if (banner) {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+     // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', 'http://file.muyutech.com/error-img.png') 
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      var imageW = $(this).width()
+      var imageH = $(this).height()
+      
+      var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+      zoom = zoom < 1 ? 1 : zoom
+      zoom = zoom > 2 ? 2 : zoom
+      var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+      $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+      $('.image-view-wrap').addClass('wrap-active')
+      $('.image-view-wrap img').css({
+        'width': `${imageW}`,
+        'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+      })
+      $('html').css('overflow', 'hidden')
+
+      $('.image-view-wrap').on('click', function() {
+        $(this).remove()
+        $('html').attr('style', '')
+      })
+    })
+
+    // qrcode
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+
+
+
+    // gitment
+    var gitmentConfig = "";
+    if (gitmentConfig != "undefined") {
+      var gitment = new Gitment({
+        id: "CSS中position属性( absolute | relative | static | fixed )详解",
+        owner: "",
+        repo: "",
+        oauth: {
+          client_id: "",
+          client_secret: ""
+        },
+        theme: {
+          render(state, instance) {
+            const container = document.createElement('div')
+            container.lang = "en-US"
+            container.className = 'gitment-container gitment-root-container'
+            container.appendChild(instance.renderHeader(state, instance))
+            container.appendChild(instance.renderEditor(state, instance))
+            container.appendChild(instance.renderComments(state, instance))
+            container.appendChild(instance.renderFooter(state, instance))
+            return container;
+          }
+        }
+      })
+      gitment.render(document.getElementById('comments'))
+    }
+  })();
+</script>
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2017 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+    Theme by <a href="https://github.com/yanm1ng">yanm1ng</a> | Mod by <a href="https://github.com/ycg31">ycg31</a>
+  </p>
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine == 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+<script src="/js/script.js"></script>
+  </body>
+</html>

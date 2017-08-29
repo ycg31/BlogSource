@@ -16,6 +16,11 @@ menu:
 highlight:
   tomorrow
 
+# 是否开启toc
+# toc: false
+toc:
+  list_number: true  # 是否显示数字排序
+
 # gitment
 #gitment_owner: ycg31
 #gitment_repo: ycg31.github.io

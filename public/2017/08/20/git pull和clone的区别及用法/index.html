@@ -169,9 +169,17 @@
     <a href="javascript:;"></a>
   </div>
 </div>
+
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#一、git-pull"><span class="post-toc-number">1.</span> <span class="post-toc-text">一、git pull</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#（1）-git-pull-origin-next-master：如果远程分支是与当前分支合并，则冒号后面的部分可以省略。"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">（1）$ git pull origin next:master：如果远程分支是与当前分支合并，则冒号后面的部分可以省略。</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#（2）-git-pull-origin-next：上面命令表示，取回origin-next分支，再与当前分支合并。实质上，这等同于先做git-fetch，再做git-merge。"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">（2）$ git pull origin next：上面命令表示，取回origin/next分支，再与当前分支合并。实质上，这等同于先做git fetch，再做git merge。</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#二、get-clone"><span class="post-toc-number">2.</span> <span class="post-toc-text">二、get clone</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#（2）-git-clone-lt-版本库的网址-gt-lt-本地目录名-gt"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">（2）$ git clone <版本库的网址> <本地目录名></span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#（3）SSH协议还有另一种写法。"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">（3）SSH协议还有另一种写法。</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+    
 <main class="app-body">
   <article class="post-article">
-    <section class="markdown-content"><h1 id="一、git-pull"><a href="#一、git-pull" class="headerlink" title="一、git pull"></a>一、git pull</h1><p>git pull命令的作用是，取回远程主机某个分支的更新，再与本地的指定分支合并。</p>
+    <section class="markdown-content" id="post-content"><h1 id="一、git-pull"><a href="#一、git-pull" class="headerlink" title="一、git pull"></a>一、git pull</h1><p>git pull命令的作用是，取回远程主机某个分支的更新，再与本地的指定分支合并。</p>
 <p>完整格式：$ git pull &lt;远程主机名&gt; &lt;远程分支名&gt;:&lt;本地分支名&gt;</p>
 <p>完整格式举例：比如，取回origin主机的next分支，与本地的master分支合并，需要写成下面这样，</p>
 <h2 id="（1）-git-pull-origin-next-master：如果远程分支是与当前分支合并，则冒号后面的部分可以省略。"><a href="#（1）-git-pull-origin-next-master：如果远程分支是与当前分支合并，则冒号后面的部分可以省略。" class="headerlink" title="（1）$ git pull origin next:master：如果远程分支是与当前分支合并，则冒号后面的部分可以省略。"></a>（1）$ git pull origin next:master：如果远程分支是与当前分支合并，则冒号后面的部分可以省略。</h2><h2 id="（2）-git-pull-origin-next：上面命令表示，取回origin-next分支，再与当前分支合并。实质上，这等同于先做git-fetch，再做git-merge。"><a href="#（2）-git-pull-origin-next：上面命令表示，取回origin-next分支，再与当前分支合并。实质上，这等同于先做git-fetch，再做git-merge。" class="headerlink" title="（2）$ git pull origin next：上面命令表示，取回origin/next分支，再与当前分支合并。实质上，这等同于先做git fetch，再做git merge。"></a>（2）$ git pull origin next：上面命令表示，取回origin/next分支，再与当前分支合并。实质上，这等同于先做git fetch，再做git merge。</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ git fetch origin</div><div class="line">$ git merge origin/next</div></pre></td></tr></table></figure>
@@ -196,6 +204,27 @@
 
       </div>
     
+    
+<nav id="article-nav">
+    
+        <a href="/2017/08/20/Git远程操作详解/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">NEWER</strong>
+            <div class="article-nav-title">
+                
+                    Git远程操作详解
+                
+            </div>
+        </a>
+    
+    
+        <a href="/2017/08/20/远程GitHub中的灰色图标的解决办法/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">OLDER</strong>
+            <div class="article-nav-title">远程GitHub中的灰色图标的解决办法</div>
+        </a>
+    
+</nav>
+
+
     <div class="money-like">
       <div class="reward-btn">
         赏
@@ -210,6 +239,7 @@
     </div>
     <div class="qrcode">
       <canvas id="share-qrcode"></canvas>
+ 
       <p class="notice">扫描二维码，分享此文章</p>
     </div>
     
@@ -269,6 +299,8 @@
       element: document.getElementById('share-qrcode'),
       value: document.location.href
     });
+
+
 
     // gitment
     var gitmentConfig = "";

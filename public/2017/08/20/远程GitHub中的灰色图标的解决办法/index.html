@@ -169,9 +169,17 @@
     <a href="javascript:;"></a>
   </div>
 </div>
+
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#问题描述"><span class="post-toc-number">1.</span> <span class="post-toc-text">问题描述</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#最佳解决方案"><span class="post-toc-number">2.</span> <span class="post-toc-text">最佳解决方案</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#次佳解决方案"><span class="post-toc-number">3.</span> <span class="post-toc-text">次佳解决方案</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#第三种解决方案"><span class="post-toc-number">4.</span> <span class="post-toc-text">第三种解决方案</span></a></li></ol>
+        </nav>
+    </aside>
+    
 <main class="app-body">
   <article class="post-article">
-    <section class="markdown-content"><h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>任何人都可以告诉我为什么我把我的文件推送到github时有灰色图标？在应用程序目录中，应该有模型，视图和控制器，但在远程GitHub中，我无法点击。</p>
+    <section class="markdown-content" id="post-content"><h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>任何人都可以告诉我为什么我把我的文件推送到github时有灰色图标？在应用程序目录中，应该有模型，视图和控制器，但在远程GitHub中，我无法点击。</p>
 <p><img src="https://imgtn.gxnotes.com/images/2017/06/d6b2d26271941e283feba737ea35c3cf.jpg" alt="git,github,github-for-windows"></p>
 <h2 id="最佳解决方案"><a href="#最佳解决方案" class="headerlink" title="最佳解决方案"></a>最佳解决方案</h2><p>看起来你创建了一个子模块，指向一个不可达的远程位置。</p>
 <p>见<a href="https://gxnotes.com/link.php?target=https%3A//stackoverflow.com/questions/14448601/what-does-this-green-icon-mean-in-a-github-repository" target="_blank" rel="external">this answer</a>。该图标在绿色时将指向子模块。因为子模块配置不正确，我认为你的情况是灰色的。</p>
@@ -193,6 +201,27 @@
 
       </div>
     
+    
+<nav id="article-nav">
+    
+        <a href="/2017/08/20/git pull和clone的区别及用法/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">NEWER</strong>
+            <div class="article-nav-title">
+                
+                    git pull 和 clone的区别及用法
+                
+            </div>
+        </a>
+    
+    
+        <a href="/2017/08/20/使用AppVeyor自动部署Hexo到Github/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">OLDER</strong>
+            <div class="article-nav-title">使用AppVeyor自动部署Hexo到Github</div>
+        </a>
+    
+</nav>
+
+
     <div class="money-like">
       <div class="reward-btn">
         赏
@@ -207,6 +236,7 @@
     </div>
     <div class="qrcode">
       <canvas id="share-qrcode"></canvas>
+ 
       <p class="notice">扫描二维码，分享此文章</p>
     </div>
     
@@ -266,6 +296,8 @@
       element: document.getElementById('share-qrcode'),
       value: document.location.href
     });
+
+
 
     // gitment
     var gitmentConfig = "";

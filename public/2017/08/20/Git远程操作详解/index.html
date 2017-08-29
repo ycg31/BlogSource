@@ -169,9 +169,17 @@
     <a href="javascript:;"></a>
   </div>
 </div>
+
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#一、git-clone"><span class="post-toc-number">1.</span> <span class="post-toc-text">一、git clone</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#二、git-remote"><span class="post-toc-number">2.</span> <span class="post-toc-text">二、git remote</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#三、git-fetch"><span class="post-toc-number">3.</span> <span class="post-toc-text">三、git fetch</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#四、git-pull"><span class="post-toc-number">4.</span> <span class="post-toc-text">四、git pull</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#五、git-push"><span class="post-toc-number">5.</span> <span class="post-toc-text">五、git push</span></a></li></ol>
+        </nav>
+    </aside>
+    
 <main class="app-body">
   <article class="post-article">
-    <section class="markdown-content"><p><a href="http://zh.wikipedia.org/wiki/Git" target="_blank" rel="external">Git</a>是目前最流行的<a href="http://www.ruanyifeng.com/blog/2008/12/a_visual_guide_to_version_control.html" target="_blank" rel="external">版本管理系统</a>，学会Git几乎成了开发者的必备技能。</p>
+    <section class="markdown-content" id="post-content"><p><a href="http://zh.wikipedia.org/wiki/Git" target="_blank" rel="external">Git</a>是目前最流行的<a href="http://www.ruanyifeng.com/blog/2008/12/a_visual_guide_to_version_control.html" target="_blank" rel="external">版本管理系统</a>，学会Git几乎成了开发者的必备技能。</p>
 <p>Git有很多优势，其中之一就是远程操作非常简便。本文详细介绍5个Git命令，它们的概念和用法，理解了这些内容，你就会完全掌握Git远程操作。</p>
 <ul>
 <li>git clone</li>
@@ -364,6 +372,27 @@
 
       </div>
     
+    
+<nav id="article-nav">
+    
+        <a href="/2017/08/20/如何免费打造打造一个安全稳定低延迟超高速的科学上网环境/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">NEWER</strong>
+            <div class="article-nav-title">
+                
+                    如何免费打造打造一个安全稳定低延迟超高速的科学上网环境
+                
+            </div>
+        </a>
+    
+    
+        <a href="/2017/08/20/git pull和clone的区别及用法/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">OLDER</strong>
+            <div class="article-nav-title">git pull 和 clone的区别及用法</div>
+        </a>
+    
+</nav>
+
+
     <div class="money-like">
       <div class="reward-btn">
         赏
@@ -378,6 +407,7 @@
     </div>
     <div class="qrcode">
       <canvas id="share-qrcode"></canvas>
+ 
       <p class="notice">扫描二维码，分享此文章</p>
     </div>
     
@@ -437,6 +467,8 @@
       element: document.getElementById('share-qrcode'),
       value: document.location.href
     });
+
+
 
     // gitment
     var gitmentConfig = "";

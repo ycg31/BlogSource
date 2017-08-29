@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="有了这个，就不用到处去找重复的了">
+  <meta name="keyword" content="hexo, vuejs">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      (转)给 Hexo 添加带滚动监听的文章目录 | 杂记
+    
+  </title>
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/plugins/gitment.css">
+<link rel="stylesheet" href="/css/plugins/search.css">
+  <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdn.bootcss.com/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+  <script src="/js/qrious.js"></script>
+<script src="/js/gitment.js"></script>
+<script src="/js/search.js"></script>
+</head>
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>杂记</span>
+    </a>
+    <ul class="right-list">
+        <li class="list-item">   
+          <span class="algolia-autocomplete algolia-autocomplete-right" style="position: relative; display: inline-block; direction: ltr;">
+            <input type="text" id="local-search-input" class="search-query st-default-search-input aa-input" autocomplete="off" spellcheck="false" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-owns="algolia-autocomplete-listbox-0" dir="auto" style="position: relative; vertical-align: top;">
+          </span>
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link">Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div id="menu-mask" class="menu-mask">
+      <ul class="menu-list">
+        <li class="menu-item">   
+          <span class="algolia-autocomplete algolia-autocomplete-right" style="position: relative; display: inline-block; direction: ltr;">
+            <input type="text" id="mobile-search-input" class="search-query st-default-search-input aa-input" autocomplete="off" spellcheck="false" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-owns="algolia-autocomplete-listbox-0" dir="auto" style="position: relative; vertical-align: top;">
+          </span>
+        </li>
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+<div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="输入关键词" />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '博文',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '未定义',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+<div id="result-wrap" class="ins-search">
+    <div id="local-search-result"></div>
+</div>
+
+<script type="text/javascript">      
+     var search_path = "search.xml";
+     if (search_path.length == 0) {
+      search_path = "search.xml";
+     }
+     var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+     searchFunc(path, 'mobile-search-input', 'local-search-result');
+</script>
+</header>
+
+    <div id="article-banner">
+  <h2>(转)给 Hexo 添加带滚动监听的文章目录</h2>
+  <p class="post-date">2017-08-30</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#添加-Hexo-toc-模块"><span class="post-toc-number">1.</span> <span class="post-toc-text">添加 Hexo toc 模块</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#实现滚动监听"><span class="post-toc-number">2.</span> <span class="post-toc-text">实现滚动监听</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#防抖动"><span class="post-toc-number">3.</span> <span class="post-toc-text">防抖动</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#参考"><span class="post-toc-number">4.</span> <span class="post-toc-text">参考</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<main class="app-body">
+  <article class="post-article">
+    <section class="markdown-content" id="post-content"><p> Hexo 是支持文章目录的，<a href="http://www.jianshu.com/p/ac853e1afedb" target="_blank" rel="external">这篇文章</a>就对如何添加目录进行了介绍。</p>
+<p>大概几周之前，我把文章目录添加到了博客样式中，随后又添加了滚动监听。最近看面试题的时候，发现原来还可以消除抖动，又涨了见识，并且运用到自己的博客中。</p>
+<h2 id="添加-Hexo-toc-模块"><a href="#添加-Hexo-toc-模块" class="headerlink" title="添加 Hexo toc 模块"></a>添加 Hexo toc 模块</h2><p>看了 Hexo 的官网教程，发现原来 toc 已经被 Hexo 默认支持了，只需要在模版文件中引入即可，比如像下面：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"toc"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"toc-header"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">"toc-icon"</span>&gt;</span><span class="tag">&lt;/<span class="name">i</span>&gt;</span></div><div class="line">    文章目录</div><div class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">  // 添加目录模块</div><div class="line">  &#123;&#123; toc(page.content) &#125;&#125;</div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
+<p><code>toc</code> 这个函数，它可以把 <code>page.content</code> 中可以作为目录（一级二级三级）元素都提取出来，然后按照一定的格式，生成与 content 相对应的文章目录。下面这个格式就是上面生成的结下：</p>
+<p><img src="http://wx3.sinaimg.cn/mw690/e3dde130gy1fdasnzxz88j20o80dojug.jpg" alt="img"></p>
+<p>光这样还不行，还需要添加对应的样式，下面是我在 stylus 文件中的样式：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div></pre></td><td class="code"><pre><div class="line"><span class="selector-id">#toc</span>&#123;</div><div class="line">  position fixed</div><div class="line">  <span class="selector-tag">top</span> 0<span class="selector-tag">px</span></div><div class="line">  <span class="selector-tag">left</span> 50%</div><div class="line">  <span class="selector-tag">padding</span> 10<span class="selector-tag">px</span> 0 10<span class="selector-tag">px</span> 0</div><div class="line">  <span class="selector-tag">z-index</span> 2</div><div class="line">  <span class="selector-tag">margin-left</span> 400<span class="selector-tag">px</span></div><div class="line">  <span class="selector-tag">margin-top</span> 8<span class="selector-tag">px</span></div><div class="line">  <span class="selector-tag">line-height</span> 1<span class="selector-class">.5</span></div><div class="line">  <span class="selector-tag">background-color</span> <span class="selector-tag">rgba</span>(242, 243, 241, 0<span class="selector-class">.6</span>)</div><div class="line">  <span class="selector-tag">padding-right</span> 5<span class="selector-tag">px</span></div><div class="line">  <span class="selector-tag">width</span> 160<span class="selector-tag">px</span></div><div class="line">  &amp; <span class="selector-class">.toc-icon</span>&#123;</div><div class="line">    font-size 14px</div><div class="line">    <span class="selector-tag">position</span> <span class="selector-tag">absolute</span></div><div class="line">    <span class="selector-tag">cursor</span> <span class="selector-tag">pointer</span></div><div class="line">    <span class="selector-tag">right</span> 0<span class="selector-tag">px</span></div><div class="line">    <span class="selector-tag">top</span> 0<span class="selector-tag">px</span></div><div class="line">    <span class="selector-tag">padding</span> 10<span class="selector-tag">px</span></div><div class="line">  &#125;</div><div class="line">  &amp; <span class="selector-class">.toc-header</span>&#123;</div><div class="line">    font-weight 700;</div><div class="line">    <span class="selector-tag">border</span> <span class="selector-tag">none</span>;</div><div class="line">    <span class="selector-tag">padding</span> 8<span class="selector-tag">px</span> 12<span class="selector-tag">px</span>;</div><div class="line">    <span class="selector-tag">font-size</span> 20<span class="selector-tag">px</span>;</div><div class="line">    <span class="selector-tag">position</span> <span class="selector-tag">relative</span></div><div class="line">  &#125;</div><div class="line">  &amp; <span class="selector-class">.close</span>&#123;</div><div class="line">    display none</div><div class="line">  &#125;</div><div class="line">  &amp; <span class="selector-class">.toc</span>&#123;</div><div class="line">    list-style none</div><div class="line">    <span class="selector-tag">position</span> <span class="selector-tag">relative</span></div><div class="line">    <span class="selector-tag">font-size</span> 16<span class="selector-tag">px</span></div><div class="line">    <span class="selector-tag">padding-left</span> 8<span class="selector-tag">px</span></div><div class="line">    <span class="selector-tag">overflow-x</span> <span class="selector-tag">hidden</span>;</div><div class="line">    &amp; <span class="selector-tag">a</span>&#123;</div><div class="line">      color #4a75b5</div><div class="line">      &amp;<span class="selector-pseudo">:hover</span>&#123;</div><div class="line">        color #ef593e</div><div class="line">        <span class="selector-tag">text-decoration</span> <span class="selector-tag">none</span></div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">    &amp; <span class="selector-tag">ol</span>, &amp; <span class="selector-tag">ul</span>&#123;</div><div class="line">      list-style-type disc</div><div class="line">    &#125;</div><div class="line">    &amp; <span class="selector-class">.toc-child</span>&#123;</div><div class="line">      padding-left 20px</div><div class="line">      <span class="selector-tag">font-size</span> 12<span class="selector-tag">px</span></div><div class="line">      <span class="selector-tag">display</span> <span class="selector-tag">none</span></div><div class="line">      &amp; <span class="selector-tag">span</span><span class="selector-class">.toc-number</span>&#123;</div><div class="line">        display none</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">    &amp; <span class="selector-class">.active</span>~<span class="selector-class">.toc-child</span>&#123;</div><div class="line">      display block</div><div class="line">    &#125;</div><div class="line">    &amp; <span class="selector-class">.toc-child</span><span class="selector-class">.toc-show</span>&#123;</div><div class="line">      display block</div><div class="line">    &#125;</div><div class="line">    &amp; <span class="selector-class">.toc-link</span>&#123;</div><div class="line">      white-space nowrap</div><div class="line">    &#125;</div><div class="line">    &amp; <span class="selector-class">.toc-link</span><span class="selector-class">.active</span>&#123;</div><div class="line">      color #ef593e</div><div class="line">    &#125;</div><div class="line">    &amp;<span class="selector-pseudo">:before</span>&#123;</div><div class="line">      content '';</div><div class="line">      <span class="selector-tag">display</span> <span class="selector-tag">block</span>;</div><div class="line">      <span class="selector-tag">position</span> <span class="selector-tag">absolute</span>;</div><div class="line">      <span class="selector-tag">background</span> <span class="selector-id">#eee</span>;</div><div class="line">      <span class="selector-tag">width</span> 3<span class="selector-tag">px</span>;</div><div class="line">      <span class="selector-tag">top</span> 0;</div><div class="line">      <span class="selector-tag">bottom</span> 0;</div><div class="line">      <span class="selector-tag">border-radius</span> 5<span class="selector-tag">px</span>;</div><div class="line">      <span class="selector-tag">left</span> 0;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">  @<span class="keyword">media</span> (max-width: <span class="number">1100px</span>)&#123;</div><div class="line">    <span class="selector-tag">display</span> <span class="selector-tag">none</span></div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>效果如下：</p>
+<p><img src="http://wx1.sinaimg.cn/mw690/e3dde130gy1fdassz15eoj20am0cawf5.jpg" alt="img"></p>
+<p>关于点击关闭按钮，文章目录就必会的功能就不在此阐述了。</p>
+<h2 id="实现滚动监听"><a href="#实现滚动监听" class="headerlink" title="实现滚动监听"></a>实现滚动监听</h2><p>光添加了目录，还远远是不够的，一个做得很棒的目录，都会有监听滚动并且目录会随着改变。</p>
+<p>看了 Bootstrap 提供的 <a href="http://www.tutorialspoint.com/bootstrap/bootstrap_scrollspy_plugin.htm" target="_blank" rel="external">scrollspy</a> 库，有监听功能，貌似效果还不错的样子。因为我博客中包含了 jQuery 库，所以就尝试用 jQuery 自己实现了一个。</p>
+<p>介绍实现之前，需要对 Hexo 博客的板块特点进行介绍。</p>
+<p>在 post content 中，最终会将 markdown 生成对应的 html，对于一般的 H 标题，生成的格式一般如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">h2</span> <span class="attr">id</span>=<span class="string">"添加-Hexo-toc-模块"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#添加-Hexo-toc-模块"</span> <span class="attr">class</span>=<span class="string">"headerlink"</span> <span class="attr">title</span>=<span class="string">"添加 Hexo toc 模块"</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line">  添加 Hexo toc 模块</div><div class="line"><span class="tag">&lt;/<span class="name">h2</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>在正式的标题之前，一般都会有一个空的 a 标签，它的 class 为 <code>headerlink</code>，可以借助这个来生成一个 <code>$(&#39;.headerlink&#39;)</code> jQuery 对象。然后配合 <code>$(&#39;.toc-link&#39;)</code>，这两个 jQuery 对象就<strong>一一对应了</strong>。</p>
+<p>大致的思路就是首先获取每个 headerlink 距离 top 的高度，存储在数组 <code>headerlinkTop</code> 里，然后监听浏览器的 scroll，当滚动到 headerlinkTop 的某一个元素时，将 toc 按照 i 的位置设置 active：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> $w = $(<span class="built_in">window</span>);</div><div class="line"><span class="comment">// 修正响应不及时的问题</span></div><div class="line"><span class="keyword">var</span> HEADFIX = <span class="number">30</span>;</div><div class="line"></div><div class="line"><span class="keyword">var</span> $toclink = $(<span class="string">'.toc-link'</span>),</div><div class="line">  $headerlink = $(<span class="string">'.headerlink'</span>),</div><div class="line">  $tocchild = $(<span class="string">'.toc-child'</span>);</div><div class="line"></div><div class="line"><span class="comment">// 用来获取 top 数组</span></div><div class="line"><span class="keyword">var</span> headerlinkTop = [];</div><div class="line">headerlinkTop = $.map($headerlink, <span class="function"><span class="keyword">function</span>(<span class="params">link</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> $(link.parentNode).offset().top - HEADFIX;</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="comment">// 修正参数，将第一个元素置为 -1</span></div><div class="line">headerlinkTop[<span class="number">0</span>] = <span class="number">-1</span>;</div><div class="line"><span class="comment">// 最后添加一个 无穷大</span></div><div class="line">headerlinkTop.push(<span class="literal">Infinity</span>);</div><div class="line"></div><div class="line"><span class="keyword">var</span> pos = <span class="number">0</span>;</div><div class="line"><span class="keyword">var</span> getActive = <span class="function"><span class="keyword">function</span>(<span class="params">s_top</span>)</span>&#123;</div><div class="line">  <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; $toclink.length; i++)&#123;</div><div class="line">    <span class="keyword">var</span> currentTop = headerlinkTop[i];</div><div class="line">    <span class="keyword">var</span> nextTop = headerlinkTop[i+<span class="number">1</span>];</div><div class="line"></div><div class="line">    <span class="keyword">if</span>(s_top &gt; currentTop &amp;&amp; s_top &lt;= nextTop)&#123;</div><div class="line">      $toclink.removeClass(<span class="string">'active'</span>);</div><div class="line">      $tocchild.removeClass(<span class="string">'toc-show'</span>);</div><div class="line">      pos = i;</div><div class="line">      <span class="keyword">var</span> nowlink = $toclink[i];</div><div class="line">      $(nowlink).addClass(<span class="string">'active'</span>);</div><div class="line">      <span class="keyword">while</span>($(nowlink.parentNode.parentNode).hasClass(<span class="string">'toc-child'</span>))&#123;</div><div class="line">        nowlink = nowlink.parentNode.parentNode;</div><div class="line">        $(nowlink).addClass(<span class="string">'toc-show'</span>);</div><div class="line">      &#125;</div><div class="line">      <span class="keyword">break</span>;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line">getActive($w.scrollTop());</div><div class="line"></div><div class="line"><span class="comment">// 修复 image load bug</span></div><div class="line"><span class="comment">// 由于网页已经加载，而图片还未加载完成，导致数组的高度有偏差</span></div><div class="line"><span class="keyword">var</span> link_length = $headerlink.length;</div><div class="line"><span class="keyword">var</span> $link_last = link_length &gt; <span class="number">1</span> ? $($headerlink[$headerlink.length - <span class="number">1</span>].parentNode) : <span class="literal">null</span>;</div><div class="line"><span class="keyword">var</span> fixLoading = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="keyword">if</span>(link_length &gt; <span class="number">1</span> )&#123;</div><div class="line">    <span class="keyword">if</span>(($link_last.offset().top - HEADFIX) - headerlinkTop[link_length - <span class="number">1</span>] != <span class="number">0</span>)&#123;</div><div class="line">      headerlinkTop = $.map($headerlink, <span class="function"><span class="keyword">function</span>(<span class="params">link</span>) </span>&#123;</div><div class="line">        <span class="keyword">return</span> $(link.parentNode).offset().top - HEADFIX;</div><div class="line">      &#125;);</div><div class="line">      <span class="comment">// 修正参数</span></div><div class="line">      headerlinkTop[<span class="number">0</span>] = <span class="number">-1</span>;</div><div class="line">      headerlinkTop.push(<span class="literal">Infinity</span>);</div><div class="line">      <span class="built_in">console</span>.log(<span class="string">'fix loading bug!'</span>);</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// callback</span></div><div class="line"><span class="keyword">var</span> cb = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="keyword">var</span> scrollTop = $w.scrollTop();</div><div class="line">  fixLoading();</div><div class="line">  <span class="keyword">if</span>(scrollTop &gt; headerlinkTop[pos + <span class="number">1</span>] || scrollTop &lt;= headerlinkTop[pos])&#123;</div><div class="line">    getActive(scrollTop);</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'jump!'</span>);</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">if</span>(!<span class="keyword">this</span>.doScroll)&#123;</div><div class="line">  <span class="keyword">this</span>.doScroll = <span class="literal">true</span>;</div><div class="line">  <span class="comment">// 监听浏览器滚动</span></div><div class="line">  $w.scroll(cb);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>主要还是依靠 hexo 的特性来加以改造，实现了监听。</p>
+<h2 id="防抖动"><a href="#防抖动" class="headerlink" title="防抖动"></a>防抖动</h2><p>关于防抖动函数，可以去看下这个介绍 <a href="http://www.css88.com/archives/7059" target="_blank" rel="external">问题 #3: 函数防抖</a>。</p>
+<p>我自己试了一下 scroll 函数，发现随便滚动一下就是是好几百的函数调用：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> cb = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'scroll!'</span>);<span class="comment">//随便一滚动就好几百个 log</span></div><div class="line">  <span class="keyword">var</span> scrollTop = $w.scrollTop();</div><div class="line">  fixLoading();</div><div class="line">  <span class="keyword">if</span>(scrollTop &gt; headerlinkTop[pos + <span class="number">1</span>] || scrollTop &lt;= headerlinkTop[pos])&#123;</div><div class="line">    getActive(scrollTop);</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'jump!'</span>);</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>把抖动函数拿了过来，实现起来也比较简单，就是利用 <code>setTimeout</code> 函数的特性，如果频率过快的时候，就把上一个定时器给清除，涉及到闭包和定时器的概念，原理很简单：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">debounce</span>(<span class="params">fn, delay</span>)</span>&#123;</div><div class="line">  <span class="keyword">var</span> timer = <span class="literal">null</span>,</div><div class="line">    self = <span class="keyword">this</span>;</div><div class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> args = <span class="built_in">arguments</span>;</div><div class="line">    clearTimeout(timer);</div><div class="line">    timer = setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">      fn.apply(self, args);</div><div class="line">    &#125;, delay)</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>运用：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">this</span>.debounce = debounce;</div><div class="line"><span class="comment">// delay 为 50 毫秒，效果还行</span></div><div class="line">$w.scroll(<span class="keyword">this</span>.debounce(cb, <span class="number">50</span>));</div><div class="line"><span class="comment">// log 日志很少</span></div></pre></td></tr></table></figure>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><blockquote>
+<p><a href="http://www.jianshu.com/p/ac853e1afedb" target="_blank" rel="external">为Hexo博客添加目录</a><br><a href="http://www.tutorialspoint.com/bootstrap/bootstrap_scrollspy_plugin.htm" target="_blank" rel="external">Bootstrap - Scroll spy Plugin</a><br><a href="http://www.css88.com/archives/7059" target="_blank" rel="external">3个经常被问到的 JavaScript 面试题</a></p>
+</blockquote>
+</section>
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#jQuery" >
+    <span class="tag-code">jQuery</span>
+  </a>
+
+  <a href="/tags#JavaScript" >
+    <span class="tag-code">JavaScript</span>
+  </a>
+
+      </div>
+    
+    
+<nav id="article-nav">
+    
+        <a href="/2017/08/30/vedio-test/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">NEWER</strong>
+            <div class="article-nav-title">
+                
+                    vedio test
+                
+            </div>
+        </a>
+    
+    
+        <a href="/2017/08/30/stylus预处理入门(一)——选择器/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">OLDER</strong>
+            <div class="article-nav-title">stylus预处理入门(一)——选择器</div>
+        </a>
+    
+</nav>
+
+
+    <div class="money-like">
+      <div class="reward-btn">
+        赏
+        <span class="money-code">
+          <span class="wechat-code">
+            <div class="code-image"></div>
+            <b>使用微信打赏</b>
+          </span>
+        </span>
+      </div>
+      <p class="notice">若你觉得我的文章对你有帮助，欢迎点击上方按钮对我打赏</p>
+    </div>
+    <div class="qrcode">
+      <canvas id="share-qrcode"></canvas>
+ 
+      <p class="notice">扫描二维码，分享此文章</p>
+    </div>
+    
+      <!-- UY BEGIN -->
+      <div id="uyan_frame"></div>
+      <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2142069"></script>
+      <!-- UY END -->
+    
+  </article>
+</main>
+
+<script>
+  (function () {
+    var url = 'https://ycg31.oschina.io/2017/08/30/给-Hexo-添加带滚动监听的文章目录/';
+    var banner = ''
+    if (banner) {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+     // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', 'http://file.muyutech.com/error-img.png') 
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      var imageW = $(this).width()
+      var imageH = $(this).height()
+      
+      var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+      zoom = zoom < 1 ? 1 : zoom
+      zoom = zoom > 2 ? 2 : zoom
+      var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+      $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+      $('.image-view-wrap').addClass('wrap-active')
+      $('.image-view-wrap img').css({
+        'width': `${imageW}`,
+        'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+      })
+      $('html').css('overflow', 'hidden')
+
+      $('.image-view-wrap').on('click', function() {
+        $(this).remove()
+        $('html').attr('style', '')
+      })
+    })
+
+    // qrcode
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+
+
+
+    // gitment
+    var gitmentConfig = "";
+    if (gitmentConfig != "undefined") {
+      var gitment = new Gitment({
+        id: "(转)给 Hexo 添加带滚动监听的文章目录",
+        owner: "",
+        repo: "",
+        oauth: {
+          client_id: "",
+          client_secret: ""
+        },
+        theme: {
+          render(state, instance) {
+            const container = document.createElement('div')
+            container.lang = "en-US"
+            container.className = 'gitment-container gitment-root-container'
+            container.appendChild(instance.renderHeader(state, instance))
+            container.appendChild(instance.renderEditor(state, instance))
+            container.appendChild(instance.renderComments(state, instance))
+            container.appendChild(instance.renderFooter(state, instance))
+            return container;
+          }
+        }
+      })
+      gitment.render(document.getElementById('comments'))
+    }
+  })();
+</script>
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2017 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+    Theme by <a href="https://github.com/yanm1ng">yanm1ng</a> | Mod by <a href="https://github.com/ycg31">ycg31</a>
+  </p>
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine == 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+<script src="/js/script.js"></script>
+  </body>
+</html>

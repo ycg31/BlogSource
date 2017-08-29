@@ -169,9 +169,17 @@
     <a href="javascript:;"></a>
   </div>
 </div>
+
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Git忽略规则："><span class="post-toc-number">1.</span> <span class="post-toc-text">Git忽略规则：</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#实现的三种方法"><span class="post-toc-number">2.</span> <span class="post-toc-text">实现的三种方法</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#第一种方法"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">第一种方法</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#a-使用命令行增加排除文件"><span class="post-toc-number">2.1.1.</span> <span class="post-toc-text">a)使用命令行增加排除文件</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#b-最方便的办法是，用记事本打开，增加需要排除的文件或目录，一行增加一个。"><span class="post-toc-number">2.1.2.</span> <span class="post-toc-text">b)最方便的办法是，用记事本打开，增加需要排除的文件或目录，一行增加一个。</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#第二种方法"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">第二种方法</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#a）像方法（1）一样，也需要建立一个-gitignore文件，把要排除的文件写进去。"><span class="post-toc-number">2.2.1.</span> <span class="post-toc-text">a）像方法（1）一样，也需要建立一个.gitignore文件，把要排除的文件写进去。</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#b）但在这里，我们不规定一定要把-gitnore文件放到某个工程下面，而是任何地方，比如我们这里放到了Git默认的Home路径下，比如：-home-wangshibo-hqsb-ios"><span class="post-toc-number">2.2.2.</span> <span class="post-toc-text">b）但在这里，我们不规定一定要把.gitnore文件放到某个工程下面，而是任何地方，比如我们这里放到了Git默认的Home路径下，比如：/home/wangshibo/hqsb_ios</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#c）使用命令方式可以配置全局排除文件-git-config-–global-core-excludesfile-gitignore，你会发现在-gitconfig文件中会出现excludesfile-home-wangshibo-hqsb-ios-gitignore。"><span class="post-toc-number">2.2.3.</span> <span class="post-toc-text">c）使用命令方式可以配置全局排除文件 git config –global core.excludesfile ~/.gitignore，你会发现在~/.gitconfig文件中会出现excludesfile = /home/wangshibo/hqsb_ios/.gitignore。</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#第三种方法"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">第三种方法</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#gitignore规则不生效的解决办法"><span class="post-toc-number">3.</span> <span class="post-toc-text">.gitignore规则不生效的解决办法</span></a></li></ol>
+        </nav>
+    </aside>
+    
 <main class="app-body">
   <article class="post-article">
-    <section class="markdown-content"><h1 id="Git忽略规则："><a href="#Git忽略规则：" class="headerlink" title="Git忽略规则："></a>Git忽略规则：</h1><p>在git中如果想忽略掉某个文件，不让这个文件提交到版本库中，可以使用修改根目录中 .gitignore 文件的方法（如果没有这个文件，则需自己手工建立此文件）。这个文件每一行保存了一个匹配的规则例如：</p>
+    <section class="markdown-content" id="post-content"><h1 id="Git忽略规则："><a href="#Git忽略规则：" class="headerlink" title="Git忽略规则："></a>Git忽略规则：</h1><p>在git中如果想忽略掉某个文件，不让这个文件提交到版本库中，可以使用修改根目录中 .gitignore 文件的方法（如果没有这个文件，则需自己手工建立此文件）。这个文件每一行保存了一个匹配的规则例如：</p>
 <p>以斜杠“/”开头表示目录；</p>
 <p>以星号“*”通配多个字符；</p>
 <p>以问号“?”通配单个字符</p>
@@ -200,6 +208,27 @@
 
       </div>
     
+    
+<nav id="article-nav">
+    
+        <a href="/2017/08/25/CSS中position属性-absolute-relative-static-fixed-详解/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">NEWER</strong>
+            <div class="article-nav-title">
+                
+                    CSS中position属性( absolute | relative | static | fixed )详解
+                
+            </div>
+        </a>
+    
+    
+        <a href="/2017/08/20/如何免费打造打造一个安全稳定低延迟超高速的科学上网环境/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">OLDER</strong>
+            <div class="article-nav-title">如何免费打造打造一个安全稳定低延迟超高速的科学上网环境</div>
+        </a>
+    
+</nav>
+
+
     <div class="money-like">
       <div class="reward-btn">
         赏
@@ -214,6 +243,7 @@
     </div>
     <div class="qrcode">
       <canvas id="share-qrcode"></canvas>
+ 
       <p class="notice">扫描二维码，分享此文章</p>
     </div>
     
@@ -273,6 +303,8 @@
       element: document.getElementById('share-qrcode'),
       value: document.location.href
     });
+
+
 
     // gitment
     var gitmentConfig = "";

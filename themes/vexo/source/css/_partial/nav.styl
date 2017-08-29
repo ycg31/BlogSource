@@ -1,0 +1,65 @@
+#article-nav 
+  position: relative;
+  &:before, &:after 
+    content: "";
+    display: table;
+  &:after 
+    clear: both;
+  @media screen and (min-width: 1200px)
+    margin: 40px 0;
+    &:before 
+      width: 8px;
+      height: 8px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin-top: -4px;
+      margin-left: -4px;
+      content: "";
+      -webkit-border-radius: 50%;
+      border-radius: 50%;
+      background: #787c81; 
+
+.article-nav-link-wrap 
+  text-decoration: none;
+  color: #999;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  margin-top: 40px;
+  text-align: center;
+  display: block;
+  &:hover 
+    color: #565a5f;
+  @media screen and (min-width: 1200px) 
+    width: 50%;
+    margin-top: 0;
+
+#article-nav-newer .article-nav-caption
+  margin-right: -2px;
+
+#article-nav-newer
+  @media screen and (min-width: 1200px) 
+    float: left;
+    text-align: right;
+    padding-right: 20px;
+  
+#article-nav-older
+  @media screen and (min-width: 1200px) 
+    float: right;
+    text-align: left;
+    padding-left: 20px;
+  
+.article-nav-caption 
+  letter-spacing: 2px;
+  line-height: 1em;
+  font-weight: bold;
+  color: #565a5f;
+  text-transform: uppercase;
+
+.article-nav-title 
+  font-size: 0.85em;
+  margin-top: 0.5em;
+  color: #565a5f;
+  line-height: 1.6em;
+

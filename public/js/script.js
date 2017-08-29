@@ -2,6 +2,7 @@
   console.log('© Theme-Vexo | https://github.com/yanm1ng/hexo-theme-vexo')
   var app = $('.app-body')
   var header = $('.header')
+  var tocw = $('.post-toc-wrap')
   var banner = document.getElementById('article-banner') || false
   var about = document.getElementById('about-banner') || false
   var top = $('.scroll-top')
@@ -68,8 +69,10 @@
     if (banner) {
       if (scrollTop > headerH) {
         header.addClass('fixed-header')
+        tocw.addClass('fixed')
       } else if (scrollTop === 0) {
         header.removeClass('fixed-header')
+        tocw.removeClass('fixed')
       }
     }
     if (scrollTop > 100) {
@@ -77,5 +80,22 @@
     } else {
       top.removeClass('opacity')
     }
+    
+    var toc = $('#post-toc')
+    var titles = $('#post-content').find('h1, h2, h3, h4, h5, h6')
+    toc.find('a[href="#' + titles[0].id + '"]').parent().addClass('active')
+    for (i = 0, len = titles.length; i < len; i++) {
+                        if (scrollTop >  $(titles[i]).offset().top - headerH - 5) {
+                            toc.find('li.active').removeClass('active');
+
+                            var active = toc.find('a[href="#' + titles[i].id + '"]').parent();
+                            active.addClass('active');
+                        }
+                    }
+
+                    if (scrollTop < $(titles[0]).offset().top) {
+                        toc.find('li.active').removeClass('active');
+                        toc.find('a[href="#' + titles[0].id + '"]').parent().addClass('active');
+                    }
   })
 })(jQuery)

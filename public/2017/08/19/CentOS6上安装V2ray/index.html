@@ -169,9 +169,10 @@
     <a href="javascript:;"></a>
   </div>
 </div>
+
 <main class="app-body">
   <article class="post-article">
-    <section class="markdown-content"><p>Centos6下的部署</p>
+    <section class="markdown-content" id="post-content"><p>Centos6下的部署</p>
 <p>先说明下，V2Ray提供的一键安装脚本自带守护进程，意思是如果V2Ray如果意外中止，会自动重新启动，这样使用非常方便，但是Centos6下我这种Ctrl CV党实在是不会自己写脚本，采用的是简易运行方式，所以推荐尽量能采用2.1的步骤来安装。</p>
 <p>首先我们打开作者的Github项目，找到最新版的V2ray的下载地址</p>
 <figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">https:<span class="regexp">//gi</span>thub.com<span class="regexp">/v2ray/</span>v2ray-core<span class="regexp">/releases</span></div></pre></td></tr></table></figure>
@@ -203,6 +204,27 @@
 
       </div>
     
+    
+<nav id="article-nav">
+    
+        <a href="/2017/08/20/（转）Hexo添加文章时自动打开编辑器/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">NEWER</strong>
+            <div class="article-nav-title">
+                
+                    （转）Hexo添加文章时自动打开编辑器
+                
+            </div>
+        </a>
+    
+    
+        <a href="/2017/08/19/V2ray使用TLS/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">OLDER</strong>
+            <div class="article-nav-title">V2ray使用TLS</div>
+        </a>
+    
+</nav>
+
+
     <div class="money-like">
       <div class="reward-btn">
         赏
@@ -217,6 +239,7 @@
     </div>
     <div class="qrcode">
       <canvas id="share-qrcode"></canvas>
+ 
       <p class="notice">扫描二维码，分享此文章</p>
     </div>
     
@@ -276,6 +299,8 @@
       element: document.getElementById('share-qrcode'),
       value: document.location.href
     });
+
+
 
     // gitment
     var gitmentConfig = "";

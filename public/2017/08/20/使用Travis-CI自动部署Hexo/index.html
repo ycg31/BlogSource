@@ -169,9 +169,17 @@
     <a href="javascript:;"></a>
   </div>
 </div>
+
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#好处"><span class="post-toc-number">1.</span> <span class="post-toc-text">好处</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Travis-CI介绍"><span class="post-toc-number">2.</span> <span class="post-toc-text">Travis CI介绍</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Travis-CI配置"><span class="post-toc-number">3.</span> <span class="post-toc-text">Travis CI配置</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Travis-CI使用SSH-连接GitHub"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">Travis CI使用SSH 连接GitHub</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#生成SSH-Key"><span class="post-toc-number">3.1.1.</span> <span class="post-toc-text">生成SSH Key</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#安装Travis-CI的命令行工具"><span class="post-toc-number">3.1.2.</span> <span class="post-toc-text">安装Travis CI的命令行工具</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#登陆Travis-CI"><span class="post-toc-number">3.1.3.</span> <span class="post-toc-text">登陆Travis CI</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#加密私钥并上传至Travis"><span class="post-toc-number">3.1.4.</span> <span class="post-toc-text">加密私钥并上传至Travis</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#指定SSH设置"><span class="post-toc-number">3.1.5.</span> <span class="post-toc-text">指定SSH设置</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#修改目录权限"><span class="post-toc-number">3.1.6.</span> <span class="post-toc-text">修改目录权限</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#将密钥加入系统"><span class="post-toc-number">3.1.7.</span> <span class="post-toc-text">将密钥加入系统</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#修改git信息"><span class="post-toc-number">3.1.8.</span> <span class="post-toc-text">修改git信息</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Build配置"><span class="post-toc-number">3.1.9.</span> <span class="post-toc-text">Build配置</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#指定环境"><span class="post-toc-number">3.1.10.</span> <span class="post-toc-text">指定环境</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#指定分支"><span class="post-toc-number">3.1.11.</span> <span class="post-toc-text">指定分支</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Hexo配置"><span class="post-toc-number">3.1.12.</span> <span class="post-toc-text">Hexo配置</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Travis-CI使用Token-连接GitHub"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">Travis CI使用Token 连接GitHub</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#安装travis"><span class="post-toc-number">3.2.1.</span> <span class="post-toc-text">安装travis</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#新建配置文件"><span class="post-toc-number">3.2.2.</span> <span class="post-toc-text">新建配置文件</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#登录travis"><span class="post-toc-number">3.2.3.</span> <span class="post-toc-text">登录travis</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#新建变量"><span class="post-toc-number">3.2.4.</span> <span class="post-toc-text">新建变量</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#编辑配置文件"><span class="post-toc-number">3.2.5.</span> <span class="post-toc-text">编辑配置文件</span></a></li></ol></li></ol></li></ol>
+        </nav>
+    </aside>
+    
 <main class="app-body">
   <article class="post-article">
-    <section class="markdown-content"><p>前两天了解到了一个有趣的概念叫持续集成：</p>
+    <section class="markdown-content" id="post-content"><p>前两天了解到了一个有趣的概念叫持续集成：</p>
 <blockquote>
 <p>持续集成是一种软件开发实践。在持续集成中，团队成员频繁集成他们的工作成果，一般每人每天至少集成一次，也可以多次。每次集成会经过自动构建（包括自动测试）的检验，以尽快发现集成错误。许多团队发现这种方法可以显著减少集成引起的问题，并可以加快团队合作软件开发的速度。这篇文章简要介绍了持续集成的技巧和它最新的应用。 然后想到我的博客也恰好满足这样的需求，因为我的博客一旦有了修改，就必须要重新build并且部署，那么能不能用持续集成的思想来改造我部署博客的流程呢？</p>
 </blockquote>
@@ -267,6 +275,27 @@
 
       </div>
     
+    
+<nav id="article-nav">
+    
+        <a href="/2017/08/20/使用AppVeyor自动部署Hexo到Github/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">NEWER</strong>
+            <div class="article-nav-title">
+                
+                    使用AppVeyor自动部署Hexo到Github
+                
+            </div>
+        </a>
+    
+    
+        <a href="/2017/08/20/GIT相关命令/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">OLDER</strong>
+            <div class="article-nav-title">GIT相关命令</div>
+        </a>
+    
+</nav>
+
+
     <div class="money-like">
       <div class="reward-btn">
         赏
@@ -281,6 +310,7 @@
     </div>
     <div class="qrcode">
       <canvas id="share-qrcode"></canvas>
+ 
       <p class="notice">扫描二维码，分享此文章</p>
     </div>
     
@@ -340,6 +370,8 @@
       element: document.getElementById('share-qrcode'),
       value: document.location.href
     });
+
+
 
     // gitment
     var gitmentConfig = "";

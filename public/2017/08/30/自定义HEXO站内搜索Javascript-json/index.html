@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="有了这个，就不用到处去找重复的了">
+  <meta name="keyword" content="hexo, vuejs">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      自定义HEXO站内搜索Javascript+json | 杂记
+    
+  </title>
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/plugins/gitment.css">
+<link rel="stylesheet" href="/css/plugins/search.css">
+  <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdn.bootcss.com/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+  <script src="/js/qrious.js"></script>
+<script src="/js/gitment.js"></script>
+<script src="/js/search.js"></script>
+</head>
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>杂记</span>
+    </a>
+    <ul class="right-list">
+        <li class="list-item">   
+          <span class="algolia-autocomplete algolia-autocomplete-right" style="position: relative; display: inline-block; direction: ltr;">
+            <input type="text" id="local-search-input" class="search-query st-default-search-input aa-input" autocomplete="off" spellcheck="false" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-owns="algolia-autocomplete-listbox-0" dir="auto" style="position: relative; vertical-align: top;">
+          </span>
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link">Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div id="menu-mask" class="menu-mask">
+      <ul class="menu-list">
+        <li class="menu-item">   
+          <span class="algolia-autocomplete algolia-autocomplete-right" style="position: relative; display: inline-block; direction: ltr;">
+            <input type="text" id="mobile-search-input" class="search-query st-default-search-input aa-input" autocomplete="off" spellcheck="false" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-owns="algolia-autocomplete-listbox-0" dir="auto" style="position: relative; vertical-align: top;">
+          </span>
+        </li>
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+<div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="输入关键词" />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '博文',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '未定义',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+<div id="result-wrap" class="ins-search">
+    <div id="local-search-result"></div>
+</div>
+
+<script type="text/javascript">      
+     var search_path = "search.xml";
+     if (search_path.length == 0) {
+      search_path = "search.xml";
+     }
+     var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+     searchFunc(path, 'mobile-search-input', 'local-search-result');
+</script>
+</header>
+
+    <div id="article-banner">
+  <h2>自定义HEXO站内搜索Javascript+json</h2>
+  <p class="post-date">2017-08-30</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#开始之前"><span class="post-toc-number">1.</span> <span class="post-toc-text">开始之前</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-安装"><span class="post-toc-number">2.</span> <span class="post-toc-text">1.安装</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-配置"><span class="post-toc-number">3.</span> <span class="post-toc-text">2.配置</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-JavaScript实现代码"><span class="post-toc-number">4.</span> <span class="post-toc-text">3.JavaScript实现代码</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#3-1-xhr加载数据"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">3.1 xhr加载数据</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#3-2-匹配文章内容返回结果"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">3.2 匹配文章内容返回结果</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#3-3-结果渲染到页面"><span class="post-toc-number">4.3.</span> <span class="post-toc-text">3.3 结果渲染到页面</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#3-3-查询匹配"><span class="post-toc-number">4.4.</span> <span class="post-toc-text">3.3 查询匹配</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+<main class="app-body">
+  <article class="post-article">
+    <section class="markdown-content" id="post-content"><h3 id="开始之前"><a href="#开始之前" class="headerlink" title="开始之前"></a>开始之前</h3><p>目前很多<a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>博客都用的Swiftype和Algolia等第三方搜索服务。其实针对无数据库的情况下，Hexo本身也提供了两个插件来生成数据文件作为数据源：<br><a href="https://github.com/PaicHyperionDev/hexo-generator-search" target="_blank" rel="external">hexo-generator-search</a>生成<code>xml</code>格式的数据文件。<br><a href="https://github.com/alexbruno/hexo-generator-json-content" target="_blank" rel="external">hexo-generator-json-content</a> 生成<code>json</code>格式的数据文件。<br>今天的主角是<a href="https://github.com/alexbruno/hexo-generator-json-content" target="_blank" rel="external">hexo-generator-json-content</a>，对于 Javascript语言来说还是解析 json 更方便，如果需要用 xml 做数据文件也可以使用已有的atom.xml。</p>
+<h3 id="1-安装"><a href="#1-安装" class="headerlink" title="1.安装"></a>1.安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install hexo-generator-json-content@2.2.0 --save</div></pre></td></tr></table></figure>
+<p>然后执行<code>hexo generate</code>时会自动生成<code>content.json</code>文件，若使用默认设置，生成的数据结构如下</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div></pre></td><td class="code"><pre><div class="line">meta: &#123;</div><div class="line">    title: hexo.config.title,</div><div class="line">    subtitle: hexo.config.subtitle,</div><div class="line">    description: hexo.config.description,</div><div class="line">    author: hexo.config.author,</div><div class="line">    url: hexo.config.url</div><div class="line">&#125;,</div><div class="line">pages: [&#123; //-&gt; all pages</div><div class="line">    title: page.title,</div><div class="line">    slug: page.slug,</div><div class="line">    date: page.date,</div><div class="line">    updated: page.updated,</div><div class="line">    comments: page.comments,</div><div class="line">    permalink: page.permalink,</div><div class="line">    path: page.path,</div><div class="line">    excerpt: page.excerpt, //-&gt; only text ;)</div><div class="line">    keywords: null //-&gt; it needs settings</div><div class="line">    text: page.content, //-&gt; only text minified ;)</div><div class="line">    raw: page.raw, //-&gt; original MD content</div><div class="line">    content: page.content //-&gt; final HTML content</div><div class="line">&#125;],</div><div class="line">posts: [&#123; //-&gt; only published posts</div><div class="line">    title: post.title,</div><div class="line">    slug: post.slug,</div><div class="line">    date: post.date,</div><div class="line">    updated: post.updated,</div><div class="line">    comments: post.comments,</div><div class="line">    permalink: post.permalink,</div><div class="line">    path: post.path,</div><div class="line">    excerpt: post.excerpt, //-&gt; only text ;)</div><div class="line">    keywords: null //-&gt; it needs settings</div><div class="line">    text: post.content, //-&gt; only text minified ;)</div><div class="line">    raw: post.raw, //-&gt; original MD content</div><div class="line">    content: post.content, //-&gt; final HTML content</div><div class="line">    categories: [&#123;</div><div class="line">        name: category.name,</div><div class="line">        slug: category.slug,</div><div class="line">        permalink: category.permalink</div><div class="line">    &#125;],</div><div class="line">    tags: [&#123;</div><div class="line">        name: tag.name,</div><div class="line">        slug: tag.slug,</div><div class="line">        permalink: tag.permalink</div><div class="line">    &#125;]</div><div class="line">&#125;]</div></pre></td></tr></table></figure>
+<h3 id="2-配置"><a href="#2-配置" class="headerlink" title="2.配置"></a>2.配置</h3><p>hexo-generator-json-content默认生成的json数据内容非常全，默认配置如下：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line">jsonContent:</div><div class="line">  meta: true</div><div class="line">  keywords: false # (english, spanish, polish, german, french, italian, dutch, russian, portuguese, swedish)</div><div class="line">  pages:</div><div class="line">    title: true</div><div class="line">    slug: true</div><div class="line">    date: true</div><div class="line">    updated: true</div><div class="line">    comments: true</div><div class="line">    path: true</div><div class="line">    link: true</div><div class="line">    permalink: true</div><div class="line">    excerpt: true</div><div class="line">    keywords: true # but only if root keywords option language was set</div><div class="line">    text: true</div><div class="line">    raw: false</div><div class="line">    content: false</div><div class="line">  posts:</div><div class="line">    title: true</div><div class="line">    slug: true</div><div class="line">    date: true</div><div class="line">    updated: true</div><div class="line">    comments: true</div><div class="line">    path: true</div><div class="line">    link: true</div><div class="line">    permalink: true</div><div class="line">    excerpt: true</div><div class="line">    keywords: true # but only if root keywords option language was set</div><div class="line">    text: true</div><div class="line">    raw: false</div><div class="line">    content: false</div><div class="line">    categories: true</div><div class="line">    tags: true</div></pre></td></tr></table></figure>
+<p>因为默认生成了很多我们不需要的数据，所以我们要对其进行配置让它只生成我们想要的内容,在<code>hexo/_config.yml</code>中加入：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">jsonContent:</div><div class="line">  meta: false</div><div class="line">  pages: false</div><div class="line">  posts:</div><div class="line">    title: true #文章标题</div><div class="line">    date: true #发表日期</div><div class="line">    path: true #路径</div><div class="line">    text: true #文本字段</div><div class="line">    raw: false</div><div class="line">    content: false</div><div class="line">    slug: false</div><div class="line">    updated: false</div><div class="line">    comments: false</div><div class="line">    link: false</div><div class="line">    permalink: false</div><div class="line">    excerpt: false</div><div class="line">    categories: false</div><div class="line">    tags: true #标签</div></pre></td></tr></table></figure>
+<p>这样，就只生成每篇文章的标题，日期，路径，标签和文本字段，同时也减小了文件的大小。<br>例如：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="attr">"title"</span>: <span class="string">"自定义HEXO站内搜索Javascript+json"</span>,</div><div class="line">  <span class="attr">"date"</span>: <span class="string">"2016-11-09T01:24:56.000Z"</span>,</div><div class="line">  <span class="attr">"path"</span>: <span class="string">"2016/11/09/自定义HEXO站内搜索Javascript-json.html"</span>,</div><div class="line">  <span class="attr">"text"</span>: <span class="string">"目前很多Hexo博客都用的Swiftype和Algolia等第三......#这里显示整篇文章的内容"</span>,</div><div class="line">  <span class="attr">"tags"</span>: [&#123;</div><div class="line">    <span class="attr">"name"</span>: <span class="string">"javascript,hexo"</span>,</div><div class="line">    <span class="attr">"slug"</span>: <span class="string">"javascript-hexo"</span>,</div><div class="line">    <span class="attr">"permalink"</span>: <span class="string">"http://chaoo.oschina.io/tags/javascript-hexo/"</span></div><div class="line">  &#125;]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="3-JavaScript实现代码"><a href="#3-JavaScript实现代码" class="headerlink" title="3.JavaScript实现代码"></a>3.JavaScript实现代码</h3><p>接下来就是用JS实现查询方法并把结果渲染到页面。</p>
+<h4 id="3-1-xhr加载数据"><a href="#3-1-xhr加载数据" class="headerlink" title="3.1 xhr加载数据"></a>3.1 xhr加载数据</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> searchData;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">loadData</span>(<span class="params">success</span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span> (!searchData) &#123;</div><div class="line">        <span class="keyword">var</span> xhr = <span class="keyword">new</span> XMLHttpRequest();</div><div class="line">        xhr.open(<span class="string">'GET'</span>, <span class="string">'/content.json'</span>, <span class="literal">true</span>);</div><div class="line">        xhr.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">            <span class="keyword">if</span> (<span class="keyword">this</span>.status &gt;= <span class="number">200</span> &amp;&amp; <span class="keyword">this</span>.status &lt; <span class="number">300</span>) &#123;</div><div class="line">                <span class="keyword">var</span> res = <span class="built_in">JSON</span>.parse(<span class="keyword">this</span>.response || <span class="keyword">this</span>.responseText);</div><div class="line">                searchData = res <span class="keyword">instanceof</span> <span class="built_in">Array</span> ? res : res.posts;</div><div class="line">                success(searchData);</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                <span class="built_in">console</span>.error(<span class="keyword">this</span>.statusText);</div><div class="line">            &#125;</div><div class="line">        &#125;;</div><div class="line">        xhr.onerror = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">            <span class="built_in">console</span>.error(<span class="keyword">this</span>.statusText);</div><div class="line">        &#125;;</div><div class="line">        xhr.send();</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        success(searchData);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="3-2-匹配文章内容返回结果"><a href="#3-2-匹配文章内容返回结果" class="headerlink" title="3.2 匹配文章内容返回结果"></a>3.2 匹配文章内容返回结果</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">matcher</span>(<span class="params">post, regExp</span>) </span>&#123;</div><div class="line">    <span class="comment">// 匹配优先级：title &gt; tags &gt; text</span></div><div class="line">    <span class="keyword">return</span> regtest(post.title, regExp) || post.tags.some(<span class="function"><span class="keyword">function</span>(<span class="params">tag</span>) </span>&#123;</div><div class="line">        <span class="keyword">return</span> regtest(tag.name, regExp);</div><div class="line">    &#125;) || regtest(post.text, regExp);</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">regtest</span>(<span class="params">raw, regExp</span>) </span>&#123;</div><div class="line">    regExp.lastIndex = <span class="number">0</span>;</div><div class="line">    <span class="keyword">return</span> regExp.test(raw);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="3-3-结果渲染到页面"><a href="#3-3-结果渲染到页面" class="headerlink" title="3.3 结果渲染到页面"></a>3.3 结果渲染到页面</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">render</span>(<span class="params">data</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> html = <span class="string">''</span>;</div><div class="line">    <span class="keyword">if</span> (data.length) &#123;</div><div class="line">        html = data.map(<span class="function"><span class="keyword">function</span>(<span class="params">post</span>) </span>&#123;</div><div class="line">            <span class="keyword">return</span> tpl(searchTpl, &#123;</div><div class="line">                title: post.title,</div><div class="line">                path: post.path,</div><div class="line">                date: <span class="keyword">new</span> <span class="built_in">Date</span>(post.date).toLocaleDateString(),</div><div class="line">                tags: post.tags.map(<span class="function"><span class="keyword">function</span>(<span class="params">tag</span>) </span>&#123;</div><div class="line">                    <span class="keyword">return</span> <span class="string">'&lt;span&gt;'</span> + tag.name + <span class="string">'&lt;/span&gt;'</span>;</div><div class="line">                &#125;).join(<span class="string">''</span>)</div><div class="line">            &#125;);</div><div class="line">        &#125;).join(<span class="string">''</span>);</div><div class="line">    &#125; </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="3-3-查询匹配"><a href="#3-3-查询匹配" class="headerlink" title="3.3 查询匹配"></a>3.3 查询匹配</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">search</span>(<span class="params">key</span>) </span>&#123;</div><div class="line">    <span class="comment">// 关键字 =&gt; 正则，空格隔开的看作多个关键字</span></div><div class="line">    <span class="comment">// a b c =&gt; /a|b|c/gmi</span></div><div class="line">    <span class="keyword">var</span> regExp = <span class="keyword">new</span> <span class="built_in">RegExp</span>(key.replace(<span class="regexp">/[ ]/g</span>, <span class="string">'|'</span>), <span class="string">'gmi'</span>);</div><div class="line">    loadData(<span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123;</div><div class="line">        <span class="keyword">var</span> result = data.filter(<span class="function"><span class="keyword">function</span>(<span class="params">post</span>) </span>&#123;</div><div class="line">            <span class="keyword">return</span> matcher(post, regExp);</div><div class="line">        &#125;);</div><div class="line">        render(result);</div><div class="line">    &#125;);</div><div class="line">&#125;</div></pre></td></tr></table></figure></section>
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#hexo" >
+    <span class="tag-code">hexo</span>
+  </a>
+
+      </div>
+    
+    
+<nav id="article-nav">
+    
+        <a href="/2017/08/30/stylus入门使用方法/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">NEWER</strong>
+            <div class="article-nav-title">
+                
+                    stylus入门使用方法
+                
+            </div>
+        </a>
+    
+    
+        <a href="/2017/08/30/介绍如何为-hexo-写一个本地的搜索引擎/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">OLDER</strong>
+            <div class="article-nav-title">（转）介绍如何为 hexo 写一个本地的搜索引擎</div>
+        </a>
+    
+</nav>
+
+
+    <div class="money-like">
+      <div class="reward-btn">
+        赏
+        <span class="money-code">
+          <span class="wechat-code">
+            <div class="code-image"></div>
+            <b>使用微信打赏</b>
+          </span>
+        </span>
+      </div>
+      <p class="notice">若你觉得我的文章对你有帮助，欢迎点击上方按钮对我打赏</p>
+    </div>
+    <div class="qrcode">
+      <canvas id="share-qrcode"></canvas>
+ 
+      <p class="notice">扫描二维码，分享此文章</p>
+    </div>
+    
+      <!-- UY BEGIN -->
+      <div id="uyan_frame"></div>
+      <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2142069"></script>
+      <!-- UY END -->
+    
+  </article>
+</main>
+
+<script>
+  (function () {
+    var url = 'https://ycg31.oschina.io/2017/08/30/自定义HEXO站内搜索Javascript-json/';
+    var banner = ''
+    if (banner) {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+     // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', 'http://file.muyutech.com/error-img.png') 
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      var imageW = $(this).width()
+      var imageH = $(this).height()
+      
+      var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+      zoom = zoom < 1 ? 1 : zoom
+      zoom = zoom > 2 ? 2 : zoom
+      var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+      $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+      $('.image-view-wrap').addClass('wrap-active')
+      $('.image-view-wrap img').css({
+        'width': `${imageW}`,
+        'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+      })
+      $('html').css('overflow', 'hidden')
+
+      $('.image-view-wrap').on('click', function() {
+        $(this).remove()
+        $('html').attr('style', '')
+      })
+    })
+
+    // qrcode
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+
+
+
+    // gitment
+    var gitmentConfig = "";
+    if (gitmentConfig != "undefined") {
+      var gitment = new Gitment({
+        id: "自定义HEXO站内搜索Javascript+json",
+        owner: "",
+        repo: "",
+        oauth: {
+          client_id: "",
+          client_secret: ""
+        },
+        theme: {
+          render(state, instance) {
+            const container = document.createElement('div')
+            container.lang = "en-US"
+            container.className = 'gitment-container gitment-root-container'
+            container.appendChild(instance.renderHeader(state, instance))
+            container.appendChild(instance.renderEditor(state, instance))
+            container.appendChild(instance.renderComments(state, instance))
+            container.appendChild(instance.renderFooter(state, instance))
+            return container;
+          }
+        }
+      })
+      gitment.render(document.getElementById('comments'))
+    }
+  })();
+</script>
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2017 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+    Theme by <a href="https://github.com/yanm1ng">yanm1ng</a> | Mod by <a href="https://github.com/ycg31">ycg31</a>
+  </p>
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine == 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+<script src="/js/script.js"></script>
+  </body>
+</html>

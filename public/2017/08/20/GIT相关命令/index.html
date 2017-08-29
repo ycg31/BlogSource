@@ -169,9 +169,17 @@
     <a href="javascript:;"></a>
   </div>
 </div>
+
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#查看所有分支"><span class="post-toc-number">1.</span> <span class="post-toc-text">查看所有分支</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#查看本地分支"><span class="post-toc-number">2.</span> <span class="post-toc-text">查看本地分支</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#查看远程分支"><span class="post-toc-number">3.</span> <span class="post-toc-text">查看远程分支</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#添加远程仓库"><span class="post-toc-number">4.</span> <span class="post-toc-text">添加远程仓库</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#创建分支"><span class="post-toc-number">5.</span> <span class="post-toc-text">创建分支</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#切换分支"><span class="post-toc-number">6.</span> <span class="post-toc-text">切换分支</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#当前分支推送到远程分支"><span class="post-toc-number">7.</span> <span class="post-toc-text">当前分支推送到远程分支</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#删除本地分支"><span class="post-toc-number">8.</span> <span class="post-toc-text">删除本地分支</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#删除远程版本"><span class="post-toc-number">9.</span> <span class="post-toc-text">删除远程版本</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#删除远程分支"><span class="post-toc-number">10.</span> <span class="post-toc-text">删除远程分支</span></a></li></ol>
+        </nav>
+    </aside>
+    
 <main class="app-body">
   <article class="post-article">
-    <section class="markdown-content"><h1 id="查看所有分支"><a href="#查看所有分支" class="headerlink" title="查看所有分支"></a>查看所有分支</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git branch -a</div></pre></td></tr></table></figure>
+    <section class="markdown-content" id="post-content"><h1 id="查看所有分支"><a href="#查看所有分支" class="headerlink" title="查看所有分支"></a>查看所有分支</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git branch -a</div></pre></td></tr></table></figure>
 <h1 id="查看本地分支"><a href="#查看本地分支" class="headerlink" title="查看本地分支"></a>查看本地分支</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git branch</div></pre></td></tr></table></figure>
 <h1 id="查看远程分支"><a href="#查看远程分支" class="headerlink" title="查看远程分支"></a>查看远程分支</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">git remote </div><div class="line"></div><div class="line">git remote -v     <span class="comment"># 带详细信息</span></div></pre></td></tr></table></figure>
 <h1 id="添加远程仓库"><a href="#添加远程仓库" class="headerlink" title="添加远程仓库"></a>添加远程仓库</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">git remote add [shortname][url]</div><div class="line">git remote add pb git://github.com/paulboone/ticgit.git </div><div class="line"><span class="comment">#名字为pb  地址为git://github.com/paulboone/ticgit.git</span></div></pre></td></tr></table></figure>
@@ -192,6 +200,27 @@
 
       </div>
     
+    
+<nav id="article-nav">
+    
+        <a href="/2017/08/20/使用Travis-CI自动部署Hexo/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">NEWER</strong>
+            <div class="article-nav-title">
+                
+                    使用Travis CI自动部署Hexo
+                
+            </div>
+        </a>
+    
+    
+        <a href="/2017/08/20/使用Travis自动部署hexo/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">OLDER</strong>
+            <div class="article-nav-title">使用Travis自动部署hexo</div>
+        </a>
+    
+</nav>
+
+
     <div class="money-like">
       <div class="reward-btn">
         赏
@@ -206,6 +235,7 @@
     </div>
     <div class="qrcode">
       <canvas id="share-qrcode"></canvas>
+ 
       <p class="notice">扫描二维码，分享此文章</p>
     </div>
     
@@ -265,6 +295,8 @@
       element: document.getElementById('share-qrcode'),
       value: document.location.href
     });
+
+
 
     // gitment
     var gitmentConfig = "";

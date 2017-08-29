@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="有了这个，就不用到处去找重复的了">
+  <meta name="keyword" content="hexo, vuejs">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      stylus入门使用方法 | 杂记
+    
+  </title>
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/plugins/gitment.css">
+<link rel="stylesheet" href="/css/plugins/search.css">
+  <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdn.bootcss.com/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+  <script src="/js/qrious.js"></script>
+<script src="/js/gitment.js"></script>
+<script src="/js/search.js"></script>
+</head>
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>杂记</span>
+    </a>
+    <ul class="right-list">
+        <li class="list-item">   
+          <span class="algolia-autocomplete algolia-autocomplete-right" style="position: relative; display: inline-block; direction: ltr;">
+            <input type="text" id="local-search-input" class="search-query st-default-search-input aa-input" autocomplete="off" spellcheck="false" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-owns="algolia-autocomplete-listbox-0" dir="auto" style="position: relative; vertical-align: top;">
+          </span>
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link">Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div id="menu-mask" class="menu-mask">
+      <ul class="menu-list">
+        <li class="menu-item">   
+          <span class="algolia-autocomplete algolia-autocomplete-right" style="position: relative; display: inline-block; direction: ltr;">
+            <input type="text" id="mobile-search-input" class="search-query st-default-search-input aa-input" autocomplete="off" spellcheck="false" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-owns="algolia-autocomplete-listbox-0" dir="auto" style="position: relative; vertical-align: top;">
+          </span>
+        </li>
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+<div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="输入关键词" />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '博文',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '未定义',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+<div id="result-wrap" class="ins-search">
+    <div id="local-search-result"></div>
+</div>
+
+<script type="text/javascript">      
+     var search_path = "search.xml";
+     if (search_path.length == 0) {
+      search_path = "search.xml";
+     }
+     var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+     searchFunc(path, 'mobile-search-input', 'local-search-result');
+</script>
+</header>
+
+    <div id="article-banner">
+  <h2>stylus入门使用方法</h2>
+  <p class="post-date">2017-08-30</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#stylus介绍"><span class="post-toc-number">1.</span> <span class="post-toc-text">stylus介绍</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#文档参考"><span class="post-toc-number">2.</span> <span class="post-toc-text">文档参考</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Stylus安装"><span class="post-toc-number">3.</span> <span class="post-toc-text">Stylus安装</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#生成CSS"><span class="post-toc-number">4.</span> <span class="post-toc-text">生成CSS</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#命令行中"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">命令行中</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#grunt生成"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">grunt生成</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Stylus应用"><span class="post-toc-number">5.</span> <span class="post-toc-text">Stylus应用</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Try-Stylus"><span class="post-toc-number">5.1.</span> <span class="post-toc-text">Try Stylus!</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#nibStylus插件"><span class="post-toc-number">5.2.</span> <span class="post-toc-text">nibStylus插件</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Nesting-嵌套"><span class="post-toc-number">5.3.</span> <span class="post-toc-text">Nesting(嵌套)</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Flexible-syntax-灵活的用法"><span class="post-toc-number">5.4.</span> <span class="post-toc-text">Flexible syntax(灵活的用法)</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Flexible-amp-灵活-amp"><span class="post-toc-number">5.5.</span> <span class="post-toc-text">Flexible &(灵活&)</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Functions-方法"><span class="post-toc-number">5.6.</span> <span class="post-toc-text">Functions 方法</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#返回值"><span class="post-toc-number">5.6.1.</span> <span class="post-toc-text">返回值</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Transparent-mixins"><span class="post-toc-number">5.6.2.</span> <span class="post-toc-text">Transparent mixins</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#默认参数"><span class="post-toc-number">5.6.3.</span> <span class="post-toc-text">默认参数</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#函数体"><span class="post-toc-number">5.6.4.</span> <span class="post-toc-text">函数体</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#多个返回值"><span class="post-toc-number">5.6.5.</span> <span class="post-toc-text">多个返回值</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Variables-变量"><span class="post-toc-number">5.7.</span> <span class="post-toc-text">Variables(变量)</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#常用方法"><span class="post-toc-number">5.7.1.</span> <span class="post-toc-text">常用方法</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#变量放在属性中"><span class="post-toc-number">5.7.2.</span> <span class="post-toc-text">变量放在属性中</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#块属性访问引用"><span class="post-toc-number">5.7.3.</span> <span class="post-toc-text">块属性访问引用</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#属性有条件地定义属性"><span class="post-toc-number">5.7.4.</span> <span class="post-toc-text">属性有条件地定义属性</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#向上冒泡"><span class="post-toc-number">5.7.5.</span> <span class="post-toc-text">向上冒泡</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Iteration-迭代"><span class="post-toc-number">5.8.</span> <span class="post-toc-text">Iteration(迭代)</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Interpolation-插值"><span class="post-toc-number">5.9.</span> <span class="post-toc-text">Interpolation(插值)</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Operators-运算符"><span class="post-toc-number">5.10.</span> <span class="post-toc-text">Operators(运算符)</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#import"><span class="post-toc-number">5.11.</span> <span class="post-toc-text">@import</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#font-face"><span class="post-toc-number">5.12.</span> <span class="post-toc-text">@font-face</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#media"><span class="post-toc-number">5.13.</span> <span class="post-toc-text">@media</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#keyframes"><span class="post-toc-number">5.14.</span> <span class="post-toc-text">@keyframes</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#CSS字面量-CSS-Literal"><span class="post-toc-number">5.15.</span> <span class="post-toc-text">CSS字面量(CSS Literal)</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#工具"><span class="post-toc-number">6.</span> <span class="post-toc-text">工具</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<main class="app-body">
+  <article class="post-article">
+    <section class="markdown-content" id="post-content"><h2 id="stylus介绍"><a href="#stylus介绍" class="headerlink" title="stylus介绍"></a>stylus介绍</h2><p>是个什么鬼？对于开发来说，CSS的弱点在于静态化。我们需要一个真正能提高开发效率的工具，<code>LESS</code>， <code>SASS</code>都在这方面做了一些贡献。</p>
+<p><code>Stylus</code> 是一个CSS的预处理框架，2010年产生，来自Node.js社区，主要用来给Node项目进行CSS预处理支持，所以 <code>Stylus</code> 是一种新型语言，可以创建健壮的、动态的、富有表现力的CSS。比较年轻，其本质上做的事情与 <code>SASS</code>/<code>LESS</code> 等类似，应该是有很多借鉴，所以近似脚本的方式去写CSS代码。</p>
+<p><code>Stylus</code>默认使用 <code>.styl</code> 的作为文件扩展名，支持多样性的CSS语法。</p>
+<p><code>Stylus</code>功能上更为强壮，和js联系更加紧密。所以我选择 <code>Stylus</code>，<code>SASS</code> 玩儿过一段时间，主要是这玩意依赖ruby运行，所以我放弃使用了。</p>
+<h2 id="文档参考"><a href="#文档参考" class="headerlink" title="文档参考"></a>文档参考</h2><p><a href="http://learnboost.github.io/stylus/" target="_blank" rel="external">官方Stylus API</a><br><a href="http://www.zhangxinxu.com/jq/stylus/" target="_blank" rel="external">张鑫旭中文翻译</a><br><a href="http://learnboost.github.io/stylus/try.html" target="_blank" rel="external">Try Stylus!</a></p>
+<h2 id="Stylus安装"><a href="#Stylus安装" class="headerlink" title="Stylus安装"></a>Stylus安装</h2><p>全局安装，安装之前你需要你安装 <code>nodejs</code> 这个怎么安装搜去哦。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install stylus -g</div></pre></td></tr></table></figure>
+<p>这样就算是安装完Stylus了，也可以正常使用Stylus。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">Usage: stylus [options] [<span class="built_in">command</span>] [&lt; <span class="keyword">in</span> [&gt; out]]</div><div class="line">              [file|dir ...]</div><div class="line">Commands:</div><div class="line">  <span class="built_in">help</span> &lt;prop&gt;     Opens <span class="built_in">help</span> info <span class="keyword">for</span> &lt;prop&gt; <span class="keyword">in</span></div><div class="line">                  your default browser. (OS X only)</div><div class="line">Options:</div><div class="line"></div><div class="line">  -u, --use &lt;path&gt;        Utilize the stylus plugin at &lt;path&gt;</div><div class="line">  -i, --interactive       Start interactive REPL</div><div class="line">  -w, --watch             Watch file(s) <span class="keyword">for</span> changes and re-compile</div><div class="line">  -o, --out &lt;dir&gt;         Output to &lt;dir&gt; when passing files</div><div class="line">  -C, --css &lt;src&gt; [dest]  Convert CSS input to Stylus</div><div class="line">  -I, --include &lt;path&gt;    Add &lt;path&gt; to lookup paths</div><div class="line">  -c, --compress          Compress CSS output</div><div class="line">  -d, --compare           Display input along with output</div><div class="line">  -f, --firebug           Emits debug infos <span class="keyword">in</span> the generated css that</div><div class="line">                          can be used by the FireStylus Firebug plugin</div><div class="line">  -l, --line-numbers      Emits comments <span class="keyword">in</span> the generated CSS</div><div class="line">                          indicating the corresponding Stylus line</div><div class="line">  -V, --version           Display the version of Stylus</div><div class="line">  -h, --<span class="built_in">help</span>              Display <span class="built_in">help</span> information</div></pre></td></tr></table></figure>
+<h2 id="生成CSS"><a href="#生成CSS" class="headerlink" title="生成CSS"></a>生成CSS</h2><h3 id="命令行中"><a href="#命令行中" class="headerlink" title="命令行中"></a>命令行中</h3><p>建立一个<code>stylusExample/</code>，再在里面建立 <code>src</code> 目录专门存放 <code>stylus</code> 文件，在里面建立 <code>example.styl</code> 文件。然后在 <code>stylusExample</code> 目录下面执行下面命令</p>
+<p><code>$ stylus --compress src/</code></p>
+<p>输出<code>compiled src/example.css</code> ，这个时候表示你生成成功了，带上<code>--compress</code>参数表示你生成压缩的CSS文件。</p>
+<p><code>$ stylus --css css/example.css css/out.styl</code> CSS转换成styl<br><code>$ stylus help box-shadow</code> CSS属性的帮助<br><code>$ stylus --css test.css</code> 输出基本名一致的.styl文件</p>
+<h3 id="grunt生成"><a href="#grunt生成" class="headerlink" title="grunt生成"></a>grunt生成</h3><p>grunt生成 就比较爽歪歪了，具体grunt怎么玩儿，俺写了个教程<a href="http://jslite.io/2015/04/09/Grunt%E6%95%99%E7%A8%8B-%E5%89%8D%E7%AB%AF%E8%87%AA%E5%8A%A8%E5%8C%96/" target="_blank" rel="external">Grunt教程-前端自动化</a> 可以学习以下。</p>
+<p>stylusExample 目录下创建两个文件，这两个文件是grunt必备文件。</p>
+<blockquote>
+<p>package.json：用于保存项目元数据。<br>Gruntfile.js：用于配置或定义任务、加载 Grunt 插件。</p>
+</blockquote>
+<p>package.json 内容</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="attr">"name"</span>: <span class="string">"test"</span>,</div><div class="line">  <span class="attr">"version"</span>: <span class="string">"1.0.0"</span>,</div><div class="line">  <span class="attr">"description"</span>: <span class="string">"测试的例子"</span>,</div><div class="line">  <span class="attr">"repository"</span>: &#123;</div><div class="line">    <span class="attr">"type"</span>: <span class="string">"git"</span>,</div><div class="line">    <span class="attr">"url"</span>: <span class="string">""</span></div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>然后安装必备插件，这些插件让stylus文件变更了自动生成，生成到相对应的文件目录中。如果报错你需要在命令行前面加上sudo，给它最大的执行权限。</p>
+<p><code>npm install grunt --save-dev</code><br><code>npm install grunt-contrib-watch --save-dev</code> ：监视文件变动，做出相应动作。<a href="https://www.npmjs.com/package/grunt-contrib-watch" target="_blank" rel="external">npm&gt;&gt;</a><br><code>npm install grunt-contrib-stylus --save-dev</code> ：stylus编写styl输出css <a href="https://www.npmjs.com/package/grunt-contrib-stylus" target="_blank" rel="external">npm&gt;&gt;</a></p>
+<p>安装出现这样的警告 <code>npm WARN package.json test@1.0.0 No README data</code> 可以不理会，如果你看着不舒服，你需要在stylusExample目录下面建立一个 README.md 文件并输入内容。也可命令执行 <code>echo &quot;#stylus 学习&quot; &gt;&gt; README.md</code></p>
+<p>插件执行完毕之后 <code>package.json</code> 文件变成了这样样子滴。</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  "name": <span class="string">"test"</span>,</div><div class="line">  <span class="string">"version"</span>: <span class="string">"1.0.0"</span>,</div><div class="line">  <span class="string">"description"</span>: <span class="string">"测试的例子"</span>,</div><div class="line">  <span class="string">"repository"</span>: &#123;</div><div class="line">    <span class="string">"type"</span>: <span class="string">"git"</span>,</div><div class="line">    <span class="string">"url"</span>: <span class="string">""</span></div><div class="line">  &#125;,</div><div class="line">  <span class="string">"devDependencies"</span>: &#123;</div><div class="line">    <span class="string">"grunt"</span>: <span class="string">"^0.4.5"</span>,</div><div class="line">    <span class="string">"grunt-contrib-stylus"</span>: <span class="string">"^0.21.0"</span>,</div><div class="line">    <span class="string">"grunt-contrib-watch"</span>: <span class="string">"^0.6.1"</span></div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这个时候你需要使用这些插件儿完成你的任务需要在<code>Gruntfile.js</code>里面写你的执行任务。</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/// 包装函数</span></div><div class="line">module.exports = function(grunt) &#123;</div><div class="line">    <span class="comment">// 任务配置,所有插件的配置信息</span></div><div class="line">    grunt<span class="selector-class">.initConfig</span>(&#123;</div><div class="line">        pkg: grunt.file.readJSON(<span class="string">'package.json'</span>),</div><div class="line">        stylus:&#123;</div><div class="line">            build: &#123;</div><div class="line">                options: &#123;</div><div class="line">                    linenos: false,</div><div class="line">                    compress: true</div><div class="line">                &#125;,</div><div class="line">                files: [&#123;</div><div class="line">                    <span class="string">'css/index.css'</span>: [<span class="string">'src/index.styl'</span>]</div><div class="line">                &#125;]</div><div class="line">            &#125;</div><div class="line">        &#125;,</div><div class="line">        // watch插件的配置信息</div><div class="line">        watch: &#123;</div><div class="line">            another: &#123;</div><div class="line">                files: [<span class="string">'css/*'</span>,<span class="string">'src/*.styl'</span>],</div><div class="line">                tasks: [<span class="string">'stylus'</span>],</div><div class="line">                options: &#123;</div><div class="line">                    livereload: <span class="number">1337</span></div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;);</div><div class="line">    <span class="comment">// 告诉grunt我们将使用插件</span></div><div class="line">    grunt.loadNpmTasks('grunt-contrib-watch');</div><div class="line">    grunt.loadNpmTasks('grunt-contrib-stylus');</div><div class="line">    <span class="comment">// 告诉grunt当我们在终端中输入grunt时需要做些什么</span></div><div class="line">    grunt.registerTask('default', ['watch']);</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>注意读懂上面的哦，目录高对哦，这些没有必要提醒哦，这个时候你可以好好耍一下stylus</p>
+<h2 id="Stylus应用"><a href="#Stylus应用" class="headerlink" title="Stylus应用"></a>Stylus应用</h2><p>这个时候真正的开始玩耍了哦。</p>
+<h3 id="Try-Stylus"><a href="#Try-Stylus" class="headerlink" title="Try Stylus!"></a>Try Stylus!</h3><p>stylus</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">body</span>,<span class="selector-tag">html</span></div><div class="line">    <span class="selector-tag">margin</span><span class="selector-pseudo">:0</span></div><div class="line">    <span class="selector-tag">padding</span><span class="selector-pseudo">:0</span></div></pre></td></tr></table></figure>
+<p>编译成</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">body</span>,</div><div class="line"><span class="selector-tag">html</span> &#123;</div><div class="line">  <span class="attribute">margin</span>: <span class="number">0</span>;</div><div class="line">  <span class="attribute">padding</span>: <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>stylus : 强大的功能丰富的语言</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">-pos</span>(<span class="selector-tag">type</span>, <span class="selector-tag">args</span>)</div><div class="line">  i = 0</div><div class="line">  <span class="selector-tag">position</span>: <span class="selector-tag">unquote</span>(<span class="selector-tag">type</span>)</div><div class="line">  &#123;args[i]&#125;: args[i + 1] is a 'unit' ? args[i += 1] : 0</div><div class="line">  &#123;args[i += 1]&#125;: args[i + 1] is a 'unit' ? args[i += 1] : 0</div><div class="line"></div><div class="line"><span class="selector-tag">absolute</span>()</div><div class="line">  -pos('absolute', arguments)</div><div class="line"></div><div class="line"><span class="selector-tag">fixed</span>()</div><div class="line">  -pos('fixed', arguments)</div><div class="line"></div><div class="line"><span class="selector-id">#prompt</span></div><div class="line">  <span class="selector-tag">absolute</span>: <span class="selector-tag">top</span> 150<span class="selector-tag">px</span> <span class="selector-tag">left</span> 5<span class="selector-tag">px</span></div><div class="line">  <span class="selector-tag">width</span>: 200<span class="selector-tag">px</span></div><div class="line">  <span class="selector-tag">margin-left</span>: <span class="selector-tag">-</span>(@<span class="keyword">width</span> / <span class="number">2</span>)</div><div class="line"></div><div class="line">#logo</div><div class="line">  fixed: top left</div></pre></td></tr></table></figure>
+<p>编译成</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="selector-id">#prompt</span> &#123;</div><div class="line">  <span class="attribute">position</span>: absolute;</div><div class="line">  <span class="attribute">top</span>: <span class="number">150px</span>;</div><div class="line">  <span class="attribute">left</span>: <span class="number">5px</span>;</div><div class="line">  <span class="attribute">width</span>: <span class="number">200px</span>;</div><div class="line">  <span class="attribute">margin-left</span>: -<span class="number">100px</span>;</div><div class="line">&#125;</div><div class="line"><span class="selector-id">#logo</span> &#123;</div><div class="line">  <span class="attribute">position</span>: fixed;</div><div class="line">  <span class="attribute">top</span>: <span class="number">0</span>;</div><div class="line">  <span class="attribute">left</span>: <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="nibStylus插件"><a href="#nibStylus插件" class="headerlink" title="nibStylus插件"></a>nibStylus插件</h3><p>stylus</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">@<span class="keyword">import</span> <span class="string">'nib'</span></div><div class="line">body</div><div class="line">  background: linear-gradient(<span class="number">20px</span> top, white, black)</div></pre></td></tr></table></figure>
+<p>编译成</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">body</span> &#123;</div><div class="line">  <span class="attribute">background</span>: <span class="built_in">-webkit-linear-gradient</span>(20px top, #fff, #000);</div><div class="line">  <span class="attribute">background</span>: <span class="built_in">-moz-linear-gradient</span>(20px top, #fff, #000);</div><div class="line">  <span class="attribute">background</span>: <span class="built_in">-o-linear-gradient</span>(20px top, #fff, #000);</div><div class="line">  <span class="attribute">background</span>: <span class="built_in">-ms-linear-gradient</span>(20px top, #fff, #000);</div><div class="line">  <span class="attribute">background</span>: <span class="built_in">linear-gradient</span>(20px top, #fff, #000);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="Nesting-嵌套"><a href="#Nesting-嵌套" class="headerlink" title="Nesting(嵌套)"></a>Nesting(嵌套)</h3><p>stylus</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">header</span></div><div class="line">    <span class="selector-id">#logo</span></div><div class="line">        <span class="selector-tag">border</span><span class="selector-pseudo">:1px</span> <span class="selector-tag">solid</span> <span class="selector-tag">red</span></div></pre></td></tr></table></figure>
+<p>编译成</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">header</span> <span class="selector-id">#logo</span> &#123;</div><div class="line">  <span class="attribute">border</span>: <span class="number">1px</span> solid <span class="number">#f00</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="Flexible-syntax-灵活的用法"><a href="#Flexible-syntax-灵活的用法" class="headerlink" title="Flexible syntax(灵活的用法)"></a>Flexible syntax(灵活的用法)</h3><p>stylus</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">body</span></div><div class="line">    font 14px/1.5 Helvetica, arial, sans-serif</div><div class="line">    <span class="selector-tag">button</span></div><div class="line">    <span class="selector-tag">button</span><span class="selector-class">.button</span></div><div class="line">    <span class="selector-tag">input</span><span class="selector-attr">[type='button']</span></div><div class="line">    <span class="selector-tag">input</span><span class="selector-attr">[type='submit']</span></div><div class="line">        <span class="selector-tag">border-radius</span> 5<span class="selector-tag">px</span></div><div class="line">        </div><div class="line"><span class="selector-tag">header</span> </div><div class="line">    <span class="selector-id">#logo</span>,<span class="selector-tag">div</span></div><div class="line">        <span class="selector-tag">font-size</span><span class="selector-pseudo">:14px</span></div></pre></td></tr></table></figure>
+<p>编译成</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">body</span> &#123;</div><div class="line">  <span class="attribute">font</span>: <span class="number">14px</span>/<span class="number">1.5</span> Helvetica, arial, sans-serif;</div><div class="line">&#125;</div><div class="line"><span class="selector-tag">body</span> <span class="selector-tag">button</span>,</div><div class="line"><span class="selector-tag">body</span> <span class="selector-tag">button</span><span class="selector-class">.button</span>,</div><div class="line"><span class="selector-tag">body</span> <span class="selector-tag">input</span><span class="selector-attr">[type='button']</span> &#123;</div><div class="line">  <span class="attribute">border-radius</span>: <span class="number">5px</span>;</div><div class="line">&#125;</div><div class="line"><span class="selector-tag">header</span> <span class="selector-id">#logo</span>,</div><div class="line"><span class="selector-tag">header</span> <span class="selector-tag">div</span> &#123;</div><div class="line">  <span class="attribute">font-size</span>: <span class="number">14px</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="Flexible-amp-灵活-amp"><a href="#Flexible-amp-灵活-amp" class="headerlink" title="Flexible &amp;(灵活&amp;)"></a>Flexible &amp;(灵活&amp;)</h3><p>stylus</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">ul</span></div><div class="line">    <span class="selector-tag">li</span> <span class="selector-tag">a</span></div><div class="line">        <span class="selector-tag">display</span>: <span class="selector-tag">block</span></div><div class="line">        <span class="selector-tag">color</span>: <span class="selector-tag">blue</span></div><div class="line">        <span class="selector-tag">padding</span>: 5<span class="selector-tag">px</span></div><div class="line">        <span class="selector-tag">html</span><span class="selector-class">.ie</span> &amp;</div><div class="line">            <span class="selector-tag">padding</span>: 6<span class="selector-tag">px</span></div><div class="line">        &amp;<span class="selector-pseudo">:hover</span></div><div class="line">            <span class="selector-tag">color</span>: <span class="selector-tag">red</span></div></pre></td></tr></table></figure>
+<p>编译成</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">ul</span> <span class="selector-tag">li</span> <span class="selector-tag">a</span> &#123;</div><div class="line">  <span class="attribute">display</span>: block;</div><div class="line">  <span class="attribute">color</span>: <span class="number">#00f</span>;</div><div class="line">  <span class="attribute">padding</span>: <span class="number">5px</span>;</div><div class="line">&#125;</div><div class="line"><span class="selector-tag">html</span><span class="selector-class">.ie</span> <span class="selector-tag">ul</span> <span class="selector-tag">li</span> <span class="selector-tag">a</span> &#123;</div><div class="line">  <span class="attribute">padding</span>: <span class="number">6px</span>;</div><div class="line">&#125;</div><div class="line"><span class="selector-tag">ul</span> <span class="selector-tag">li</span> <span class="selector-tag">a</span><span class="selector-pseudo">:hover</span> &#123;</div><div class="line">  <span class="attribute">color</span>: <span class="number">#f00</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="Functions-方法"><a href="#Functions-方法" class="headerlink" title="Functions 方法"></a>Functions 方法</h3><h4 id="返回值"><a href="#返回值" class="headerlink" title="返回值"></a>返回值</h4><p>stylus</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">border-radius</span>(<span class="selector-tag">val</span>)</div><div class="line">    <span class="selector-tag">-webkit-border-radius</span>: <span class="selector-tag">val</span></div><div class="line">    <span class="selector-tag">-moz-border-radius</span>: <span class="selector-tag">val</span></div><div class="line">    <span class="selector-tag">border-radius</span>: <span class="selector-tag">val</span></div><div class="line"></div><div class="line"><span class="selector-tag">button</span> </div><div class="line">    <span class="selector-tag">border-radius</span>(5<span class="selector-tag">px</span>);</div></pre></td></tr></table></figure>
+<p>编译成</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">button</span> &#123;</div><div class="line">  <span class="attribute">-webkit-border-radius</span>: <span class="number">5px</span>;</div><div class="line">  <span class="attribute">-moz-border-radius</span>: <span class="number">5px</span>;</div><div class="line">  <span class="attribute">border-radius</span>: <span class="number">5px</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="Transparent-mixins"><a href="#Transparent-mixins" class="headerlink" title="Transparent mixins"></a>Transparent mixins</h4><p>不带参数</p>
+<p>stylus</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">border-radius</span>()</div><div class="line">    <span class="selector-tag">-webkit-border-radius</span>: <span class="selector-tag">arguments</span></div><div class="line">    <span class="selector-tag">-moz-border-radius</span>: <span class="selector-tag">arguments</span></div><div class="line">    <span class="selector-tag">border-radius</span>: <span class="selector-tag">arguments</span></div><div class="line"></div><div class="line"><span class="selector-tag">button</span> </div><div class="line">    <span class="selector-tag">border-radius</span>: 5<span class="selector-tag">px</span> 10<span class="selector-tag">px</span>;</div></pre></td></tr></table></figure>
+<p>编译成</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">button</span> &#123;</div><div class="line">  <span class="attribute">-webkit-border-radius</span>: <span class="number">5px</span> <span class="number">10px</span>;</div><div class="line">  <span class="attribute">-moz-border-radius</span>: <span class="number">5px</span> <span class="number">10px</span>;</div><div class="line">  <span class="attribute">border-radius</span>: <span class="number">5px</span> <span class="number">10px</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="默认参数"><a href="#默认参数" class="headerlink" title="默认参数"></a>默认参数</h4><p>不带参数</p>
+<p>stylus</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">add(a, b = a)</div><div class="line">  <span class="selector-tag">a</span> + <span class="selector-tag">b</span></div><div class="line"></div><div class="line"><span class="selector-tag">add</span>(10, 5)</div><div class="line">// =&gt; 15</div><div class="line"></div><div class="line"><span class="selector-tag">add</span>(10)</div><div class="line">// =&gt; 20</div></pre></td></tr></table></figure>
+<h4 id="函数体"><a href="#函数体" class="headerlink" title="函数体"></a>函数体</h4><p>通过内置unit()把单位都变成px, 因为赋值在每个参数上，因此，我们可以无视单位换算。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">add(a, b = a)</div><div class="line">  a = unit(a, px)</div><div class="line">  b = unit(b, px)</div><div class="line">  <span class="selector-tag">a</span> + <span class="selector-tag">b</span></div><div class="line"></div><div class="line"><span class="selector-tag">add</span>(15%, 10<span class="selector-tag">deg</span>)</div><div class="line">// =&gt; 25</div></pre></td></tr></table></figure>
+<h4 id="多个返回值"><a href="#多个返回值" class="headerlink" title="多个返回值"></a>多个返回值</h4><p>通过内置unit()把单位都变成px, 因为赋值在每个参数上，因此，我们可以无视单位换算。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">sizes</span>()</div><div class="line"> 15<span class="selector-tag">px</span> 10<span class="selector-tag">px</span></div><div class="line"></div><div class="line"><span class="selector-tag">sizes</span>()<span class="selector-attr">[0]</span></div><div class="line">// =&gt; 15px</div></pre></td></tr></table></figure>
+<h3 id="Variables-变量"><a href="#Variables-变量" class="headerlink" title="Variables(变量)"></a>Variables(变量)</h3><h4 id="常用方法"><a href="#常用方法" class="headerlink" title="常用方法"></a>常用方法</h4><p>stylus</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">font-size = 14px</div><div class="line"></div><div class="line"><span class="selector-tag">body</span></div><div class="line">    <span class="selector-tag">font</span> <span class="selector-tag">font-size</span> <span class="selector-tag">Arial</span>, <span class="selector-tag">sans-seri</span></div></pre></td></tr></table></figure>
+<p>编译成</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">body</span> &#123;</div><div class="line">  <span class="attribute">font</span>: <span class="number">14px</span> Arial, sans-seri;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="变量放在属性中"><a href="#变量放在属性中" class="headerlink" title="变量放在属性中"></a>变量放在属性中</h4><p>stylus</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="selector-id">#prompt</span></div><div class="line">    <span class="selector-tag">position</span>: <span class="selector-tag">absolute</span></div><div class="line">    <span class="selector-tag">top</span>: 150<span class="selector-tag">px</span></div><div class="line">    <span class="selector-tag">left</span>: 50%</div><div class="line">    width: w = 200px</div><div class="line">    margin-left: -(w / 2)</div></pre></td></tr></table></figure>
+<p>编译成</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="selector-id">#prompt</span> &#123;</div><div class="line">  <span class="attribute">position</span>: absolute;</div><div class="line">  <span class="attribute">top</span>: <span class="number">150px</span>;</div><div class="line">  <span class="attribute">left</span>: <span class="number">50%</span>;</div><div class="line">  <span class="attribute">width</span>: <span class="number">200px</span>;</div><div class="line">  <span class="attribute">margin-left</span>: -<span class="number">100px</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="块属性访问引用"><a href="#块属性访问引用" class="headerlink" title="块属性访问引用"></a>块属性访问引用</h4><p>stylus</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="selector-id">#prompt</span></div><div class="line">    <span class="selector-tag">position</span>: <span class="selector-tag">absolute</span></div><div class="line">    <span class="selector-tag">width</span>: 200<span class="selector-tag">px</span></div><div class="line">    <span class="selector-tag">margin-left</span>: <span class="selector-tag">-</span>(@<span class="keyword">width</span> / <span class="number">2</span>)</div></pre></td></tr></table></figure>
+<p>编译成</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="selector-id">#prompt</span> &#123;</div><div class="line">  <span class="attribute">position</span>: absolute;</div><div class="line">  <span class="attribute">width</span>: <span class="number">200px</span>;</div><div class="line">  <span class="attribute">margin-left</span>: -<span class="number">100px</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="属性有条件地定义属性"><a href="#属性有条件地定义属性" class="headerlink" title="属性有条件地定义属性"></a>属性有条件地定义属性</h4><p>stylus:指定z-index值为1，但是，只有在z-index之前未指定的时候才这样：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">position</span>()</div><div class="line">  <span class="selector-tag">position</span>: <span class="selector-tag">arguments</span></div><div class="line">  <span class="selector-tag">z-index</span>: 1 <span class="selector-tag">unless</span> @<span class="keyword">z</span>-<span class="keyword">index</span></div><div class="line"></div><div class="line">#<span class="keyword">logo</span></div><div class="line">  z-index: <span class="number">20</span></div><div class="line">  position: absolute</div><div class="line"></div><div class="line">#logo2</div><div class="line">  position: absolute</div></pre></td></tr></table></figure>
+<p>编译成</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="selector-id">#logo</span> &#123;</div><div class="line">  <span class="attribute">z-index</span>: <span class="number">20</span>;</div><div class="line">  <span class="attribute">position</span>: absolute;</div><div class="line">&#125;</div><div class="line"><span class="selector-id">#logo2</span> &#123;</div><div class="line">  <span class="attribute">position</span>: absolute;</div><div class="line">  <span class="attribute">z-index</span>: <span class="number">1</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="向上冒泡"><a href="#向上冒泡" class="headerlink" title="向上冒泡"></a>向上冒泡</h4><p>stylus:属性会“向上冒泡”查找堆栈直到被发现，或者返回null（如果属性搞不定）下面这个例子，@color被弄成了blue.</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">body</span></div><div class="line">  <span class="selector-tag">color</span>: <span class="selector-tag">red</span></div><div class="line">  <span class="selector-tag">ul</span></div><div class="line">    <span class="selector-tag">li</span></div><div class="line">      <span class="selector-tag">color</span>: <span class="selector-tag">blue</span></div><div class="line">      <span class="selector-tag">a</span></div><div class="line">        <span class="selector-tag">background-color</span>: @<span class="keyword">color</span></div></pre></td></tr></table></figure>
+<p>编译成</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">body</span> &#123;</div><div class="line">  <span class="attribute">color</span>: <span class="number">#f00</span>;</div><div class="line">&#125;</div><div class="line"><span class="selector-tag">body</span> <span class="selector-tag">ul</span> <span class="selector-tag">li</span> &#123;</div><div class="line">  <span class="attribute">color</span>: <span class="number">#00f</span>;</div><div class="line">&#125;</div><div class="line"><span class="selector-tag">body</span> <span class="selector-tag">ul</span> <span class="selector-tag">li</span> <span class="selector-tag">a</span> &#123;</div><div class="line">  <span class="attribute">background-color</span>: <span class="number">#00f</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="Iteration-迭代"><a href="#Iteration-迭代" class="headerlink" title="Iteration(迭代)"></a>Iteration(迭代)</h3><p>stylus</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">table</span></div><div class="line">    <span class="selector-tag">for</span> <span class="selector-tag">row</span> <span class="selector-tag">in</span> 1 2 3 4 5</div><div class="line">        tr:nth-child(&#123;row&#125;)</div><div class="line">            <span class="selector-tag">height</span>: 10<span class="selector-tag">px</span> * <span class="selector-tag">row</span></div></pre></td></tr></table></figure>
+<p>编译成</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">table</span> <span class="selector-tag">tr</span><span class="selector-pseudo">:nth-child(1)</span> &#123;</div><div class="line">  <span class="attribute">height</span>: <span class="number">10px</span>;</div><div class="line">&#125;</div><div class="line"><span class="selector-tag">table</span> <span class="selector-tag">tr</span><span class="selector-pseudo">:nth-child(2)</span> &#123;</div><div class="line">  <span class="attribute">height</span>: <span class="number">20px</span>;</div><div class="line">&#125;</div><div class="line"><span class="selector-tag">table</span> <span class="selector-tag">tr</span><span class="selector-pseudo">:nth-child(3)</span> &#123;</div><div class="line">  <span class="attribute">height</span>: <span class="number">30px</span>;</div><div class="line">&#125;</div><div class="line"><span class="selector-tag">table</span> <span class="selector-tag">tr</span><span class="selector-pseudo">:nth-child(4)</span> &#123;</div><div class="line">  <span class="attribute">height</span>: <span class="number">40px</span>;</div><div class="line">&#125;</div><div class="line"><span class="selector-tag">table</span> <span class="selector-tag">tr</span><span class="selector-pseudo">:nth-child(5)</span> &#123;</div><div class="line">  <span class="attribute">height</span>: <span class="number">50px</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="Interpolation-插值"><a href="#Interpolation-插值" class="headerlink" title="Interpolation(插值)"></a>Interpolation(插值)</h3><p>stylus</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">vendors = webkit moz o ms official</div><div class="line"><span class="attribute">border-radius</span>()</div><div class="line">    for vendor in vendors</div><div class="line">        if vendor == official</div><div class="line">            <span class="attribute">border-radius</span>: arguments</div><div class="line">        else</div><div class="line">            -&#123;vendor&#125;-border-radius: arguments</div><div class="line"><span class="number">#c</span>ontent</div><div class="line">    border-radius: <span class="number">5px</span></div></pre></td></tr></table></figure>
+<p>编译成</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="selector-id">#content</span> &#123;</div><div class="line">  <span class="attribute">-webkit-border-radius</span>: <span class="number">5px</span>;</div><div class="line">  <span class="attribute">-moz-border-radius</span>: <span class="number">5px</span>;</div><div class="line">  <span class="attribute">-o-border-radius</span>: <span class="number">5px</span>;</div><div class="line">  <span class="attribute">-ms-border-radius</span>: <span class="number">5px</span>;</div><div class="line">  <span class="attribute">border-radius</span>: <span class="number">5px</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="Operators-运算符"><a href="#Operators-运算符" class="headerlink" title="Operators(运算符)"></a>Operators(运算符)</h3><p>运算符优先级<br>下表运算符优先级，从最高到最低：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">.</div><div class="line"> <span class="selector-attr">[]</span></div><div class="line"> ! ~ + <span class="selector-tag">-</span></div><div class="line"> <span class="selector-tag">is</span> <span class="selector-tag">defined</span></div><div class="line"> ** * / %</div><div class="line"> + <span class="selector-tag">-</span></div><div class="line"> ... ..</div><div class="line"> &lt;= &gt;= &lt; &gt;</div><div class="line"> <span class="selector-tag">in</span></div><div class="line"> == is != is not isnt</div><div class="line"> <span class="selector-tag">is</span> <span class="selector-tag">a</span></div><div class="line"> &amp;&amp; and || or</div><div class="line"> ?:</div><div class="line"> = := ?= += -= *= /= %=</div><div class="line"> <span class="selector-tag">not</span></div><div class="line"> <span class="selector-tag">if</span> <span class="selector-tag">unless</span></div></pre></td></tr></table></figure>
+<h3 id="import"><a href="#import" class="headerlink" title="@import"></a>@import</h3><p><code>@import &quot;reset.css&quot;</code></p>
+<p>当使用<code>@import</code>没有<code>.css</code>扩展，会被认为是<code>Stylus</code>片段（如：<code>@import &quot;mixins/border-radius&quot;</code>）。</p>
+<p><code>@import</code>工作原理为：遍历目录队列，并检查任意目录中是否有该文件（类似node的require.paths）。该队列默认为单一路径，从<code>filename</code>选项的<code>dirname</code>衍生而来。 因此，如果你的文件名是<code>/tmp/testing/stylus/main.styl</code>，导入将显现为<code>/tmp/testing/stylus/</code>。</p>
+<p><code>@import</code>也支持索引形式。这意味着当你<code>@import blueprint</code>, 则会理解成<code>blueprint.styl</code>或<code>blueprint/index.styl</code>. 对于库而言，这很有用，既可以展示所有特征与功能，同时又能导入特征子集。</p>
+<h3 id="font-face"><a href="#font-face" class="headerlink" title="@font-face"></a>@font-face</h3><p>stylus</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">@<span class="keyword">font-face</span></div><div class="line">  <span class="selector-tag">font-family</span> <span class="selector-tag">Geo</span></div><div class="line">  <span class="selector-tag">font-style</span> <span class="selector-tag">normal</span></div><div class="line">  src url(fonts/geo_sans_light/GensansLight.ttf)</div><div class="line"></div><div class="line"><span class="selector-class">.ingeo</span></div><div class="line">  <span class="selector-tag">font-family</span> <span class="selector-tag">Geo</span></div></pre></td></tr></table></figure>
+<p>编译成</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">@<span class="keyword">font-face</span> &#123;</div><div class="line">  <span class="attribute">font-family</span>: Geo;</div><div class="line">  <span class="attribute">font-style</span>: normal;</div><div class="line">  <span class="attribute">src</span>: <span class="built_in">url</span>(<span class="string">"fonts/geo_sans_light/GensansLight.ttf"</span>);</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.ingeo</span> &#123;</div><div class="line">  <span class="attribute">font-family</span>: Geo;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="media"><a href="#media" class="headerlink" title="@media"></a>@media</h3><p>stylus</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">@<span class="keyword">media</span> print</div><div class="line">  #header</div><div class="line">  #footer</div><div class="line">    display none</div></pre></td></tr></table></figure>
+<p>编译成</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">@<span class="keyword">media</span> print &#123;</div><div class="line">  <span class="selector-id">#header</span>,</div><div class="line">  <span class="selector-id">#footer</span> &#123;</div><div class="line">    <span class="attribute">display</span>: none;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="keyframes"><a href="#keyframes" class="headerlink" title="@keyframes"></a>@keyframes</h3><p>stylus</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">@<span class="keyword">keyframes</span> pulse</div><div class="line">    <span class="number">0%</span></div><div class="line">      background-color red</div><div class="line">      transform scale(<span class="number">1.0</span>) rotate(<span class="number">0deg</span>)</div><div class="line">    <span class="number">33%</span></div><div class="line">      background-color blue</div><div class="line">      -webkit-transform scale(<span class="number">1.1</span>) rotate(-<span class="number">5deg</span>)</div></pre></td></tr></table></figure>
+<p>编译成</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line">@-<span class="keyword">moz</span>-<span class="keyword">keyframes</span> pulse &#123;</div><div class="line">  0% &#123;</div><div class="line">    <span class="attribute">background-color</span>: <span class="number">#f00</span>;</div><div class="line">    <span class="attribute">transform</span>: <span class="built_in">scale</span>(1) <span class="built_in">rotate</span>(0deg);</div><div class="line">  &#125;</div><div class="line">  33% &#123;</div><div class="line">    <span class="attribute">background-color</span>: <span class="number">#00f</span>;</div><div class="line">    <span class="attribute">-webkit-transform</span>: <span class="built_in">scale</span>(1.1) <span class="built_in">rotate</span>(-5deg);</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line">@-<span class="keyword">webkit</span>-<span class="keyword">keyframes</span> pulse &#123;</div><div class="line">  0% &#123;</div><div class="line">    <span class="attribute">background-color</span>: <span class="number">#f00</span>;</div><div class="line">    <span class="attribute">transform</span>: <span class="built_in">scale</span>(1) <span class="built_in">rotate</span>(0deg);</div><div class="line">  &#125;</div><div class="line">  33% &#123;</div><div class="line">    <span class="attribute">background-color</span>: <span class="number">#00f</span>;</div><div class="line">    <span class="attribute">-webkit-transform</span>: <span class="built_in">scale</span>(1.1) <span class="built_in">rotate</span>(-5deg);</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line">@-<span class="keyword">o</span>-<span class="keyword">keyframes</span> pulse &#123;</div><div class="line">  0% &#123;</div><div class="line">    <span class="attribute">background-color</span>: <span class="number">#f00</span>;</div><div class="line">    <span class="attribute">transform</span>: <span class="built_in">scale</span>(1) <span class="built_in">rotate</span>(0deg);</div><div class="line">  &#125;</div><div class="line">  33% &#123;</div><div class="line">    <span class="attribute">background-color</span>: <span class="number">#00f</span>;</div><div class="line">    <span class="attribute">-webkit-transform</span>: <span class="built_in">scale</span>(1.1) <span class="built_in">rotate</span>(-5deg);</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line">@<span class="keyword">keyframes</span> pulse &#123;</div><div class="line">  0% &#123;</div><div class="line">    <span class="attribute">background-color</span>: <span class="number">#f00</span>;</div><div class="line">    <span class="attribute">transform</span>: <span class="built_in">scale</span>(1) <span class="built_in">rotate</span>(0deg);</div><div class="line">  &#125;</div><div class="line">  33% &#123;</div><div class="line">    <span class="attribute">background-color</span>: <span class="number">#00f</span>;</div><div class="line">    <span class="attribute">-webkit-transform</span>: <span class="built_in">scale</span>(1.1) <span class="built_in">rotate</span>(-5deg);</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="CSS字面量-CSS-Literal"><a href="#CSS字面量-CSS-Literal" class="headerlink" title="CSS字面量(CSS Literal)"></a>CSS字面量(CSS Literal)</h3><p>stylus</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">@<span class="keyword">css</span> &#123;</div><div class="line">  <span class="selector-tag">body</span> &#123;</div><div class="line">    <span class="attribute">font</span>: <span class="number">14px</span>;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>编译成</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">body</span> &#123;</div><div class="line">  <span class="attribute">font</span>: <span class="number">14px</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="工具"><a href="#工具" class="headerlink" title="工具"></a>工具</h2><ul>
+<li><a href="https://packagecontrol.io/packages/Stylus%20Clean%20Completions" target="_blank" rel="external">sublime 插件 Stylus Clean Completions 代码提示</a></li>
+<li><a href="https://packagecontrol.io/packages/Stylus" target="_blank" rel="external">Stylus</a></li>
+</ul>
+</section>
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#stylus" >
+    <span class="tag-code">stylus</span>
+  </a>
+
+  <a href="/tags#css" >
+    <span class="tag-code">css</span>
+  </a>
+
+      </div>
+    
+    
+<nav id="article-nav">
+    
+        <a href="/2017/08/30/stylus预处理入门(一)——选择器/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">NEWER</strong>
+            <div class="article-nav-title">
+                
+                    stylus预处理入门(一)——选择器
+                
+            </div>
+        </a>
+    
+    
+        <a href="/2017/08/30/自定义HEXO站内搜索Javascript-json/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">OLDER</strong>
+            <div class="article-nav-title">自定义HEXO站内搜索Javascript+json</div>
+        </a>
+    
+</nav>
+
+
+    <div class="money-like">
+      <div class="reward-btn">
+        赏
+        <span class="money-code">
+          <span class="wechat-code">
+            <div class="code-image"></div>
+            <b>使用微信打赏</b>
+          </span>
+        </span>
+      </div>
+      <p class="notice">若你觉得我的文章对你有帮助，欢迎点击上方按钮对我打赏</p>
+    </div>
+    <div class="qrcode">
+      <canvas id="share-qrcode"></canvas>
+ 
+      <p class="notice">扫描二维码，分享此文章</p>
+    </div>
+    
+      <!-- UY BEGIN -->
+      <div id="uyan_frame"></div>
+      <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2142069"></script>
+      <!-- UY END -->
+    
+  </article>
+</main>
+
+<script>
+  (function () {
+    var url = 'https://ycg31.oschina.io/2017/08/30/stylus入门使用方法/';
+    var banner = ''
+    if (banner) {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+     // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', 'http://file.muyutech.com/error-img.png') 
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      var imageW = $(this).width()
+      var imageH = $(this).height()
+      
+      var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+      zoom = zoom < 1 ? 1 : zoom
+      zoom = zoom > 2 ? 2 : zoom
+      var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+      $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+      $('.image-view-wrap').addClass('wrap-active')
+      $('.image-view-wrap img').css({
+        'width': `${imageW}`,
+        'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+      })
+      $('html').css('overflow', 'hidden')
+
+      $('.image-view-wrap').on('click', function() {
+        $(this).remove()
+        $('html').attr('style', '')
+      })
+    })
+
+    // qrcode
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+
+
+
+    // gitment
+    var gitmentConfig = "";
+    if (gitmentConfig != "undefined") {
+      var gitment = new Gitment({
+        id: "stylus入门使用方法",
+        owner: "",
+        repo: "",
+        oauth: {
+          client_id: "",
+          client_secret: ""
+        },
+        theme: {
+          render(state, instance) {
+            const container = document.createElement('div')
+            container.lang = "en-US"
+            container.className = 'gitment-container gitment-root-container'
+            container.appendChild(instance.renderHeader(state, instance))
+            container.appendChild(instance.renderEditor(state, instance))
+            container.appendChild(instance.renderComments(state, instance))
+            container.appendChild(instance.renderFooter(state, instance))
+            return container;
+          }
+        }
+      })
+      gitment.render(document.getElementById('comments'))
+    }
+  })();
+</script>
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2017 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+    Theme by <a href="https://github.com/yanm1ng">yanm1ng</a> | Mod by <a href="https://github.com/ycg31">ycg31</a>
+  </p>
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine == 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+<script src="/js/script.js"></script>
+  </body>
+</html>

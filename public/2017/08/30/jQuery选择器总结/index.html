@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="有了这个，就不用到处去找重复的了">
+  <meta name="keyword" content="hexo, vuejs">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      jQuery选择器总结 | 杂记
+    
+  </title>
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/plugins/gitment.css">
+<link rel="stylesheet" href="/css/plugins/search.css">
+  <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdn.bootcss.com/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+  <script src="/js/qrious.js"></script>
+<script src="/js/gitment.js"></script>
+<script src="/js/search.js"></script>
+</head>
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>杂记</span>
+    </a>
+    <ul class="right-list">
+        <li class="list-item">   
+          <span class="algolia-autocomplete algolia-autocomplete-right" style="position: relative; display: inline-block; direction: ltr;">
+            <input type="text" id="local-search-input" class="search-query st-default-search-input aa-input" autocomplete="off" spellcheck="false" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-owns="algolia-autocomplete-listbox-0" dir="auto" style="position: relative; vertical-align: top;">
+          </span>
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link">Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div id="menu-mask" class="menu-mask">
+      <ul class="menu-list">
+        <li class="menu-item">   
+          <span class="algolia-autocomplete algolia-autocomplete-right" style="position: relative; display: inline-block; direction: ltr;">
+            <input type="text" id="mobile-search-input" class="search-query st-default-search-input aa-input" autocomplete="off" spellcheck="false" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-owns="algolia-autocomplete-listbox-0" dir="auto" style="position: relative; vertical-align: top;">
+          </span>
+        </li>
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+<div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="输入关键词" />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '博文',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '未定义',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+<div id="result-wrap" class="ins-search">
+    <div id="local-search-result"></div>
+</div>
+
+<script type="text/javascript">      
+     var search_path = "search.xml";
+     if (search_path.length == 0) {
+      search_path = "search.xml";
+     }
+     var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+     searchFunc(path, 'mobile-search-input', 'local-search-result');
+</script>
+</header>
+
+    <div id="article-banner">
+  <h2>jQuery选择器总结</h2>
+  <p class="post-date">2017-08-30</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#各种选择方式"><span class="post-toc-number">1.</span> <span class="post-toc-text">各种选择方式</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#层叠选择器："><span class="post-toc-number">2.</span> <span class="post-toc-text">层叠选择器：</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#基本过滤选择器："><span class="post-toc-number">3.</span> <span class="post-toc-text">基本过滤选择器：</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#内容过滤选择器："><span class="post-toc-number">4.</span> <span class="post-toc-text">内容过滤选择器：</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#属性过滤选择器："><span class="post-toc-number">5.</span> <span class="post-toc-text">属性过滤选择器：</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#子元素过滤选择器："><span class="post-toc-number">6.</span> <span class="post-toc-text">子元素过滤选择器：</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#表单元素选择器："><span class="post-toc-number">7.</span> <span class="post-toc-text">表单元素选择器：</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#表单元素过滤选择器："><span class="post-toc-number">8.</span> <span class="post-toc-text">表单元素过滤选择器：</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<main class="app-body">
+  <article class="post-article">
+    <section class="markdown-content" id="post-content"><p>jQuery 的选择器可谓之强大无比，这里简单地总结一下常用的元素查找方法 </p>
+<h1 id="各种选择方式"><a href="#各种选择方式" class="headerlink" title="各种选择方式"></a>各种选择方式</h1><p>$(“#myELement”)    选择id值等于myElement的元素，id值不能重复在文档中只能有一个id值是myElement所以得到的是唯一的元素<br>$(“div”)           选择所有的div标签元素，返回div元素数组<br>$(“.myClass”)      选择使用myClass类的css的所有元素<br>$(“*”)             选择文档中的所有的元素，可以运用多种的选择方式进行联合选择：例如$(“#myELement,div,.myclass”) </p>
+<h1 id="层叠选择器："><a href="#层叠选择器：" class="headerlink" title="层叠选择器："></a>层叠选择器：</h1><p>$(“form input”)         选择所有的form元素中的input元素<br>$(“#main &gt; *”)          选择id值为main的所有的子元素<br>$(“label + input”)     选择所有的label元素的下一个input元素节点，经测试选择器返回的是label标签后面直接跟一个input标签的所有input标签元素<br>$(“#prev ~ div”)       同胞选择器，该选择器返回的为id为prev的标签元素的所有的属于同一个父元素的div标签 </p>
+<h1 id="基本过滤选择器："><a href="#基本过滤选择器：" class="headerlink" title="基本过滤选择器："></a>基本过滤选择器：</h1><p>$(“tr:first”)               选择所有tr元素的第一个<br>$(“tr:last”)                选择所有tr元素的最后一个<br>$(“input:not(:checked) + span”)   </p>
+<p>过滤掉：checked的选择器的所有的input元素 </p>
+<p>$(“tr:even”)               选择所有的tr元素的第0，2，4… …个元素（注意：因为所选择的多个元素时为数组，所以序号是从0开始） </p>
+<p>$(“tr:odd”)                选择所有的tr元素的第1，3，5… …个元素<br>$(“td:eq(2)”)             选择所有的td元素中序号为2的那个td元素<br>$(“td:gt(4)”)             选择td元素中序号大于4的所有td元素<br>$(“td:ll(4)”)              选择td元素中序号小于4的所有的td元素<br>$(“:header”)<br>$(“div:animated”) </p>
+<h1 id="内容过滤选择器："><a href="#内容过滤选择器：" class="headerlink" title="内容过滤选择器："></a>内容过滤选择器：</h1><p>$(“div:contains(‘John’)”) 选择所有div中含有John文本的元素<br>$(“td:empty”)           选择所有的为空（也不包括文本节点）的td元素的数组<br>$(“div:has(p)”)        选择所有含有p标签的div元素<br>$(“td:parent”)          选择所有的以td为父节点的元素数组<br>可视化过滤选择器： </p>
+<p>$(“div:hidden”)        选择所有的被hidden的div元素<br>$(“div:visible”)        选择所有的可视化的div元素 </p>
+<h1 id="属性过滤选择器："><a href="#属性过滤选择器：" class="headerlink" title="属性过滤选择器："></a>属性过滤选择器：</h1><p>$(“div[id]”)              选择所有含有id属性的div元素<br>$(“input[name=’newsletter’]”)    选择所有的name属性等于’newsletter’的input元素 </p>
+<p>$(“input[name!=’newsletter’]”) 选择所有的name属性不等于’newsletter’的input元素 </p>
+<p>$(“input[name^=’news’]”)         选择所有的name属性以’news’开头的input元素<br>$(“input[name$=’news’]”)         选择所有的name属性以’news’结尾的input元素<br>$(“input[name*=’man’]”)          选择所有的name属性包含’news’的input元素 </p>
+<p>$(“input[id][name$=’man’]”)    可以使用多个属性进行联合选择，该选择器是得到所有的含有id属性并且那么属性以man结尾的元素 </p>
+<h1 id="子元素过滤选择器："><a href="#子元素过滤选择器：" class="headerlink" title="子元素过滤选择器："></a>子元素过滤选择器：</h1><p>$(“ul li:nth-child(2)”),$(“ul li:nth-child(odd)”),$(“ul li:nth-child(3n + 1)”) </p>
+<p>$(“div span:first-child”)          返回所有的div元素的第一个子节点的数组<br>$(“div span:last-child”)           返回所有的div元素的最后一个节点的数组<br>$(“div button:only-child”)       返回所有的div中只有唯一一个子节点的所有子节点的数组 </p>
+<h1 id="表单元素选择器："><a href="#表单元素选择器：" class="headerlink" title="表单元素选择器："></a>表单元素选择器：</h1><p>$(“:input”)                  选择所有的表单输入元素，包括input, textarea, select 和 button<br>$(“:text”)                     选择所有的text input元素<br>$(“:password”)           选择所有的password input元素<br>$(“:radio”)                   选择所有的radio input元素<br>$(“:checkbox”)            选择所有的checkbox input元素<br>$(“:submit”)               选择所有的submit input元素<br>$(“:image”)                 选择所有的image input元素<br>$(“:reset”)                   选择所有的reset input元素<br>$(“:button”)                选择所有的button input元素<br>$(“:file”)                     选择所有的file input元素<br>$(“:hidden”)               选择所有类型为hidden的input元素或表单的隐藏域 </p>
+<h1 id="表单元素过滤选择器："><a href="#表单元素过滤选择器：" class="headerlink" title="表单元素过滤选择器："></a>表单元素过滤选择器：</h1><p>$(“:enabled”)             选择所有的可操作的表单元素<br>$(“:disabled”)            选择所有的不可操作的表单元素<br>$(“:checked”)            选择所有的被checked的表单元素<br>$(“select option:selected”) 选择所有的select 的子元素中被selected的元素 </p>
+<p>选取一个 name 为”S_03_22″的input text框的上一个td的text值<br>$(”input[@ name =S_03_22]“).parent().prev().text() </p>
+<p>名字以”S_”开始，并且不是以”<em>R”结尾的<br>$(”input[@ name ^=’S</em>‘]“).not(”[@ name $=’_R’]“) </p>
+<p>一个名为 radio_01的radio所选的值<br>$(”input[@ name =radio_01][@checked]“).val(); </p>
+<p>$(“A B”) 查找A元素下面的所有子节点，包括非直接子节点<br>$(“A&gt;B”) 查找A元素下面的直接子节点<br>$(“A+B”) 查找A元素后面的兄弟节点，包括非直接子节点<br>$(“A~B”) 查找A元素后面的兄弟节点，不包括非直接子节点 </p>
+<ol>
+<li>$(“A B”) 查找A元素下面的所有子节点，包括非直接子节点 </li>
+</ol>
+<p>例子：找到表单中所有的 input 元素 </p>
+<p>HTML 代码: </p>
+<p><form></form></p>
+<p><label>Name:</label></p>
+<p><input name="name"></p>
+<p><fieldset><br>      <label>Newsletter:</label><br>      <input name="newsletter"><br></fieldset><br></p>
+<p><input name="none"><br>jQuery 代码: </p>
+<p>$(“form input”)<br>结果: </p>
+<p>[ <input name="name">, <input name="newsletter"> ] </p>
+<ol>
+<li>$(“A&gt;B”) 查找A元素下面的直接子节点<br>例子：匹配表单中所有的子级input元素。 </li>
+</ol>
+<p>HTML 代码: </p>
+<p><form></form></p>
+<p><label>Name:</label></p>
+<p><input name="name"></p>
+<p><fieldset><br>      <label>Newsletter:</label><br>      <input name="newsletter"><br></fieldset><br></p>
+<p><input name="none"><br>jQuery 代码: </p>
+<p>$(“form &gt; input”)<br>结果: </p>
+<p>[ <input name="name"> ] </p>
+<ol>
+<li>$(“A+B”) 查找A元素后面的兄弟节点，包括非直接子节点<br>例子：匹配所有跟在 label 后面的 input 元素 </li>
+</ol>
+<p>HTML 代码: </p>
+<p><form></form></p>
+<p><label>Name:</label></p>
+<p><input name="name"></p>
+<p><fieldset><br>      <label>Newsletter:</label><br>      <input name="newsletter"><br></fieldset><br></p>
+<p><input name="none"><br>jQuery 代码: </p>
+<p>$(“label + input”)<br>结果: </p>
+<p>[ <input name="name">, <input name="newsletter"> ] </p>
+<ol>
+<li>$(“A~B”) 查找A元素后面的兄弟节点，不包括非直接子节点<br>例子：找到所有与表单同辈的 input 元素 </li>
+</ol>
+<p>HTML 代码: </p>
+<p><form></form></p>
+<p><label>Name:</label></p>
+<p><input name="name"></p>
+<p><fieldset><br>      <label>Newsletter:</label><br>      <input name="newsletter"><br></fieldset><br></p>
+<p><input name="none"><br>jQuery 代码: </p>
+<p>$(“form ~ input”)<br>结果: </p>
+<p>[ <input name="none"> ] </p>
+</section>
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#jQuery" >
+    <span class="tag-code">jQuery</span>
+  </a>
+
+      </div>
+    
+    
+<nav id="article-nav">
+    
+        <a href="/2017/08/30/写一个自己的HEXO主题/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">NEWER</strong>
+            <div class="article-nav-title">
+                
+                    （写一个自己的HEXO主题
+                
+            </div>
+        </a>
+    
+    
+        <a href="/2017/08/28/Flex-布局教程：语法篇/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">OLDER</strong>
+            <div class="article-nav-title">Flex 布局教程：语法篇</div>
+        </a>
+    
+</nav>
+
+
+    <div class="money-like">
+      <div class="reward-btn">
+        赏
+        <span class="money-code">
+          <span class="wechat-code">
+            <div class="code-image"></div>
+            <b>使用微信打赏</b>
+          </span>
+        </span>
+      </div>
+      <p class="notice">若你觉得我的文章对你有帮助，欢迎点击上方按钮对我打赏</p>
+    </div>
+    <div class="qrcode">
+      <canvas id="share-qrcode"></canvas>
+ 
+      <p class="notice">扫描二维码，分享此文章</p>
+    </div>
+    
+      <!-- UY BEGIN -->
+      <div id="uyan_frame"></div>
+      <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2142069"></script>
+      <!-- UY END -->
+    
+  </article>
+</main>
+
+<script>
+  (function () {
+    var url = 'https://ycg31.oschina.io/2017/08/30/jQuery选择器总结/';
+    var banner = ''
+    if (banner) {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+     // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', 'http://file.muyutech.com/error-img.png') 
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      var imageW = $(this).width()
+      var imageH = $(this).height()
+      
+      var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+      zoom = zoom < 1 ? 1 : zoom
+      zoom = zoom > 2 ? 2 : zoom
+      var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+      $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+      $('.image-view-wrap').addClass('wrap-active')
+      $('.image-view-wrap img').css({
+        'width': `${imageW}`,
+        'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+      })
+      $('html').css('overflow', 'hidden')
+
+      $('.image-view-wrap').on('click', function() {
+        $(this).remove()
+        $('html').attr('style', '')
+      })
+    })
+
+    // qrcode
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+
+
+
+    // gitment
+    var gitmentConfig = "";
+    if (gitmentConfig != "undefined") {
+      var gitment = new Gitment({
+        id: "jQuery选择器总结",
+        owner: "",
+        repo: "",
+        oauth: {
+          client_id: "",
+          client_secret: ""
+        },
+        theme: {
+          render(state, instance) {
+            const container = document.createElement('div')
+            container.lang = "en-US"
+            container.className = 'gitment-container gitment-root-container'
+            container.appendChild(instance.renderHeader(state, instance))
+            container.appendChild(instance.renderEditor(state, instance))
+            container.appendChild(instance.renderComments(state, instance))
+            container.appendChild(instance.renderFooter(state, instance))
+            return container;
+          }
+        }
+      })
+      gitment.render(document.getElementById('comments'))
+    }
+  })();
+</script>
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2017 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+    Theme by <a href="https://github.com/yanm1ng">yanm1ng</a> | Mod by <a href="https://github.com/ycg31">ycg31</a>
+  </p>
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine == 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+<script src="/js/script.js"></script>
+  </body>
+</html>

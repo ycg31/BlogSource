@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="有了这个，就不用到处去找重复的了">
+  <meta name="keyword" content="hexo, vuejs">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      （转）介绍如何为 hexo 写一个本地的搜索引擎 | 杂记
+    
+  </title>
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/plugins/gitment.css">
+<link rel="stylesheet" href="/css/plugins/search.css">
+  <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdn.bootcss.com/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+  <script src="/js/qrious.js"></script>
+<script src="/js/gitment.js"></script>
+<script src="/js/search.js"></script>
+</head>
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>杂记</span>
+    </a>
+    <ul class="right-list">
+        <li class="list-item">   
+          <span class="algolia-autocomplete algolia-autocomplete-right" style="position: relative; display: inline-block; direction: ltr;">
+            <input type="text" id="local-search-input" class="search-query st-default-search-input aa-input" autocomplete="off" spellcheck="false" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-owns="algolia-autocomplete-listbox-0" dir="auto" style="position: relative; vertical-align: top;">
+          </span>
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link">Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div id="menu-mask" class="menu-mask">
+      <ul class="menu-list">
+        <li class="menu-item">   
+          <span class="algolia-autocomplete algolia-autocomplete-right" style="position: relative; display: inline-block; direction: ltr;">
+            <input type="text" id="mobile-search-input" class="search-query st-default-search-input aa-input" autocomplete="off" spellcheck="false" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-owns="algolia-autocomplete-listbox-0" dir="auto" style="position: relative; vertical-align: top;">
+          </span>
+        </li>
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+<div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="输入关键词" />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '博文',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '未定义',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+<div id="result-wrap" class="ins-search">
+    <div id="local-search-result"></div>
+</div>
+
+<script type="text/javascript">      
+     var search_path = "search.xml";
+     if (search_path.length == 0) {
+      search_path = "search.xml";
+     }
+     var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+     searchFunc(path, 'mobile-search-input', 'local-search-result');
+</script>
+</header>
+
+    <div id="article-banner">
+  <h2>（转）介绍如何为 hexo 写一个本地的搜索引擎</h2>
+  <p class="post-date">2017-08-30</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#安装和配置-hexo-generator-search"><span class="post-toc-number">1.</span> <span class="post-toc-text">安装和配置 hexo-generator-search</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#编写搜索界面"><span class="post-toc-number">2.</span> <span class="post-toc-text">编写搜索界面</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#实现本地搜索函数"><span class="post-toc-number">3.</span> <span class="post-toc-text">实现本地搜索函数</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#调用搜索函数"><span class="post-toc-number">4.</span> <span class="post-toc-text">调用搜索函数</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<main class="app-body">
+  <article class="post-article">
+    <section class="markdown-content" id="post-content"><p>早在我最初<a href="http://www.hahack.com/codes/from-ruhoh-to-hexo/" target="_blank" rel="external">从 Ruhoh 迁移博客到 Hexo</a> 时，我就有动手写一个本地的搜索引擎的想法。比起使用第三方服务的站内搜索，本地搜索引擎有几个好处：</p>
+<ol>
+<li>更可靠。不用担心<del>由于某些显而易见的原因导致</del>第三方服务不可访问。</li>
+<li>速度更快。不管是 Google 还是 Swiftype ，第三方搜索服务的加载速度总是比较慢，影响浏览体验。</li>
+<li>定制性更强。由于是自己写的插件，检索的具体策略、界面样式都可以自己定义，满足极客们 Bigger than Bigger 的需求。</li>
+</ol>
+<p>这个想法起初是受了 Christian Fei 的 <a href="https://github.com/christian-fei/Simple-Jekyll-Search" target="_blank" rel="external">Simple Jekyll Search</a> 启发。在了解了它的原理后，我认为在 Hexo 上实现一个本地搜索引擎并不复杂。大致的思路是：</p>
+<ul>
+<li>写一个 generator ，生成站点所有文章的索引数据；</li>
+<li>当在搜索框中输入关键词时，触发 Javascript 的特定函数，在这个索引数据里头检索包含该关键词的文章；</li>
+<li>利用 jQuery 在页面中动态插入检索结果。</li>
+</ul>
+<p>想法对头，就开始动手撸吧。我和一个朋友 <a href="https://github.com/maoshuhao" target="_blank" rel="external">maoshuhao</a> 一起合作完成了 <a href="https://github.com/PaicHyperionDev/hexo-generator-search" target="_blank" rel="external">hexo-generator-search</a> 插件，用来生成站点的索引数据。有了它，后面的搜索引擎就非常容易实现了。</p>
+<p>你可以访问这个 <a href="http://wzpan.github.io/hexo-theme-freemind/404.html" target="_blank" rel="external">404页面</a> 试试这个本地搜索引擎的效果。如你所见，这个搜索引擎还是一个 live search engine ，即一旦检测到搜索框有修改，就会立即触发检索 1 1对于文章太多的站点，如果认为 live search 影响性能，可以改为回车触发搜索。。</p>
+<p>下面介绍如何给自己的博客搭建这样的一个搜索引擎。</p>
+<p>最新版本的 <a href="http://github.com/wzpan/hexo-theme-freemind/" target="_blank" rel="external">hexo-theme-freemind</a> 已提供了本地搜索功能。如果懒得折腾，欢迎使用这个主题。</p>
+<h2 id="安装和配置-hexo-generator-search"><a href="#安装和配置-hexo-generator-search" class="headerlink" title="安装和配置 hexo-generator-search"></a>安装和配置 hexo-generator-search</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install --save hexo-generator-search</div></pre></td></tr></table></figure>
+<p>然后，在站点根 <code>_config.yml</code> 里头添加设置项：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">search:</div><div class="line">  path: search.xml</div><div class="line">  field: post</div></pre></td></tr></table></figure>
+<p>其中：</p>
+<ul>
+<li><p><strong>path</strong> - 指定生成的索引数据的文件名。默认为 search.xml 。</p>
+</li>
+<li><p>field</p>
+</li>
+</ul>
+<p>  - 指定索引数据的生成范围。可选值包括：</p>
+<ul>
+<li><strong>post</strong> - 只生成博客文章（post）的索引（默认）；</li>
+<li><strong>page</strong> - 只生成其他页面（page）的索引；</li>
+<li><strong>all</strong> - 生成所有文章和页面的索引。</li>
+</ul>
+<p>完成后，可以试试访问预览站点的 search.xml 页面。例如，如果你的预览站点域名是 <a href="http://0.0.0.0:4000/" target="_blank" rel="external">http://0.0.0.0:4000</a> ，那么可以访问 <a href="http://0.0.0.0:4000/search.xml" target="_blank" rel="external">http://0.0.0.0:4000/search.xml</a> 看看是否会打开一个 xml 页面。</p>
+<h2 id="编写搜索界面"><a href="#编写搜索界面" class="headerlink" title="编写搜索界面"></a>编写搜索界面</h2><p>搜索界面由一个输入框（input）和一个用于动态插入搜索结果的 div 组成。例如：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"site_search"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">id</span>=<span class="string">"local-search-input"</span> <span class="attr">name</span>=<span class="string">"q"</span> <span class="attr">results</span>=<span class="string">"0"</span> <span class="attr">placeholder</span>=<span class="string">"search my blog..."</span> <span class="attr">class</span>=<span class="string">"form-control"</span>/&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"local-search-result"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>你也可以根据自己的喜好写成其他的形式，例如把用于插入结果的 div 移动到页面的其他地方。</p>
+<h2 id="实现本地搜索函数"><a href="#实现本地搜索函数" class="headerlink" title="实现本地搜索函数"></a>实现本地搜索函数</h2><p>接下来编写一个 search.js 脚本，用来实现基于 search.xml 的本地检索函数 searchFunc ：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> searchFunc = <span class="function"><span class="keyword">function</span>(<span class="params">path, search_id, content_id</span>) </span>&#123;</div><div class="line"><span class="meta">    'use strict'</span>;</div><div class="line">    $.ajax(&#123;</div><div class="line">        url: path,</div><div class="line">        dataType: <span class="string">"xml"</span>,</div><div class="line">        success: <span class="function"><span class="keyword">function</span>(<span class="params"> xmlResponse </span>) </span>&#123;</div><div class="line">            <span class="comment">// get the contents from search data</span></div><div class="line">            <span class="keyword">var</span> datas = $( <span class="string">"entry"</span>, xmlResponse ).map(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">                <span class="keyword">return</span> &#123;</div><div class="line">                    title: $( <span class="string">"title"</span>, <span class="keyword">this</span> ).text(),</div><div class="line">                    content: $(<span class="string">"content"</span>,<span class="keyword">this</span>).text(),</div><div class="line">                    url: $( <span class="string">"url"</span> , <span class="keyword">this</span>).text()</div><div class="line">                &#125;;</div><div class="line">            &#125;).get();</div><div class="line"></div><div class="line">            <span class="keyword">var</span> $input = <span class="built_in">document</span>.getElementById(search_id);</div><div class="line">            <span class="keyword">var</span> $resultContent = <span class="built_in">document</span>.getElementById(content_id);</div><div class="line"></div><div class="line">            $input.addEventListener(<span class="string">'input'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">                <span class="keyword">var</span> str=<span class="string">'&lt;ul class=\"search-result-list\"&gt;'</span>;                </div><div class="line">                <span class="keyword">var</span> keywords = <span class="keyword">this</span>.value.trim().toLowerCase().split(<span class="regexp">/[\s\-]+/</span>);</div><div class="line">                $resultContent.innerHTML = <span class="string">""</span>;</div><div class="line">                <span class="keyword">if</span> (<span class="keyword">this</span>.value.trim().length &lt;= <span class="number">0</span>) &#123;</div><div class="line">                    <span class="keyword">return</span>;</div><div class="line">                &#125;</div><div class="line">                <span class="comment">// perform local searching</span></div><div class="line">                datas.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123;</div><div class="line">                    <span class="keyword">var</span> isMatch = <span class="literal">true</span>;</div><div class="line">                    <span class="keyword">var</span> content_index = [];</div><div class="line">                    <span class="keyword">var</span> data_title = data.title.trim().toLowerCase();</div><div class="line">                    <span class="keyword">var</span> data_content = data.content.trim().replace(<span class="regexp">/&lt;[^&gt;]+&gt;/g</span>,<span class="string">""</span>).toLowerCase();</div><div class="line">                    <span class="keyword">var</span> data_url = data.url;</div><div class="line">                    <span class="keyword">var</span> index_title = <span class="number">-1</span>;</div><div class="line">                    <span class="keyword">var</span> index_content = <span class="number">-1</span>;</div><div class="line">                    <span class="keyword">var</span> first_occur = <span class="number">-1</span>;</div><div class="line">                    <span class="comment">// only match artiles with not empty titles and contents</span></div><div class="line">                    <span class="keyword">if</span>(data_title != <span class="string">''</span> &amp;&amp; data_content != <span class="string">''</span>) &#123;</div><div class="line">                        keywords.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">keyword, i</span>) </span>&#123;</div><div class="line">                            index_title = data_title.indexOf(keyword);</div><div class="line">                            index_content = data_content.indexOf(keyword);</div><div class="line"></div><div class="line">                            <span class="keyword">if</span>( index_title &lt; <span class="number">0</span> &amp;&amp; index_content &lt; <span class="number">0</span> )&#123;</div><div class="line">                                isMatch = <span class="literal">false</span>;</div><div class="line">                            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                                <span class="keyword">if</span> (index_content &lt; <span class="number">0</span>) &#123;</div><div class="line">                                    index_content = <span class="number">0</span>;</div><div class="line">                                &#125;</div><div class="line">                                <span class="keyword">if</span> (i == <span class="number">0</span>) &#123;</div><div class="line">                                    first_occur = index_content;</div><div class="line">                                &#125;</div><div class="line">                            &#125;</div><div class="line">                        &#125;);</div><div class="line">                    &#125;</div><div class="line">                    <span class="comment">// show search results</span></div><div class="line">                    <span class="keyword">if</span> (isMatch) &#123;</div><div class="line">                        str += <span class="string">"&lt;li&gt;&lt;a href='"</span>+ data_url +<span class="string">"' class='search-result-title'&gt;"</span>+ data_title +<span class="string">"&lt;/a&gt;"</span>;</div><div class="line">                        <span class="keyword">var</span> content = data.content.trim().replace(<span class="regexp">/&lt;[^&gt;]+&gt;/g</span>,<span class="string">""</span>);</div><div class="line">                        <span class="keyword">if</span> (first_occur &gt;= <span class="number">0</span>) &#123;</div><div class="line">                            <span class="comment">// cut out 100 characters</span></div><div class="line">                            <span class="keyword">var</span> start = first_occur - <span class="number">20</span>;</div><div class="line">                            <span class="keyword">var</span> end = first_occur + <span class="number">80</span>;</div><div class="line"></div><div class="line">                            <span class="keyword">if</span>(start &lt; <span class="number">0</span>)&#123;</div><div class="line">                                start = <span class="number">0</span>;</div><div class="line">                            &#125;</div><div class="line"></div><div class="line">                            <span class="keyword">if</span>(start == <span class="number">0</span>)&#123;</div><div class="line">                                end = <span class="number">100</span>;</div><div class="line">                            &#125;</div><div class="line"></div><div class="line">                            <span class="keyword">if</span>(end &gt; content.length)&#123;</div><div class="line">                                end = content.length;</div><div class="line">                            &#125;</div><div class="line"></div><div class="line">                            <span class="keyword">var</span> match_content = content.substr(start, end); </div><div class="line"></div><div class="line">                            <span class="comment">// highlight all keywords</span></div><div class="line">                            keywords.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">keyword</span>)</span>&#123;</div><div class="line">                                <span class="keyword">var</span> regS = <span class="keyword">new</span> <span class="built_in">RegExp</span>(keyword, <span class="string">"gi"</span>);</div><div class="line">                                match_content = match_content.replace(regS, <span class="string">"&lt;em class=\"search-keyword\"&gt;"</span>+keyword+<span class="string">"&lt;/em&gt;"</span>);</div><div class="line">                            &#125;);</div><div class="line">                            </div><div class="line">                            str += <span class="string">"&lt;p class=\"search-result\"&gt;"</span> + match_content +<span class="string">"...&lt;/p&gt;"</span></div><div class="line">                        &#125;</div><div class="line">                        str += <span class="string">"&lt;/li&gt;"</span>;</div><div class="line">                    &#125;</div><div class="line">                &#125;);</div><div class="line">                str += <span class="string">"&lt;/ul&gt;"</span>;</div><div class="line">                $resultContent.innerHTML = str;</div><div class="line">            &#125;);</div><div class="line">        &#125;</div><div class="line">    &#125;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>searchFunc 包含三个参数：</p>
+<ul>
+<li><strong>path</strong> - 用 hexo-generator-search 生成的搜索索引文件的路径。注意这个 <code>path</code> 和前面 hexo-generator-search 的 <code>path</code> 选项有所不同。这里的 path 才是指这个文件的路径，而前面的 <code>path</code> 指的是生成的文件名 2 2也许第二个 <code>path</code> 叫 <code>filename</code> 更合适。；</li>
+<li><strong>search_id</strong> - 搜索框的 id 。对于我们的例子，就是 <code>local-search-input</code>;</li>
+<li><strong>content_id</strong> - 结果框的 id 。对于我们的例子，就是 <code>local-search-result</code>。</li>
+</ul>
+<h2 id="调用搜索函数"><a href="#调用搜索函数" class="headerlink" title="调用搜索函数"></a>调用搜索函数</h2><p>有了上面的检索函数，接下来可以在适当时机调用它。由于 path 的实际地址是根 <code>_config.yml</code> 里 <code>config.root</code>+ <code>config.search.path</code> 两个值组成，所以我们最好将这个调用写在页面模板中，以方便获取站点的设置信息。例如，对于 ejs 模板：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&lt;script type=<span class="string">"text/javascript"</span>&gt;      </div><div class="line">     <span class="keyword">var</span> search_path = <span class="string">"&lt;%= config.search.path %&gt;"</span>;</div><div class="line">     <span class="keyword">if</span> (search_path.length == <span class="number">0</span>) &#123;</div><div class="line">     	search_path = <span class="string">"search.xml"</span>;</div><div class="line">     &#125;</div><div class="line">     <span class="keyword">var</span> path = <span class="string">"&lt;%= config.root %&gt;"</span> + search_path;</div><div class="line">     searchFunc(path, <span class="string">'local-search-input'</span>, <span class="string">'local-search-result'</span>);</div><div class="line">&lt;<span class="regexp">/script&gt;</span></div></pre></td></tr></table></figure>
+<p>至此就完成了本地检索引擎的实线，最后的工作就是修改样式，让检索页面更美观。在 searchFunc 函数中，我已经为几个关键的页面元素设定了 css 名：</p>
+<ul>
+<li>ul.search-result-list - 搜索结果列表的样式名；</li>
+<li>a.search-result-title - 搜索结果文章标题的样式名；</li>
+<li>p.search-result - 搜索结果每篇文章的预览段落的样式名；</li>
+<li>em.search-keyword - 搜索结果每篇文章的预览段落中匹配关键词的样式名。</li>
+</ul>
+<p>最后给出 <a href="http://wzpan.github.io/hexo-theme-freemind/" target="_blank" rel="external">hexo-theme-freemind</a> 主题的相关样式：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">ul</span><span class="selector-class">.search-result-list</span> &#123;</div><div class="line">  <span class="attribute">padding-left</span>: <span class="number">10px</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="selector-tag">a</span><span class="selector-class">.search-result-title</span> &#123;</div><div class="line">  <span class="attribute">font-weight</span>: bold;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="selector-tag">p</span><span class="selector-class">.search-result</span> &#123;</div><div class="line">  color=#555;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="selector-tag">em</span><span class="selector-class">.search-keyword</span> &#123;</div><div class="line">  <span class="attribute">border-bottom</span>: <span class="number">1px</span> dashed <span class="number">#4088b8</span>;</div><div class="line">  <span class="attribute">font-weight</span>: bold;</div><div class="line">&#125;</div></pre></td></tr></table></figure></section>
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#hexo" >
+    <span class="tag-code">hexo</span>
+  </a>
+
+      </div>
+    
+    
+<nav id="article-nav">
+    
+        <a href="/2017/08/30/自定义HEXO站内搜索Javascript-json/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">NEWER</strong>
+            <div class="article-nav-title">
+                
+                    自定义HEXO站内搜索Javascript+json
+                
+            </div>
+        </a>
+    
+    
+        <a href="/2017/08/30/写一个自己的HEXO主题/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">OLDER</strong>
+            <div class="article-nav-title">（写一个自己的HEXO主题</div>
+        </a>
+    
+</nav>
+
+
+    <div class="money-like">
+      <div class="reward-btn">
+        赏
+        <span class="money-code">
+          <span class="wechat-code">
+            <div class="code-image"></div>
+            <b>使用微信打赏</b>
+          </span>
+        </span>
+      </div>
+      <p class="notice">若你觉得我的文章对你有帮助，欢迎点击上方按钮对我打赏</p>
+    </div>
+    <div class="qrcode">
+      <canvas id="share-qrcode"></canvas>
+ 
+      <p class="notice">扫描二维码，分享此文章</p>
+    </div>
+    
+      <!-- UY BEGIN -->
+      <div id="uyan_frame"></div>
+      <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2142069"></script>
+      <!-- UY END -->
+    
+  </article>
+</main>
+
+<script>
+  (function () {
+    var url = 'https://ycg31.oschina.io/2017/08/30/介绍如何为-hexo-写一个本地的搜索引擎/';
+    var banner = ''
+    if (banner) {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+     // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', 'http://file.muyutech.com/error-img.png') 
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      var imageW = $(this).width()
+      var imageH = $(this).height()
+      
+      var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+      zoom = zoom < 1 ? 1 : zoom
+      zoom = zoom > 2 ? 2 : zoom
+      var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+      $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+      $('.image-view-wrap').addClass('wrap-active')
+      $('.image-view-wrap img').css({
+        'width': `${imageW}`,
+        'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+      })
+      $('html').css('overflow', 'hidden')
+
+      $('.image-view-wrap').on('click', function() {
+        $(this).remove()
+        $('html').attr('style', '')
+      })
+    })
+
+    // qrcode
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+
+
+
+    // gitment
+    var gitmentConfig = "";
+    if (gitmentConfig != "undefined") {
+      var gitment = new Gitment({
+        id: "（转）介绍如何为 hexo 写一个本地的搜索引擎",
+        owner: "",
+        repo: "",
+        oauth: {
+          client_id: "",
+          client_secret: ""
+        },
+        theme: {
+          render(state, instance) {
+            const container = document.createElement('div')
+            container.lang = "en-US"
+            container.className = 'gitment-container gitment-root-container'
+            container.appendChild(instance.renderHeader(state, instance))
+            container.appendChild(instance.renderEditor(state, instance))
+            container.appendChild(instance.renderComments(state, instance))
+            container.appendChild(instance.renderFooter(state, instance))
+            return container;
+          }
+        }
+      })
+      gitment.render(document.getElementById('comments'))
+    }
+  })();
+</script>
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2017 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+    Theme by <a href="https://github.com/yanm1ng">yanm1ng</a> | Mod by <a href="https://github.com/ycg31">ycg31</a>
+  </p>
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine == 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+<script src="/js/script.js"></script>
+  </body>
+</html>

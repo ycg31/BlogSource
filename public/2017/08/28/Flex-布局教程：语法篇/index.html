@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="有了这个，就不用到处去找重复的了">
+  <meta name="keyword" content="hexo, vuejs">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      Flex 布局教程：语法篇 | 杂记
+    
+  </title>
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdn.bootcss.com/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/plugins/gitment.css">
+<link rel="stylesheet" href="/css/plugins/search.css">
+  <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdn.bootcss.com/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+  <script src="/js/qrious.js"></script>
+<script src="/js/gitment.js"></script>
+<script src="/js/search.js"></script>
+</head>
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>杂记</span>
+    </a>
+    <ul class="right-list">
+        <li class="list-item">   
+          <span class="algolia-autocomplete algolia-autocomplete-right" style="position: relative; display: inline-block; direction: ltr;">
+            <input type="text" id="local-search-input" class="search-query st-default-search-input aa-input" autocomplete="off" spellcheck="false" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-owns="algolia-autocomplete-listbox-0" dir="auto" style="position: relative; vertical-align: top;">
+          </span>
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link">Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div id="menu-mask" class="menu-mask">
+      <ul class="menu-list">
+        <li class="menu-item">   
+          <span class="algolia-autocomplete algolia-autocomplete-right" style="position: relative; display: inline-block; direction: ltr;">
+            <input type="text" id="mobile-search-input" class="search-query st-default-search-input aa-input" autocomplete="off" spellcheck="false" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-owns="algolia-autocomplete-listbox-0" dir="auto" style="position: relative; vertical-align: top;">
+          </span>
+        </li>
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+<div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="输入关键词" />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '博文',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '未定义',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+<div id="result-wrap" class="ins-search">
+    <div id="local-search-result"></div>
+</div>
+
+<script type="text/javascript">      
+     var search_path = "search.xml";
+     if (search_path.length == 0) {
+      search_path = "search.xml";
+     }
+     var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+     searchFunc(path, 'mobile-search-input', 'local-search-result');
+</script>
+</header>
+
+    <div id="article-banner">
+  <h2>Flex 布局教程：语法篇</h2>
+  <p class="post-date">2017-08-28</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#一、Flex-布局是什么？"><span class="post-toc-number">1.</span> <span class="post-toc-text">一、Flex 布局是什么？</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#二、基本概念"><span class="post-toc-number">2.</span> <span class="post-toc-text">二、基本概念</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#三、容器的属性"><span class="post-toc-number">3.</span> <span class="post-toc-text">三、容器的属性</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-1-flex-direction属性"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">3.1 flex-direction属性</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-2-flex-wrap属性"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">3.2 flex-wrap属性</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-3-flex-flow"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">3.3 flex-flow</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-4-justify-content属性"><span class="post-toc-number">3.4.</span> <span class="post-toc-text">3.4 justify-content属性</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-5-align-items属性"><span class="post-toc-number">3.5.</span> <span class="post-toc-text">3.5 align-items属性</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-6-align-content属性"><span class="post-toc-number">3.6.</span> <span class="post-toc-text">3.6 align-content属性</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#四、项目的属性"><span class="post-toc-number">3.7.</span> <span class="post-toc-text">四、项目的属性</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-1-order属性"><span class="post-toc-number">3.8.</span> <span class="post-toc-text">4.1 order属性</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-2-flex-grow属性"><span class="post-toc-number">3.9.</span> <span class="post-toc-text">4.2 flex-grow属性</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-3-flex-shrink属性"><span class="post-toc-number">3.10.</span> <span class="post-toc-text">4.3 flex-shrink属性</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-4-flex-basis属性"><span class="post-toc-number">3.11.</span> <span class="post-toc-text">4.4 flex-basis属性</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-5-flex属性"><span class="post-toc-number">3.12.</span> <span class="post-toc-text">4.5 flex属性</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-6-align-self属性"><span class="post-toc-number">3.13.</span> <span class="post-toc-text">4.6 align-self属性</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+<main class="app-body">
+  <article class="post-article">
+    <section class="markdown-content" id="post-content"><p>网页布局（layout）是 CSS 的一个重点应用。</p>
+<p><img src="http://www.ruanyifeng.com/blogimg/asset/2015/bg2015071001.gif" alt="img"></p>
+<p>布局的传统解决方案，基于<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/box_model" target="_blank" rel="external">盒状模型</a>，依赖 <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/display" target="_blank" rel="external"><code>display</code></a> 属性 + <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/position" target="_blank" rel="external"><code>position</code></a>属性 + <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/float" target="_blank" rel="external"><code>float</code></a>属性。它对于那些特殊布局非常不方便，比如，<a href="https://css-tricks.com/centering-css-complete-guide/" target="_blank" rel="external">垂直居中</a>就不容易实现。</p>
+<p><img src="http://www.ruanyifeng.com/blogimg/asset/2015/bg2015071002.png" alt="img"></p>
+<p>2009年，W3C 提出了一种新的方案—-Flex 布局，可以简便、完整、响应式地实现各种页面布局。目前，它已经得到了所有浏览器的支持，这意味着，现在就能很安全地使用这项功能。</p>
+<p><img src="http://www.ruanyifeng.com/blogimg/asset/2015/bg2015071003.jpg" alt="img"></p>
+<p>Flex 布局将成为未来布局的首选方案。本文介绍它的语法，<a href="http://www.ruanyifeng.com/blog/2015/07/flex-examples.html" target="_blank" rel="external">下一篇文章</a>给出常见布局的 Flex 写法。网友 <a href="http://vgee.cn/" target="_blank" rel="external">JailBreak</a> 为本文的所有示例制作了 <a href="http://static.vgee.cn/static/index.html" target="_blank" rel="external">Demo</a>，也可以参考。</p>
+<p>以下内容主要参考了下面两篇文章：<a href="https://css-tricks.com/snippets/css/a-guide-to-flexbox/" target="_blank" rel="external">A Complete Guide to Flexbox</a> 和 <a href="https://scotch.io/tutorials/a-visual-guide-to-css3-flexbox-properties" target="_blank" rel="external">A Visual Guide to CSS3 Flexbox Properties</a>。</p>
+<h2 id="一、Flex-布局是什么？"><a href="#一、Flex-布局是什么？" class="headerlink" title="一、Flex 布局是什么？"></a>一、Flex 布局是什么？</h2><p>Flex 是 Flexible Box 的缩写，意为”弹性布局”，用来为盒状模型提供最大的灵活性。</p>
+<p>任何一个容器都可以指定为 Flex 布局。</p>
+<blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;</span><span class="bash"> .box&#123;</span></div><div class="line"><span class="meta">&gt;</span><span class="bash">   display: flex;</span></div><div class="line"><span class="meta">&gt;</span><span class="bash"> &#125;</span></div><div class="line"><span class="meta">&gt;</span><span class="bash"></span></div><div class="line"><span class="meta">&gt;</span><span class="bash"></span></div></pre></td></tr></table></figure>
+</blockquote>
+<p>行内元素也可以使用 Flex 布局。</p>
+<blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;</span><span class="bash"> .box&#123;</span></div><div class="line"><span class="meta">&gt;</span><span class="bash">   display: inline-flex;</span></div><div class="line"><span class="meta">&gt;</span><span class="bash"> &#125;</span></div><div class="line"><span class="meta">&gt;</span><span class="bash"></span></div><div class="line"><span class="meta">&gt;</span><span class="bash"></span></div></pre></td></tr></table></figure>
+</blockquote>
+<p>Webkit 内核的浏览器，必须加上<code>-webkit</code>前缀。</p>
+<blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;</span><span class="bash"> .box&#123;</span></div><div class="line"><span class="meta">&gt;</span><span class="bash">   display: -webkit-flex; /* Safari */</span></div><div class="line"><span class="meta">&gt;</span><span class="bash">   display: flex;</span></div><div class="line"><span class="meta">&gt;</span><span class="bash"> &#125;</span></div><div class="line"><span class="meta">&gt;</span><span class="bash"></span></div><div class="line"><span class="meta">&gt;</span><span class="bash"></span></div></pre></td></tr></table></figure>
+</blockquote>
+<p>注意，设为 Flex 布局以后，子元素的<code>float</code>、<code>clear</code>和<code>vertical-align</code>属性将失效。</p>
+<h2 id="二、基本概念"><a href="#二、基本概念" class="headerlink" title="二、基本概念"></a>二、基本概念</h2><p>采用 Flex 布局的元素，称为 Flex 容器（flex container），简称”容器”。它的所有子元素自动成为容器成员，称为 Flex 项目（flex item），简称”项目”。</p>
+<p><img src="http://www.ruanyifeng.com/blogimg/asset/2015/bg2015071004.png" alt="img"></p>
+<p>容器默认存在两根轴：水平的主轴（main axis）和垂直的交叉轴（cross axis）。主轴的开始位置（与边框的交叉点）叫做<code>main start</code>，结束位置叫做<code>main end</code>；交叉轴的开始位置叫做<code>cross start</code>，结束位置叫做<code>cross end</code>。</p>
+<p>项目默认沿主轴排列。单个项目占据的主轴空间叫做<code>main size</code>，占据的交叉轴空间叫做<code>cross size</code>。</p>
+<h2 id="三、容器的属性"><a href="#三、容器的属性" class="headerlink" title="三、容器的属性"></a>三、容器的属性</h2><p>以下6个属性设置在容器上。</p>
+<blockquote>
+<ul>
+<li>flex-direction</li>
+<li>flex-wrap</li>
+<li>flex-flow</li>
+<li>justify-content</li>
+<li>align-items</li>
+<li>align-content</li>
+</ul>
+</blockquote>
+<h3 id="3-1-flex-direction属性"><a href="#3-1-flex-direction属性" class="headerlink" title="3.1 flex-direction属性"></a>3.1 flex-direction属性</h3><p><code>flex-direction</code>属性决定主轴的方向（即项目的排列方向）。</p>
+<blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;</span><span class="bash"> .box &#123;</span></div><div class="line"><span class="meta">&gt;</span><span class="bash">   flex-direction: row | row-reverse | column | column-reverse;</span></div><div class="line"><span class="meta">&gt;</span><span class="bash"> &#125;</span></div><div class="line"><span class="meta">&gt;</span><span class="bash"></span></div><div class="line"><span class="meta">&gt;</span><span class="bash"></span></div></pre></td></tr></table></figure>
+</blockquote>
+<p><img src="http://www.ruanyifeng.com/blogimg/asset/2015/bg2015071005.png" alt="img"></p>
+<p>它可能有4个值。</p>
+<blockquote>
+<ul>
+<li><code>row</code>（默认值）：主轴为水平方向，起点在左端。</li>
+<li><code>row-reverse</code>：主轴为水平方向，起点在右端。</li>
+<li><code>column</code>：主轴为垂直方向，起点在上沿。</li>
+<li><code>column-reverse</code>：主轴为垂直方向，起点在下沿。</li>
+</ul>
+</blockquote>
+<h3 id="3-2-flex-wrap属性"><a href="#3-2-flex-wrap属性" class="headerlink" title="3.2 flex-wrap属性"></a>3.2 flex-wrap属性</h3><p>默认情况下，项目都排在一条线（又称”轴线”）上。<code>flex-wrap</code>属性定义，如果一条轴线排不下，如何换行。</p>
+<p><img src="http://www.ruanyifeng.com/blogimg/asset/2015/bg2015071006.png" alt="img"></p>
+<blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;</span><span class="bash"> .box&#123;</span></div><div class="line"><span class="meta">&gt;</span><span class="bash">   flex-wrap: nowrap | wrap | wrap-reverse;</span></div><div class="line"><span class="meta">&gt;</span><span class="bash"> &#125;</span></div><div class="line"><span class="meta">&gt;</span><span class="bash"></span></div><div class="line"><span class="meta">&gt;</span><span class="bash"></span></div></pre></td></tr></table></figure>
+</blockquote>
+<p>它可能取三个值。</p>
+<p>（1）<code>nowrap</code>（默认）：不换行。</p>
+<p><img src="http://www.ruanyifeng.com/blogimg/asset/2015/bg2015071007.png" alt="img"></p>
+<p>（2）<code>wrap</code>：换行，第一行在上方。</p>
+<p><img src="http://www.ruanyifeng.com/blogimg/asset/2015/bg2015071008.jpg" alt="img"></p>
+<p>（3）<code>wrap-reverse</code>：换行，第一行在下方。</p>
+<p><img src="http://www.ruanyifeng.com/blogimg/asset/2015/bg2015071009.jpg" alt="img"></p>
+<h3 id="3-3-flex-flow"><a href="#3-3-flex-flow" class="headerlink" title="3.3 flex-flow"></a>3.3 flex-flow</h3><p><code>flex-flow</code>属性是<code>flex-direction</code>属性和<code>flex-wrap</code>属性的简写形式，默认值为<code>row nowrap</code>。</p>
+<blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;</span><span class="bash"> .box &#123;</span></div><div class="line"><span class="meta">&gt;</span><span class="bash">   flex-flow: &lt;flex-direction&gt; || &lt;flex-wrap&gt;;</span></div><div class="line"><span class="meta">&gt;</span><span class="bash"> &#125;</span></div><div class="line"><span class="meta">&gt;</span><span class="bash"></span></div><div class="line"><span class="meta">&gt;</span><span class="bash"></span></div></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="3-4-justify-content属性"><a href="#3-4-justify-content属性" class="headerlink" title="3.4 justify-content属性"></a>3.4 justify-content属性</h3><p><code>justify-content</code>属性定义了项目在主轴上的对齐方式。</p>
+<blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;</span><span class="bash"> .box &#123;</span></div><div class="line"><span class="meta">&gt;</span><span class="bash">   justify-content: flex-start | flex-end | center | space-between | space-around;</span></div><div class="line"><span class="meta">&gt;</span><span class="bash"> &#125;</span></div><div class="line"><span class="meta">&gt;</span><span class="bash"></span></div><div class="line"><span class="meta">&gt;</span><span class="bash"></span></div></pre></td></tr></table></figure>
+</blockquote>
+<p><img src="http://www.ruanyifeng.com/blogimg/asset/2015/bg2015071010.png" alt="img"></p>
+<p>它可能取5个值，具体对齐方式与轴的方向有关。下面假设主轴为从左到右。</p>
+<blockquote>
+<ul>
+<li><code>flex-start</code>（默认值）：左对齐</li>
+<li><code>flex-end</code>：右对齐</li>
+<li><code>center</code>： 居中</li>
+<li><code>space-between</code>：两端对齐，项目之间的间隔都相等。</li>
+<li><code>space-around</code>：每个项目两侧的间隔相等。所以，项目之间的间隔比项目与边框的间隔大一倍。</li>
+</ul>
+</blockquote>
+<h3 id="3-5-align-items属性"><a href="#3-5-align-items属性" class="headerlink" title="3.5 align-items属性"></a>3.5 align-items属性</h3><p><code>align-items</code>属性定义项目在交叉轴上如何对齐。</p>
+<blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;</span><span class="bash"> .box &#123;</span></div><div class="line"><span class="meta">&gt;</span><span class="bash">   align-items: flex-start | flex-end | center | baseline | stretch;</span></div><div class="line"><span class="meta">&gt;</span><span class="bash"> &#125;</span></div><div class="line"><span class="meta">&gt;</span><span class="bash"></span></div><div class="line"><span class="meta">&gt;</span><span class="bash"></span></div></pre></td></tr></table></figure>
+</blockquote>
+<p><img src="http://www.ruanyifeng.com/blogimg/asset/2015/bg2015071011.png" alt="img"></p>
+<p>它可能取5个值。具体的对齐方式与交叉轴的方向有关，下面假设交叉轴从上到下。</p>
+<blockquote>
+<ul>
+<li><code>flex-start</code>：交叉轴的起点对齐。</li>
+<li><code>flex-end</code>：交叉轴的终点对齐。</li>
+<li><code>center</code>：交叉轴的中点对齐。</li>
+<li><code>baseline</code>: 项目的第一行文字的基线对齐。</li>
+<li><code>stretch</code>（默认值）：如果项目未设置高度或设为auto，将占满整个容器的高度。</li>
+</ul>
+</blockquote>
+<h3 id="3-6-align-content属性"><a href="#3-6-align-content属性" class="headerlink" title="3.6 align-content属性"></a>3.6 align-content属性</h3><p><code>align-content</code>属性定义了多根轴线的对齐方式。如果项目只有一根轴线，该属性不起作用。</p>
+<blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;</span><span class="bash"> .box &#123;</span></div><div class="line"><span class="meta">&gt;</span><span class="bash">   align-content: flex-start | flex-end | center | space-between | space-around | stretch;</span></div><div class="line"><span class="meta">&gt;</span><span class="bash"> &#125;</span></div><div class="line"><span class="meta">&gt;</span><span class="bash"></span></div><div class="line"><span class="meta">&gt;</span><span class="bash"></span></div></pre></td></tr></table></figure>
+</blockquote>
+<p><img src="http://www.ruanyifeng.com/blogimg/asset/2015/bg2015071012.png" alt="img"></p>
+<p>该属性可能取6个值。</p>
+<blockquote>
+<ul>
+<li><code>flex-start</code>：与交叉轴的起点对齐。</li>
+<li><code>flex-end</code>：与交叉轴的终点对齐。</li>
+<li><code>center</code>：与交叉轴的中点对齐。</li>
+<li><code>space-between</code>：与交叉轴两端对齐，轴线之间的间隔平均分布。</li>
+<li><code>space-around</code>：每根轴线两侧的间隔都相等。所以，轴线之间的间隔比轴线与边框的间隔大一倍。</li>
+<li><code>stretch</code>（默认值）：轴线占满整个交叉轴。</li>
+</ul>
+</blockquote>
+<h3 id="四、项目的属性"><a href="#四、项目的属性" class="headerlink" title="四、项目的属性"></a>四、项目的属性</h3><p>以下6个属性设置在项目上。</p>
+<blockquote>
+<ul>
+<li><code>order</code></li>
+<li><code>flex-grow</code></li>
+<li><code>flex-shrink</code></li>
+<li><code>flex-basis</code></li>
+<li><code>flex</code></li>
+<li><code>align-self</code></li>
+</ul>
+</blockquote>
+<h3 id="4-1-order属性"><a href="#4-1-order属性" class="headerlink" title="4.1 order属性"></a>4.1 order属性</h3><p><code>order</code>属性定义项目的排列顺序。数值越小，排列越靠前，默认为0。</p>
+<blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;</span><span class="bash"> .item &#123;</span></div><div class="line"><span class="meta">&gt;</span><span class="bash">   order: &lt;<span class="built_in">integer</span>&gt;;</span></div><div class="line"><span class="meta">&gt;</span><span class="bash"> &#125;</span></div><div class="line"><span class="meta">&gt;</span><span class="bash"></span></div><div class="line"><span class="meta">&gt;</span><span class="bash"></span></div></pre></td></tr></table></figure>
+</blockquote>
+<p><img src="http://www.ruanyifeng.com/blogimg/asset/2015/bg2015071013.png" alt="img"></p>
+<h3 id="4-2-flex-grow属性"><a href="#4-2-flex-grow属性" class="headerlink" title="4.2 flex-grow属性"></a>4.2 flex-grow属性</h3><p><code>flex-grow</code>属性定义项目的放大比例，默认为<code>0</code>，即如果存在剩余空间，也不放大。</p>
+<blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;</span><span class="bash"> .item &#123;</span></div><div class="line"><span class="meta">&gt;</span><span class="bash">   flex-grow: &lt;number&gt;; /* default 0 */</span></div><div class="line"><span class="meta">&gt;</span><span class="bash"> &#125;</span></div><div class="line"><span class="meta">&gt;</span><span class="bash"></span></div><div class="line"><span class="meta">&gt;</span><span class="bash"></span></div></pre></td></tr></table></figure>
+</blockquote>
+<p><img src="http://www.ruanyifeng.com/blogimg/asset/2015/bg2015071014.png" alt="img"></p>
+<p>如果所有项目的<code>flex-grow</code>属性都为1，则它们将等分剩余空间（如果有的话）。如果一个项目的<code>flex-grow</code>属性为2，其他项目都为1，则前者占据的剩余空间将比其他项多一倍。</p>
+<h3 id="4-3-flex-shrink属性"><a href="#4-3-flex-shrink属性" class="headerlink" title="4.3 flex-shrink属性"></a>4.3 flex-shrink属性</h3><p><code>flex-shrink</code>属性定义了项目的缩小比例，默认为1，即如果空间不足，该项目将缩小。</p>
+<blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;</span><span class="bash"> .item &#123;</span></div><div class="line"><span class="meta">&gt;</span><span class="bash">   flex-shrink: &lt;number&gt;; /* default 1 */</span></div><div class="line"><span class="meta">&gt;</span><span class="bash"> &#125;</span></div><div class="line"><span class="meta">&gt;</span><span class="bash"></span></div><div class="line"><span class="meta">&gt;</span><span class="bash"></span></div></pre></td></tr></table></figure>
+</blockquote>
+<p><img src="http://www.ruanyifeng.com/blogimg/asset/2015/bg2015071015.jpg" alt="img"></p>
+<p>如果所有项目的<code>flex-shrink</code>属性都为1，当空间不足时，都将等比例缩小。如果一个项目的<code>flex-shrink</code>属性为0，其他项目都为1，则空间不足时，前者不缩小。</p>
+<p>负值对该属性无效。</p>
+<h3 id="4-4-flex-basis属性"><a href="#4-4-flex-basis属性" class="headerlink" title="4.4 flex-basis属性"></a>4.4 flex-basis属性</h3><p><code>flex-basis</code>属性定义了在分配多余空间之前，项目占据的主轴空间（main size）。浏览器根据这个属性，计算主轴是否有多余空间。它的默认值为<code>auto</code>，即项目的本来大小。</p>
+<blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;</span><span class="bash"> .item &#123;</span></div><div class="line"><span class="meta">&gt;</span><span class="bash">   flex-basis: &lt;length&gt; | auto; /* default auto */</span></div><div class="line"><span class="meta">&gt;</span><span class="bash"> &#125;</span></div><div class="line"><span class="meta">&gt;</span><span class="bash"></span></div><div class="line"><span class="meta">&gt;</span><span class="bash"></span></div></pre></td></tr></table></figure>
+</blockquote>
+<p>它可以设为跟<code>width</code>或<code>height</code>属性一样的值（比如350px），则项目将占据固定空间。</p>
+<h3 id="4-5-flex属性"><a href="#4-5-flex属性" class="headerlink" title="4.5 flex属性"></a>4.5 flex属性</h3><p><code>flex</code>属性是<code>flex-grow</code>, <code>flex-shrink</code> 和 <code>flex-basis</code>的简写，默认值为<code>0 1 auto</code>。后两个属性可选。</p>
+<blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;</span><span class="bash"> .item &#123;</span></div><div class="line"><span class="meta">&gt;</span><span class="bash">   flex: none | [ &lt;<span class="string">'flex-grow'</span>&gt; &lt;<span class="string">'flex-shrink'</span>&gt;? || &lt;<span class="string">'flex-basis'</span>&gt; ]</span></div><div class="line"><span class="meta">&gt;</span><span class="bash"> &#125;</span></div><div class="line"><span class="meta">&gt;</span><span class="bash"></span></div><div class="line"><span class="meta">&gt;</span><span class="bash"></span></div></pre></td></tr></table></figure>
+</blockquote>
+<p>该属性有两个快捷值：<code>auto</code> (<code>1 1 auto</code>) 和 none (<code>0 0 auto</code>)。</p>
+<p>建议优先使用这个属性，而不是单独写三个分离的属性，因为浏览器会推算相关值。</p>
+<h3 id="4-6-align-self属性"><a href="#4-6-align-self属性" class="headerlink" title="4.6 align-self属性"></a>4.6 align-self属性</h3><p><code>align-self</code>属性允许单个项目有与其他项目不一样的对齐方式，可覆盖<code>align-items</code>属性。默认值为<code>auto</code>，表示继承父元素的<code>align-items</code>属性，如果没有父元素，则等同于<code>stretch</code>。</p>
+<blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;</span><span class="bash"> .item &#123;</span></div><div class="line"><span class="meta">&gt;</span><span class="bash">   align-self: auto | flex-start | flex-end | center | baseline | stretch;</span></div><div class="line"><span class="meta">&gt;</span><span class="bash"> &#125;</span></div><div class="line"><span class="meta">&gt;</span><span class="bash"></span></div><div class="line"><span class="meta">&gt;</span><span class="bash"></span></div></pre></td></tr></table></figure>
+</blockquote>
+<p><img src="http://www.ruanyifeng.com/blogimg/asset/2015/bg2015071016.png" alt="img"></p>
+<p>该属性可能取6个值，除了auto，其他都与align-items属性完全一致。</p>
+</section>
+    
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#css" >
+    <span class="tag-code">css</span>
+  </a>
+
+  <a href="/tags#flex" >
+    <span class="tag-code">flex</span>
+  </a>
+
+      </div>
+    
+    
+<nav id="article-nav">
+    
+        <a href="/2017/08/30/jQuery选择器总结/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">NEWER</strong>
+            <div class="article-nav-title">
+                
+                    jQuery选择器总结
+                
+            </div>
+        </a>
+    
+    
+        <a href="/2017/08/25/CSS padding margin border属性详解/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">OLDER</strong>
+            <div class="article-nav-title">CSS padding margin border属性详解</div>
+        </a>
+    
+</nav>
+
+
+    <div class="money-like">
+      <div class="reward-btn">
+        赏
+        <span class="money-code">
+          <span class="wechat-code">
+            <div class="code-image"></div>
+            <b>使用微信打赏</b>
+          </span>
+        </span>
+      </div>
+      <p class="notice">若你觉得我的文章对你有帮助，欢迎点击上方按钮对我打赏</p>
+    </div>
+    <div class="qrcode">
+      <canvas id="share-qrcode"></canvas>
+ 
+      <p class="notice">扫描二维码，分享此文章</p>
+    </div>
+    
+      <!-- UY BEGIN -->
+      <div id="uyan_frame"></div>
+      <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2142069"></script>
+      <!-- UY END -->
+    
+  </article>
+</main>
+
+<script>
+  (function () {
+    var url = 'https://ycg31.oschina.io/2017/08/28/Flex-布局教程：语法篇/';
+    var banner = ''
+    if (banner) {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+     // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', 'http://file.muyutech.com/error-img.png') 
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      var imageW = $(this).width()
+      var imageH = $(this).height()
+      
+      var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+      zoom = zoom < 1 ? 1 : zoom
+      zoom = zoom > 2 ? 2 : zoom
+      var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+      $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+      $('.image-view-wrap').addClass('wrap-active')
+      $('.image-view-wrap img').css({
+        'width': `${imageW}`,
+        'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+      })
+      $('html').css('overflow', 'hidden')
+
+      $('.image-view-wrap').on('click', function() {
+        $(this).remove()
+        $('html').attr('style', '')
+      })
+    })
+
+    // qrcode
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+
+
+
+    // gitment
+    var gitmentConfig = "";
+    if (gitmentConfig != "undefined") {
+      var gitment = new Gitment({
+        id: "Flex 布局教程：语法篇",
+        owner: "",
+        repo: "",
+        oauth: {
+          client_id: "",
+          client_secret: ""
+        },
+        theme: {
+          render(state, instance) {
+            const container = document.createElement('div')
+            container.lang = "en-US"
+            container.className = 'gitment-container gitment-root-container'
+            container.appendChild(instance.renderHeader(state, instance))
+            container.appendChild(instance.renderEditor(state, instance))
+            container.appendChild(instance.renderComments(state, instance))
+            container.appendChild(instance.renderFooter(state, instance))
+            return container;
+          }
+        }
+      })
+      gitment.render(document.getElementById('comments'))
+    }
+  })();
+</script>
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
+</div>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2017 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+    <br>
+    Theme by <a href="https://github.com/yanm1ng">yanm1ng</a> | Mod by <a href="https://github.com/ycg31">ycg31</a>
+  </p>
+</footer>
+
+<script>
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+</script>
+<script>
+  async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
+</script>
+
+<script>
+  var hasLine = 'true';
+  async("//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine == 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
+    });
+  })
+</script>
+<!-- Baidu Tongji -->
+
+<script src="/js/script.js"></script>
+  </body>
+</html>

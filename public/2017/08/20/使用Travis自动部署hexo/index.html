@@ -169,9 +169,17 @@
     <a href="javascript:;"></a>
   </div>
 </div>
+
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#新建Personal-Access-Token"><span class="post-toc-number">1.</span> <span class="post-toc-text">新建Personal Access Token</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#配置Travis-CI"><span class="post-toc-number">2.</span> <span class="post-toc-text">配置Travis CI</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#登录并配置Travis-CI"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">登录并配置Travis CI</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#本地安装Travis"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">本地安装Travis</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#创建并修改配置文件"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">创建并修改配置文件</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#创建仓库，推送到GitHub"><span class="post-toc-number">3.</span> <span class="post-toc-text">创建仓库，推送到GitHub</span></a></li></ol>
+        </nav>
+    </aside>
+    
 <main class="app-body">
   <article class="post-article">
-    <section class="markdown-content"><p>转载自<a href="http://blog.csdn.net/xuezhisdc/article/details/53130423" target="_blank" rel="external">http://blog.csdn.net/xuezhisdc/article/details/53130423</a></p>
+    <section class="markdown-content" id="post-content"><p>转载自<a href="http://blog.csdn.net/xuezhisdc/article/details/53130423" target="_blank" rel="external">http://blog.csdn.net/xuezhisdc/article/details/53130423</a></p>
 <h2 id="新建Personal-Access-Token"><a href="#新建Personal-Access-Token" class="headerlink" title="新建Personal Access Token"></a>新建Personal Access Token</h2><ol>
 <li>点击右上角头像旁边的三角，在菜单中点击“Setting”，进入设置页面。<br><img src="http://img.zhangxuezhi.com/v90uk9inuvo8yjywxj9gm5hjb5.png" alt="img"></li>
 <li>点击左侧栏的最下面的“Personal access tokens”，创建Personal access tokens。<br><img src="http://img.zhangxuezhi.com/syvhuszdqc8zoe5hncv99r8ntg.png" alt="img"></li>
@@ -240,6 +248,27 @@
 
       </div>
     
+    
+<nav id="article-nav">
+    
+        <a href="/2017/08/20/GIT相关命令/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">NEWER</strong>
+            <div class="article-nav-title">
+                
+                    GIT相关命令
+                
+            </div>
+        </a>
+    
+    
+        <a href="/2017/08/20/（转）Hexo添加文章时自动打开编辑器/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">OLDER</strong>
+            <div class="article-nav-title">（转）Hexo添加文章时自动打开编辑器</div>
+        </a>
+    
+</nav>
+
+
     <div class="money-like">
       <div class="reward-btn">
         赏
@@ -254,6 +283,7 @@
     </div>
     <div class="qrcode">
       <canvas id="share-qrcode"></canvas>
+ 
       <p class="notice">扫描二维码，分享此文章</p>
     </div>
     
@@ -313,6 +343,8 @@
       element: document.getElementById('share-qrcode'),
       value: document.location.href
     });
+
+
 
     // gitment
     var gitmentConfig = "";
